@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -67,9 +66,9 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         main_title.setRightButton(null, R.drawable.tag, new Alltitle.OnRightButtonClickListener() {
             @Override
             public void onRightBtnClick(View button) {
-                Intent it=new Intent();
+                Intent it = new Intent(MainActivity2.this, Region_admin.class);
                 startActivity(it);
-            }
+               }
         }, null);
     }
 
@@ -84,8 +83,6 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
             it2.putExtra("put_equipment", bundle.get("result").toString());
             startActivity(it2);
 //            Log.e(TAG, bundle.get("result").toString());
-        } else {
-
         }
     }
 

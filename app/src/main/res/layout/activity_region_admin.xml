@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context="com.pumin.view.Region_admin">
 
-    <com.pumin.util.Alltitle
+    <com.pumin.lzl.pumin.util.Alltitle
         android:id="@+id/region_title"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
