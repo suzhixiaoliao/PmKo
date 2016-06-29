@@ -38,6 +38,11 @@ public class LoginActivity extends AppCompatActivity {
     public  final static String SER_KEY = "com.intentpumin.lsy.intentpumin.ser";
     public  final static String PAR_KEY = "com.intentpumin.lsy.intentpumin.par";
 
+    public static final String SETTING_INFOS = "SETTING_Infos";
+
+    public static final String NAME = "NAME";
+
+    public static final String PASSWORD = "PASSWORD";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +94,11 @@ public class LoginActivity extends AppCompatActivity {
   private void itiv() {
       et_name = (EditText) findViewById(R.id.et_name);
       et_psd = (EditText) findViewById(R.id.et_psd);
+      SharedPreferences settings = getSharedPreferences(SETTING_INFOS, 0); //获取一个SharedPreferences对象
+      final String name = settings.getString(NAME, "");  //取出保存的NAME
+      String password = settings.getString(PASSWORD, ""); //取出保存的PASSWORD
+      et_name.setText(name);
+      et_psd.setText(password);
       btn_login = (ImageView) findViewById(R.id.btn_login);
       btn_login.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -107,6 +117,11 @@ public class LoginActivity extends AppCompatActivity {
 
                   @Override
                   protected void onSuccess(String s) {
+                      SharedPreferences settings = getSharedPreferences(SETTING_INFOS, 0); //首先获取一个SharedPreferences对象
+                      settings.edit()
+                              .putString(NAME, et_name.getText().toString())
+                              .putString(PASSWORD,et_psd.getText().toString())
+                              .commit();
                       //第一步
                       login login = new login();
                       try {
