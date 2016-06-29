@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context="com.pumin.fragment.Alternate_fragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="2dp"
+            android:paddingRight="4dp"
+            android:paddingTop="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#b562a2e7"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp">
+                <!--<Button-->
+                <!--android:id="@+id/s_date"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="left"-->
+                <!--style="?android:buttonBarButtonStyle"-->
+                <!--android:text="开始时间"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="管理员:" />
+
+                <TextView
+                    android:id="@+id/alter_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="张三" />
+                <!--<Button-->
+                <!--android:id="@+id/e_date"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="right"-->
+                <!--style="?android:buttonBarButtonStyle"-->
+                <!--android:text="开始时间"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/alter_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="#000"
+                android:dividerHeight="2px"
+                android:listSelector="@drawable/list_item_bg" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

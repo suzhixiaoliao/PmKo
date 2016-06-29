@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#90caF9"
+    android:orientation="horizontal">
+
+    <CheckBox
+        android:id="@+id/tv_xz"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:background="#90caF9"
+        android:layout_centerVertical="true"
+        android:checked="false" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toLeftOf="@+id/tv_tz"
+        android:layout_toRightOf="@+id/tv_xz"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_sb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:text="设备"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+
+            android:text="12121221c"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#f5f5f5" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_tz"
+        android:layout_width="106dp"
+        android:layout_height="42dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="状态"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>
+

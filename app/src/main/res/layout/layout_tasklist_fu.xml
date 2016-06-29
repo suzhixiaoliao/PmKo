@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@mipmap/zhu_bg"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <!--<LinearLayout-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+            <!--android:visibility="gone"-->
+        <!--android:layout_height="10dp"/>-->
+    <!-- ListView控件 -->
+    <ListView
+        android:layout_width="match_parent"
+        android:background="#90caF9"
+        android:layout_height="match_parent"
+        android:id="@+id/list_tasklist"
+        />
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>
+

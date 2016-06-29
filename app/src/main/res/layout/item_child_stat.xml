@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <!--<CheckBox-->
+        <!-- -->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="hsjahdjahdjhadhaadlj"-->
+        <!--android:checked="false"-->
+        <!--android:padding="10dp"-->
+        <!--android:layout_marginLeft="30dp"/>-->
+
+
+    <TextView
+        android:layout_marginLeft="30dp"
+        android:id="@+id/eqStat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="hsjahdjahdjhadhaadlj"
+        android:textColor="@color/item_colors"
+        android:padding="10dp"
+        />
+
+</LinearLayout>

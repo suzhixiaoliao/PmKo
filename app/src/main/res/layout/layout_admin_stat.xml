@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#90caF9"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:checked="true"
+            android:id="@+id/tv_stat_xz"
+            android:layout_width="42dp"
+            android:layout_height="42dp" />
+
+        <TextView
+            android:id="@+id/tv_stat_sb"
+            android:text="设备"
+            android:layout_alignParentRight="true"
+            android:layout_width="160dp"
+            android:layout_height="42dp"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
