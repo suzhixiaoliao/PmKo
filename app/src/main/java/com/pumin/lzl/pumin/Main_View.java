@@ -49,7 +49,7 @@ import java.util.ArrayList;
 /*
 *@author lzl
 *created at 2016/6/12 8:50
-*    操作主界面
+*    操作主界面--
 */
 public class Main_View extends AppCompatActivity implements View.OnClickListener {
 
