@@ -55,9 +55,9 @@ public class LoginActivity extends AppCompatActivity {
         itiv();
         //判断网络连接状态
         if (isNetworkAvailable(LoginActivity.this)) {
-            Toast.makeText(getApplicationContext(), "当前有可用网络！", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "当前有可用网络！", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(), "当前没有可用网络！", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "当前没有可用网络！", Toast.LENGTH_SHORT).show();
         }
     }
 
