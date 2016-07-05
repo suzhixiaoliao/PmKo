@@ -47,11 +47,12 @@ public class TastComActivity extends Activity {
     }
 
     private void requestDate() {
+        final login mlogin = (login) getIntent().getSerializableExtra("login");
         final RequestParams params = new RequestParams();
         String remark = et_tast_com.getText().toString();
         final item_task  task = (item_task) getIntent().getSerializableExtra("task");
         params.addFormDataPart("signature", "1");
-        params.addFormDataPart("phoneno", "13000000000");
+        params.addFormDataPart("phoneno", mlogin.getPhoneno());
         params.addFormDataPart("remark", remark);
         params.addFormDataPart("tast_id",task.getEqpt_id());
         params.addFormDataPart("eqpt_id",task.getTask_id());

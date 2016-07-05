@@ -48,8 +48,6 @@ public class TaskslistActivity extends AutoLayoutActivity {
     private List<items> mdata;
     String result = "";
     private SharedPreferences sp;
-    //String url = "http://app.pumintech.com:40000/api/user/get_task_list_m";
-    String url = "http://10.16.1.201:40000/api/user/get_task_list_m";
     private SwipeRefreshLayout swip;
 
     @Override
