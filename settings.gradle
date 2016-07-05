@@ -1,2 +1,1 @@
-include ':app', ':hellocharts', ':hellolibrary', ':libzxing'
-project(':hellocharts').projectDir = new File('hellocharts-library')
+include ':app', ':helloLibary'

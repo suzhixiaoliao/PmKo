@@ -56,12 +56,8 @@ public class AdminSSActivity extends Activity {
     private SharedPreferences sp;
     private ExpandableListView eqptList;
     EqptListAdapter eqptListAdapter;
-    String url = "http://app.pumintech.com:40000/api/user/get_eqpt_list";
-    //  String url = "http://10.16.1.201:40000/api/user/get_eqpt_list";
     TextView tv_admin_ss;
-
     Map<String, List<String>> eqpt_data = new LinkedHashMap<>();
-
     Map<Add_eqpt, List<Add_stat>> eqptData = new LinkedHashMap<>();
     Map<Add_eqpt, List<Add_stat>> resData = new LinkedHashMap<>();
 
@@ -133,11 +129,8 @@ public class AdminSSActivity extends Activity {
                 Intent inter = getIntent();
                 Bundle bun = new Bundle();
                 bun.putSerializable("checkList", (Serializable) resData);
-//                System.out.println("check list size is "+adapter.getCheckList().size());
                 inter.putExtra("ids", bun);
-//                inter.setClass(AdminSSActivity.this, AdminChartActivity.class);
                 setResult(101, inter);
-//                startActivity(inter);
                 finish();
 
 
@@ -171,7 +164,6 @@ public class AdminSSActivity extends Activity {
                     if (!TextUtils.isEmpty(s)) {
                         Gson gson = new Gson();
                         resulut = gson.fromJson(s, RusultEqpt.class);
-                        //正常情况是用result.getData().getItems得到数据组，而不是直接去获取result.getData().getItems().get(0)
                         if (resulut != null && resulut.getData() != null && resulut.getData().getItems() != null && resulut.getData().getItems().size() > 0) {
                             LogUtils.LOGE("qq", resulut.toString());
                             eqpt_name = resulut.getData().getItems().get(0).getEqpt_name();
@@ -185,11 +177,9 @@ public class AdminSSActivity extends Activity {
                 LogUtils.LOGD("login3", s.toString());
                 Add_eqpt items = new Add_eqpt();
                 items.setEqpt_name(eqpt_name);
-                //  mdata.add(items);
                 if (resulut != null && resulut.getData() != null && resulut.getData().getItems() != null && resulut.getData().getItems().size() > 0) {
                     mdata.addAll(resulut.getData().getItems());
                 }
-                //  adapter.notifyDataSetChanged();
                 adapter.setItems(mdata);
 
 
