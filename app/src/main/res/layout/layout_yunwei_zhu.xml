@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e1e0dc"
+    android:background="@color/bg_pumin"
     android:orientation="vertical">
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
-    <RelativeLayout
+    <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/real_center_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90px"
+        android:layout_height="120px"
+        android:layout_weight="1"
         android:layout_toLeftOf="@+id/view"
         >
         <ImageView
             android:id="@+id/iv_renwu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40px"
+            android:layout_height="40px"
             android:layout_centerInParent="true"
             android:src="@mipmap/main_renwu"
             />
@@ -27,23 +28,23 @@
             android:layout_height="wrap_content"
             android:text="任务"
             android:textColor="@color/black"
-            android:textSize="16dp"
             android:layout_gravity="center"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/iv_renwu"
             />
-    </RelativeLayout>
-    <RelativeLayout
+    </com.zhy.autolayout.AutoRelativeLayout>
+    <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/real_above_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90px"
+        android:layout_height="120px"
+        android:layout_weight="1"
         android:layout_alignLeft="@+id/real_center_left"
         android:layout_above="@+id/real_center_left"
         >
         <ImageView
             android:id="@+id/iv_scan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40px"
+            android:layout_height="40px"
             android:layout_centerInParent="true"
             android:src="@mipmap/main_scan"
             />
@@ -52,21 +53,21 @@
             android:layout_height="wrap_content"
             android:text="扫描"
             android:textColor="@color/black"
-            android:textSize="16dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/iv_scan"
             />
-    </RelativeLayout>
-    <RelativeLayout
+    </com.zhy.autolayout.AutoRelativeLayout>
+    <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/real_center_right"
-        android:layout_width="wrap_content"
+        android:layout_width="90px"
         android:layout_centerVertical="true"
+        android:layout_weight="1"
         android:layout_toRightOf="@+id/view"
-        android:layout_height="wrap_content">
+        android:layout_height="120px">
         <ImageView
             android:id="@+id/image_center_right"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="40px"
+            android:layout_height="40px"
             android:layout_centerInParent="true"
             android:src="@mipmap/main_uploading"
             />
@@ -75,21 +76,21 @@
             android:layout_height="wrap_content"
             android:text="上传"
             android:textColor="@color/black"
-            android:textSize="16dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/image_center_right"
             />
-    </RelativeLayout>
-    <RelativeLayout
+    </com.zhy.autolayout.AutoRelativeLayout>
+    <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/real_center_righ"
-        android:layout_width="wrap_content"
+        android:layout_width="90px"
         android:layout_centerVertical="true"
-        android:layout_height="wrap_content"
+        android:layout_height="120px"
+        android:layout_weight="1"
         android:orientation="vertical">
         <ImageView
             android:id="@+id/image_center_righ"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40px"
+            android:layout_height="40px"
             android:layout_centerInParent="true"
             android:src="@mipmap/main_download"
             />
@@ -98,22 +99,22 @@
             android:layout_height="wrap_content"
             android:text="下載"
             android:textColor="@color/black"
-            android:textSize="16dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/image_center_righ"
             />
-    </RelativeLayout>
-    <RelativeLayout
+    </com.zhy.autolayout.AutoRelativeLayout>
+    <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/real_center_lef"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90px"
+        android:layout_height="120px"
+        android:layout_weight="1"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/view"
         >
         <ImageView
             android:id="@+id/iv_ss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40px"
+            android:layout_height="40px"
             android:layout_centerInParent="true"
             android:src="@mipmap/main_chakan"
             />
@@ -121,29 +122,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="查看"
-            android:textSize="16dp"
             android:textColor="@color/black"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/iv_ss"
             />
-    </RelativeLayout>
-    </LinearLayout>
-    <LinearLayout
+    </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+    <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
-        <RelativeLayout
+        <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/real_center_left2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90px"
+            android:layout_height="120px"
+            android:layout_weight="1"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/view"
             >
             <ImageView
                 android:id="@+id/iv_renwu2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40px"
+                android:layout_height="40px"
                 android:layout_centerInParent="true"
                 android:src="@mipmap/main_renwu"
                 />
@@ -152,23 +153,23 @@
                 android:layout_height="wrap_content"
                 android:text="任务"
                 android:textColor="@color/black"
-                android:textSize="16dp"
                 android:layout_gravity="center"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/iv_renwu2"
                 />
-        </RelativeLayout>
-        <RelativeLayout
+        </com.zhy.autolayout.AutoRelativeLayout>
+        <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/real_above_right2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90px"
+            android:layout_height="120px"
+            android:layout_weight="1"
             android:layout_alignLeft="@+id/real_center_right"
             android:layout_above="@+id/real_center_right"
             >
             <ImageView
                 android:id="@+id/iv_scan2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40px"
+                android:layout_height="40px"
                 android:layout_centerInParent="true"
                 android:src="@mipmap/main_scan"
                 />
@@ -177,21 +178,21 @@
                 android:layout_height="wrap_content"
                 android:text="扫描"
                 android:textColor="@color/black"
-                android:textSize="16dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/iv_scan2"
                 />
-        </RelativeLayout>
-        <RelativeLayout
+        </com.zhy.autolayout.AutoRelativeLayout>
+        <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/real_center_right2"
-            android:layout_width="wrap_content"
+            android:layout_width="90px"
+            android:layout_weight="1"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/view"
-            android:layout_height="wrap_content">
+            android:layout_height="120px">
             <ImageView
                 android:id="@+id/image_center_right2"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_width="40px"
+                android:layout_height="40px"
                 android:layout_centerInParent="true"
                 android:src="@mipmap/main_uploading"
                 />
@@ -200,21 +201,21 @@
                 android:layout_height="wrap_content"
                 android:text="上传"
                 android:textColor="@color/black"
-                android:textSize="16dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/image_center_right2"
                 />
-        </RelativeLayout>
-        <RelativeLayout
+        </com.zhy.autolayout.AutoRelativeLayout>
+        <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/real_center_righ2"
-            android:layout_width="wrap_content"
+            android:layout_width="90px"
+            android:layout_weight="1"
             android:layout_centerVertical="true"
-            android:layout_height="wrap_content"
+            android:layout_height="120px"
             android:orientation="vertical">
             <ImageView
                 android:id="@+id/image_center_righ2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="40px"
+                android:layout_height="40px"
                 android:layout_centerInParent="true"
                 android:src="@mipmap/main_download"
                 />
@@ -223,22 +224,22 @@
                 android:layout_height="wrap_content"
                 android:text="下載"
                 android:textColor="@color/black"
-                android:textSize="16dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/image_center_righ2"
                 />
-        </RelativeLayout>
-        <RelativeLayout
+        </com.zhy.autolayout.AutoRelativeLayout>
+        <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/real_center_lef2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90px"
+            android:layout_height="120px"
+            android:layout_weight="1"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/view"
             >
             <ImageView
                 android:id="@+id/iv_ss2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40px"
+                android:layout_height="40px"
                 android:layout_centerInParent="true"
                 android:src="@mipmap/main_chakan"
                 />
@@ -246,11 +247,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="查看"
-                android:textSize="16dp"
                 android:textColor="@color/black"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/iv_ss2"
                 />
-        </RelativeLayout>
-    </LinearLayout>
-</LinearLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

@@ -70,7 +70,6 @@ public class YunWeiMainActivity extends BaseActivity{
         });
         mdata = new ArrayList<>();
         if (adapter == null) {
-
             adapter = new YunWeiTasklistAdapter(this, mdata);
         }
         mtasklist.setAdapter(adapter);
@@ -184,6 +183,7 @@ public class YunWeiMainActivity extends BaseActivity{
                             loct_name = resulut.getData().getItems().get(0).getLoct_name();
                         }
                     }
+
                 } catch (JsonSyntaxException e) {
                     e.printStackTrace();
                     System.out.println("解析异常");
