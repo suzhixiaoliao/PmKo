@@ -102,17 +102,17 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="lTcjS1xctW7IGRML7puSoQMGnKN8bAIW" />
-
+        <meta-data android:name="design_width" android:value="768">
+        </meta-data>
+        <meta-data android:name="design_height" android:value="1280">
+        </meta-data>
         <activity android:name=".MainAdminActivity" />
         <activity
             android:name=".AdminSSActivity"
             android:theme="@style/Theme.Transparent" />
-        <activity android:name=".AdminChartActivity" />
         <activity
             android:name=".AdminStatActivity"
             android:theme="@style/Theme.Transparent" />
-        <activity android:name=".ChartAdminActivity" />
-        <activity android:name=".ChartLineActivity" />
         <activity android:name=".HelloChartActivity" />
         <activity android:name=".TastComActivity"
             android:theme="@style/Theme.Transparent"></activity>
@@ -141,6 +141,7 @@
         <activity
             android:name="com.pumin.lzl.pumin.Management_Operations"
             android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

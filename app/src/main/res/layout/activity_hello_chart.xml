@@ -12,9 +12,4 @@
     android:id="@+id/charts"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
-
-   <!-- <com.intentpumin.lsy.intentpumin.chart.LineChart02View
-        android:id="@+id/charts"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />-->
 </RelativeLayout>

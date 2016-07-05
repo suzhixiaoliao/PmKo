@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.adapter.TasklistAdapter;
 import com.intentpumin.lsy.intentpumin.commonview.PullToRefreshLayout;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
@@ -42,7 +43,7 @@ import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 /**
  * Created by yang on 2016/4/21.
  */
-public class TaskslistActivity extends AutoLayoutActivity {
+public class TaskslistActivity extends BaseActivity {
     private ListView mtasklist;
     private TasklistAdapter adapter;
     private List<items> mdata;

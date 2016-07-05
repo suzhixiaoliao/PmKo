@@ -51,8 +51,6 @@ public class AdminSSActivity extends Activity {
     private AdminEqptAdapter adapter;
     private List<Add_eqpt> mdata = new ArrayList<>();
     private List<Add_stat> statList = new ArrayList<>();
-
-
     private SharedPreferences sp;
     private ExpandableListView eqptList;
     EqptListAdapter eqptListAdapter;

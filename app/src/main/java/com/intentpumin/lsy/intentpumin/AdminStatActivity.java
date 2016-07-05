@@ -29,8 +29,6 @@ public class AdminStatActivity extends Activity {
     private AdminStatAdapter adapter;
     private List<Add_stat> mdata;
     private SharedPreferences sp;
-    //String url = "http://app.pumintech.com:40000/api/user/get_stat_list_by_eqpt";
-    String url = "http://10.16.1.201:40000/api/user/get_stat_list_by_eqpt";
     TextView tv_admin_stat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +45,8 @@ public class AdminStatActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent inter = getIntent();
-                inter.setClass(AdminStatActivity.this, AdminChartActivity.class);
+                inter.setClass(AdminStatActivity.this, HelloChartActivity.class);
                 startActivity(inter);
-                  /*  Intent inter = getIntent();
-                    Bundle bun = new Bundle();
-                    bun.putSerializable("checkList", (Serializable) adapter.getCheckList());
-
-
-//                System.out.println("check list size is "+adapter.getCheckList().size());
-                    inter.putExtra("ids", bun);
-//                inter.setClass(AdminSSActivity.this, AdminChartActivity.class);
-                    setResult(101,inter);
-//                startActivity(inter);
-                    finish();*/
-
-
             }
         });
         mdata = new ArrayList<>();

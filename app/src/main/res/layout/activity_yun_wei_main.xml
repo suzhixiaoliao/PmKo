@@ -22,13 +22,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/zhu_btl"
+        android:background="#e1e0dc"
         android:layout_weight="2"
         >
         <include
-            layout="@layout/layout_tasklist_fu"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            layout="@layout/layout_tasklist_fu" />
         </RelativeLayout>
 </LinearLayout>

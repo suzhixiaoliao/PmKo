@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.adapter.TasklistAdapter;
 import com.intentpumin.lsy.intentpumin.adapter.YunWeiAdapter;
 import com.intentpumin.lsy.intentpumin.adapter.YunWeiTasklistAdapter;
@@ -39,7 +40,7 @@ import java.util.Map;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class YunWeiMainActivity extends AppCompatActivity {
+public class YunWeiMainActivity extends BaseActivity{
     private TextView tv_main;
     private TextView tv_return;
     private ListView mtasklist;

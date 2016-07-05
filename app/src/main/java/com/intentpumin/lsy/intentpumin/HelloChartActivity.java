@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.tools.Add_eqpt;
@@ -51,7 +52,7 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.LineChartView;
 
-public class HelloChartActivity extends AppCompatActivity {
+public class HelloChartActivity extends BaseActivity {
     private ListView listview;
     private ChartAdapter chartadapter;
     private LineChartView lineChartView;

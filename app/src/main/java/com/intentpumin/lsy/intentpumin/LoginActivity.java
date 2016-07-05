@@ -10,10 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.BaseLogic;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
@@ -29,12 +32,12 @@ import java.io.Serializable;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private static final String TAG = "LoginActivity";
     private String userNameValue, passwordValue;
     private EditText et_name;
     private EditText et_psd;
-    private ImageView btn_login;
+    private TextView btn_login;
     public  final static String SER_KEY = "com.intentpumin.lsy.intentpumin.ser";
     public  final static String PAR_KEY = "com.intentpumin.lsy.intentpumin.par";
 
@@ -93,13 +96,13 @@ public class LoginActivity extends AppCompatActivity {
 
   private void itiv() {
       et_name = (EditText) findViewById(R.id.et_name);
-      et_psd = (EditText) findViewById(R.id.et_psd);
+      et_psd = (EditText) findViewById(R.id.et_pwd);
       SharedPreferences settings = getSharedPreferences(SETTING_INFOS, 0); //获取一个SharedPreferences对象
       final String name = settings.getString(NAME, "");  //取出保存的NAME
       String password = settings.getString(PASSWORD, ""); //取出保存的PASSWORD
       et_name.setText(name);
       et_psd.setText(password);
-      btn_login = (ImageView) findViewById(R.id.btn_login);
+      btn_login = (TextView) findViewById(R.id.tv_login_x);
       btn_login.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {

@@ -26,6 +26,7 @@ import com.baidu.platform.comapi.map.B;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.adapter.ZxingDataListAdapter;
 import com.intentpumin.lsy.intentpumin.adapter.ZxingTaskGridAdapter;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
@@ -48,7 +49,7 @@ import java.util.List;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class List_ZxingActivity extends AppCompatActivity {
+public class List_ZxingActivity extends BaseActivity {
 
 
     private GridView mtasklist;
@@ -155,7 +156,7 @@ public class List_ZxingActivity extends AppCompatActivity {
         tv_fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(List_ZxingActivity.this, MainActivity.class);
+                Intent i = new Intent(List_ZxingActivity.this, YunWeiMainActivity.class);
                 startActivity(i);
             }
         });

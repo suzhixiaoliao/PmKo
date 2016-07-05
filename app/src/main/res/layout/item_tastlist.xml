@@ -50,6 +50,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="right"
-        android:background="@mipmap/sm"
+        android:background="@mipmap/main_arrows"
         android:textSize="18sp" />
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.network.LogUtils;
@@ -17,7 +18,7 @@ import com.pumin.lzl.pumin.MainActivity2;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class MainAdminActivity extends AppCompatActivity {
+public class MainAdminActivity extends BaseActivity {
     private TextView tv_main;
     private ImageView iv_ss;
     private TextView tv_return;

@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@mipmap/zhu_btl"
+        android:background="@mipmap/main_title"
         android:layout_weight="1"
         >
         <include
@@ -19,7 +19,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@mipmap/zhu_btl"
+        android:background="@mipmap/main_title"
         android:layout_weight="3"
         >
         <GridView
@@ -31,7 +31,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@mipmap/zhu_btl"
+        android:background="@mipmap/main_title"
         android:layout_weight="3"
         >
         <ListView
@@ -43,7 +43,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@mipmap/zhu_btl"
+        android:background="@mipmap/main_title"
         android:layout_weight="2"
         >
 
