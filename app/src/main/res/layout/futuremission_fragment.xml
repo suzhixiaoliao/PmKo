@@ -3,8 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#e1e0dc"
     tools:context="com.pumin.fragment.Futuremission_fragment">
-
+    <TextView
+        android:background="#63d5ff"
+        android:gravity="center"
+        android:text="未来任务"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

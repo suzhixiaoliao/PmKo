@@ -1,9 +1,5 @@
 package com.pumin.lzl.pumin;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +19,7 @@ import com.pumin.lzl.pumin.adapter.Parameter_adapter;
 import com.pumin.lzl.pumin.adapter.Parameter_adapter2;
 import com.pumin.lzl.pumin.bean.Tasklist_object;
 import com.pumin.lzl.pumin.bean.Tasklist_object2;
-import com.pumin.lzl.pumin.util.Alltitle;
+import com.pumin.lzl.pumin.utils.Alltitle;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,7 +92,8 @@ public class TaskList_alter extends AppCompatActivity {
         time = time.substring(0, 10);  //截取日期时间
         System.out.println("tasklist" + str + "这是时间" + time);
 
-        path = "http://10.16.1.201:40000/api/user/get_mt_details?signature=1&date=" + time + "&eqpt_id=" + str;
+        path = "http://10.16.1.201:40000/api/user/get_mt_details?" +
+                "signature=1&date=" + time + "&eqpt_id=" + str;
         System.out.println("tasklist_alter_url" + path);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(path, null,
                 new Response.Listener<JSONObject>() {

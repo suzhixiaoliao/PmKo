@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#e1e0dc"
     tools:context="com.pumin.view.Management_activity">
 
-    <com.pumin.lzl.pumin.util.Alltitle
+    <com.pumin.lzl.pumin.utils.Alltitle
         android:id="@+id/managment_title"
         android:layout_width="match_parent"
         android:layout_height="40dp" />

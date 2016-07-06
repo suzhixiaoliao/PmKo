@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/hellocharts-library/hellocharts.iml" filepath="$PROJECT_DIR$/hellocharts-library/hellocharts.iml" />
       <module fileurl="file://$PROJECT_DIR$/hellolibrary/hellolibrary.iml" filepath="$PROJECT_DIR$/hellolibrary/hellolibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libzxing/libzxing.iml" filepath="$PROJECT_DIR$/libzxing/libzxing.iml" />
     </modules>
   </component>
 </project>

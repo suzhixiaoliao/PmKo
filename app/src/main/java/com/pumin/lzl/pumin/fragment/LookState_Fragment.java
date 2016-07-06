@@ -1,8 +1,5 @@
 package com.pumin.lzl.pumin.fragment;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -22,9 +18,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.intentpumin.lsy.intentpumin.R;
 import com.pumin.lzl.pumin.bean.Lookstate_object;
-import com.pumin.lzl.pumin.util.SpringProgressView;
-import com.pumin.lzl.pumin.util.Work2_SpringProgress;
-import com.pumin.lzl.pumin.util.Work_SpringProgress;
+import com.pumin.lzl.pumin.utils.SpringProgressView;
+import com.pumin.lzl.pumin.utils.Work2_SpringProgress;
+import com.pumin.lzl.pumin.utils.Work_SpringProgress;
 
 
 import org.json.JSONException;
@@ -112,17 +108,6 @@ public class LookState_Fragment extends Fragment {
 
         progressView.setMaxCount(last);
         progressView.setCurrentCount(day);
-//        state_date.setText("本月共：" + last + "天" + "   当前第：" + day + "天");
-        progressView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (day >= 20) {
-                    toast("本月就要结束了，工作都完成了吗");
-                } else {
-                    toast("当前时间" + year + "年" + month + "月" + day);
-                }
-            }
-        });
     }
 
     //请求--网络加载
@@ -138,16 +123,7 @@ public class LookState_Fragment extends Fragment {
 //            http://app.pumintech.com:40000/api/user/get_stat_info?signature=1
 //            http://10.16.1.201:40000/api/user/get_stat_info?signature=1
             //参数---时间参数
-            //判断网络连接状态
-//            cm = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-//            boolean isWifiConnected = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED ? true : false;
-//            boolean isGprsConnected = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ? true : false;
-//            if (isWifiConnected == true) {
             path = "http://10.16.1.201:40000/api/user/get_stat_info?signature=1&eqpt_id=" + str;
-//            }
-//            if (isGprsConnected == true) {
-//                path = "http://app.pumintech.com:40000/api/user/get_stat_info?signature=1&eqpt_id=" + str;
-//            }
             System.out.println("Lookstate" + path);
         } catch (Exception e) {
             e.printStackTrace();
@@ -248,18 +224,7 @@ public class LookState_Fragment extends Fragment {
         work_progress_view.setMaxCount(max);
         work_progress_view.setCurrentCount(count);
         work_number.setText("本月工作总量：" + max + "  完成：" + count);
-        work_progress_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toast("继续加油");
-            }
-        });
-
 
     }
 
-    //TOAST提示信息
-    private void toast(String arg) {
-        Toast.makeText(getContext(), arg, Toast.LENGTH_SHORT).show();
-    }
 }

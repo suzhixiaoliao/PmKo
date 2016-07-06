@@ -12,7 +12,6 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/hellocharts-library" />
             <option value="$PROJECT_DIR$/hellolibrary" />
-            <option value="$PROJECT_DIR$/libzxing" />
           </set>
         </option>
       </GradleProjectSettings>

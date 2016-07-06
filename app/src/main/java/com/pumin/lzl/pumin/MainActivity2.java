@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.intentpumin.lsy.intentpumin.R;
 import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
-import com.pumin.lzl.pumin.util.Alltitle;
+import com.pumin.lzl.pumin.utils.Alltitle;
 
 
 /*
@@ -68,22 +68,8 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
             public void onRightBtnClick(View button) {
                 Intent it = new Intent(MainActivity2.this, Region_admin.class);
                 startActivity(it);
-               }
+            }
         }, null);
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //获取二维码的信息
-        if (requestCode == 100 && resultCode == RESULT_OK) {
-            Bundle bundle = data.getExtras();
-            //扫描二维码得到值返回到第二个界面
-            Intent it2 = new Intent(this, Main_View.class);
-            it2.putExtra("put_equipment", bundle.get("result").toString());
-            startActivity(it2);
-//            Log.e(TAG, bundle.get("result").toString());
-        }
     }
 
     //点击事件
@@ -93,7 +79,9 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
             case R.id.sweep:
                 //扫描二维码
                 it = new Intent(context, CaptureActivity.class);
-                startActivityForResult(it, 100);
+                it.putExtra("str_all","1");
+//                startActivityForResult(it, 100);
+                startActivity(it);
                 break;
             default:
                 break;

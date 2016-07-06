@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -19,8 +16,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -32,12 +29,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.intentpumin.lsy.intentpumin.R;
 import com.pumin.lzl.pumin.adapter.Task_adapter;
+
 import com.pumin.lzl.pumin.fragment.Alternate_fragment;
 import com.pumin.lzl.pumin.fragment.Futuremission_fragment;
 import com.pumin.lzl.pumin.fragment.Historicaltask_fragment;
 import com.pumin.lzl.pumin.fragment.LookState_Fragment;
-import com.pumin.lzl.pumin.util.AllToast;
-import com.pumin.lzl.pumin.util.Alltitle;
+import com.pumin.lzl.pumin.utils.AllToast;
+import com.pumin.lzl.pumin.utils.Alldot_layout;
+import com.pumin.lzl.pumin.utils.Alltitle;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,15 +50,15 @@ import java.util.ArrayList;
 *created at 2016/6/12 8:50
 *    操作主界面--
 */
-public class Main_View extends AppCompatActivity implements View.OnClickListener {
-
+public class Main_View extends AppCompatActivity {
     //context
     Context context = this;
     //Tag的提示
     private static final String TAG = "Main_view";
+
     //碎片的适配加载
     Task_adapter task_adapter;  //碎片的适配器
-    private ArrayList<Fragment> adapters_list = new ArrayList<>();//保存碎片的集合
+    private ArrayList<Fragment> adapters_list = new ArrayList<Fragment>();//保存碎片的集合
     Alternate_fragment alter_fragment;  //历史任务
     Futuremission_fragment futur_fragment; //未来任务碎片界面
     Historicaltask_fragment histor_fragment; //趋势
@@ -70,11 +69,9 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
 
     //标题
     private Alltitle equipment;
-    //flag表头
-    private TextView historical_tv;
-    private TextView lookstate_tv;
-    private TextView alter_tv;
-    private TextView future_tv;
+
+    //flag
+    private LinearLayout dot_layout;
 
     //设备基本信息
     private TextView device_name; //设备名称
@@ -95,7 +92,6 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main__view);
-        Toast.makeText(Main_View.this, "正在加载中....", Toast.LENGTH_SHORT).show();
         request = Volley.newRequestQueue(this);//得到volley对象
         initview();
         initTitle();
@@ -103,13 +99,14 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
         query();
         callphone();
         setvalue();
+        Alldot_layout.dot(this, adapters_list, dot_layout); //创建点的视图
         getimg(R.drawable.deive);
         view_page.setCurrentItem(1);  //创建时加载第二个界面
     }
 
     //初始化控件
     private void initview() {
-        view_page = (ViewPager) findViewById(R.id.view_page);
+        view_page = (ViewPager) findViewById(R.id.view_pager);
         equipment = (Alltitle) findViewById(R.id.equipment);
         device_name = (TextView) findViewById(R.id.device_name);
         device_type = (TextView) findViewById(R.id.device_type);
@@ -118,15 +115,7 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
         device_principal = (TextView) findViewById(R.id.device_principal);
         device_phone = (TextView) findViewById(R.id.device_phone);
         device_image = (ImageView) findViewById(R.id.device_image);
-        historical_tv = (TextView) findViewById(R.id.historical_tv);
-        lookstate_tv = (TextView) findViewById(R.id.lookstate_tv);
-        alter_tv = (TextView) findViewById(R.id.alter_tv);
-        future_tv = (TextView) findViewById(R.id.future_tv);
-
-        historical_tv.setOnClickListener(this);
-        lookstate_tv.setOnClickListener(this);
-        alter_tv.setOnClickListener(this);
-        future_tv.setOnClickListener(this);
+        dot_layout = (LinearLayout) findViewById(R.id.dot_layout);
     }
 
 
@@ -143,10 +132,10 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
 
     //碎片的加载
     private void FragmentIncident() {
+        histor_fragment = new Historicaltask_fragment();
         lookState_fragment = new LookState_Fragment();
         alter_fragment = new Alternate_fragment();
         futur_fragment = new Futuremission_fragment();
-        histor_fragment = new Historicaltask_fragment();
         adapters_list.add(histor_fragment);
         adapters_list.add(lookState_fragment);
         adapters_list.add(alter_fragment);
@@ -154,6 +143,7 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
 
         task_adapter = new Task_adapter(getSupportFragmentManager(), adapters_list);
         view_page.setAdapter(task_adapter);  //适配器的适配
+//        view_page.setOffscreenPageLimit(adapters_list.size());  //碎片全部加载
         view_page.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -162,22 +152,8 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        textcolor(Color.BLUE, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT);
-                        break;
-                    case 1:
-                        textcolor(Color.TRANSPARENT, Color.BLUE, Color.TRANSPARENT, Color.TRANSPARENT);
-                        break;
-                    case 2:
-                        textcolor(Color.TRANSPARENT, Color.TRANSPARENT, Color.BLUE, Color.TRANSPARENT);
-                        break;
-                    case 3:
-                        textcolor(Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.BLUE);
-                        break;
-                    default:
-                        break;
-                }
+                //滑动事件改变圆点的状态。(黑白分明，让用户理解自己现在处在第几个位置)
+                updateinfo();
             }
 
             @Override
@@ -185,26 +161,20 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
 
             }
         });
-//        view_page.setOffscreenPageLimit(adapters_list.size());  //碎片全部加载
     }
 
-    //flag点击事件
-    @Override
-    public void onClick(View v) {
 
+    //圆点的变化(黑白)
+    private void updateinfo() {
+        int currentpage = view_page.getCurrentItem() % adapters_list.size();
+        for (int i = 0; i < dot_layout.getChildCount(); i++) {
+            dot_layout.getChildAt(i).setEnabled(i == currentpage);
+        }
     }
 
-    //颜色的变化
-    private void textcolor(int a, int b, int c, int d) {
-        historical_tv.setBackgroundColor(a);
-        lookstate_tv.setBackgroundColor(b);
-        alter_tv.setBackgroundColor(c);
-        future_tv.setBackgroundColor(d);
-    }
 
     //请求
     public void query() {
-        //把path转码
         try {
             str = getIntent().getStringExtra("put_equipment");
             //接口规范
@@ -232,7 +202,6 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
                         Log.d("TAG", info);
                         getjson(info);
 
-//                        AllToast.alltoast(Gravity.CENTER, context, "加载完成", R.drawable.pmlogo);
                     }
 
                 }, new Response.ErrorListener() {
@@ -300,7 +269,7 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
         imageonclick();
     }
 
-    //预留接口--点击设备样子上传图片
+    //预留接口--点击设备样子(进行拍照)上传图片
     private void imageonclick() {
         device_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -322,7 +291,6 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
     //照完相-处理照片代码
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -373,11 +341,10 @@ public class Main_View extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 Intent it = new Intent();
-                it.setData(Uri.parse("tel:" + device_phone.getText().toString()));
+                it.setData(Uri.parse("tel:" + device_phone.getText()));
                 it.setAction(Intent.ACTION_CALL);
             }
         });
-
     }
 
 }

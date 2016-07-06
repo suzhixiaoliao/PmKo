@@ -21,7 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.intentpumin.lsy.intentpumin.R;
 import com.pumin.lzl.pumin.adapter.Future_frag_adapter;
 import com.pumin.lzl.pumin.bean.Future_object;
-import com.pumin.lzl.pumin.util.AllToast;
+import com.pumin.lzl.pumin.utils.AllToast;
 
 
 import org.json.JSONArray;
@@ -86,7 +86,8 @@ public class Futuremission_fragment extends Fragment {
         //接口规范
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/login?signature=1
-        path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?signature=1&s_date=" + start_time + "&e_date=2113-01-01" + "&eqpt_id=" + str;
+        path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
+                "signature=1&s_date=" + start_time + "&e_date=2113-01-01" + "&eqpt_id=" + str;
         System.out.println("这是futuremission中的url" + path);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(path, null,

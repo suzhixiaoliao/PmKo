@@ -12,6 +12,7 @@ import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.network.LogUtils;
 import com.intentpumin.lsy.intentpumin.tools.login;
+import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
 import com.pumin.lzl.pumin.MainActivity2;
 
 import cn.finalteam.okhttpfinal.RequestParams;
@@ -43,8 +44,8 @@ public class MainAdminActivity extends AppCompatActivity {
         iv_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("响应了吗响应了吗");
-                Intent it = new Intent(MainAdminActivity.this, MainActivity2.class);
+                Intent   it = new Intent(MainAdminActivity.this, CaptureActivity.class);
+                it.putExtra("str_all","1");
                 startActivity(it);
             }
         });
@@ -54,7 +55,6 @@ public class MainAdminActivity extends AppCompatActivity {
         iv_ss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("xxxxxxxxxxxxxxxxxxxxxxxx");
                 Intent i = new Intent(MainAdminActivity.this, HelloChartActivity.class);
                 startActivity(i);
             }

@@ -37,11 +37,12 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
     compile 'com.github.lecho:hellocharts-android:v1.5.8'
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile files('libs/zxing.jar')
     compile 'cn.finalteam:okhttpfinal:2.0.6'
     compile files('libs/baidumapapi_v3_5_0.jar')
     compile files('libs/locSDK_6.23.jar')
+    compile files('libs/volley.jar')
+    compile files('libs/zxing.jar');
     compile 'com.google.code.gson:gson:2.6.2'
-compile files('libs/xcl-charts.jar')
-compile 'com.zhy:autolayout:1.4.3'
+    compile files('libs/xcl-charts.jar')
+    compile 'com.zhy:autolayout:1.4.3'
 }

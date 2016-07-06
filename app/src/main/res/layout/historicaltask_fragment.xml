@@ -2,7 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e1e0dc"
     tools:context="com.pumin.fragment.Historicaltask_fragment">
 
-
+    <TextView
+        android:background="#72f5f7"
+        android:gravity="center"
+        android:text="趋势图表"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
 </FrameLayout>

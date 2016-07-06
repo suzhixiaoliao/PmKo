@@ -1,7 +1,6 @@
 package com.pumin.lzl.pumin.fragment;
 
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -25,6 +24,7 @@ import com.intentpumin.lsy.intentpumin.R;
 import com.pumin.lzl.pumin.TaskList_alter;
 import com.pumin.lzl.pumin.adapter.Alter_frag_adapter;
 import com.pumin.lzl.pumin.bean.Alternate_object;
+import com.pumin.lzl.pumin.utils.Alltitle;
 
 
 import org.json.JSONArray;
@@ -42,7 +42,6 @@ import java.util.ArrayList;
 */
 public class Alternate_fragment extends Fragment {
     private String TAG = "Alternate_fragment";
-    private TextView alter_name;
 
     View view;
     Intent it;
@@ -82,9 +81,6 @@ public class Alternate_fragment extends Fragment {
     //初始化控件
     private void initview() {
         alter_list = (ListView) view.findViewById(R.id.alter_list);
-        alter_name = (TextView) view.findViewById(R.id.alter_name);
-//        s_date= (Button) view.findViewById(R.id.s_date); //开始时间
-//        e_date= (Button) view.findViewById(R.id.e_date);  //结束时间
     }
 
 
@@ -100,12 +96,13 @@ public class Alternate_fragment extends Fragment {
         //把path转码
         try {
             str = bundle1.getString("set_url");
-
-            System.out.println(str + "这是传过来的参数");
+//
+//            System.out.println(str + "这是传过来的参数");
             //接口规范
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/?signature=1
-            path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?signature=1&s_date=2013-01-01" + "&e_date=" + end_time + "&eqpt_id=" + str;
+            path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
+                    "signature=1&s_date=2013-01-01" + "&e_date=" + end_time + "&eqpt_id=" + str;
 
             System.out.println("Alternate" + path);
         } catch (Exception e) {

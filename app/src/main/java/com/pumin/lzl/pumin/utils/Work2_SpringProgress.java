@@ -1,4 +1,4 @@
-package com.pumin.lzl.pumin.util;
+package com.pumin.lzl.pumin.utils;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -52,6 +52,7 @@ public class Work2_SpringProgress extends View {
     }
 
     private void initView(Context context) {
+
     }
 
     @Override

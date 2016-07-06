@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.pumin.lzl.pumin.util.Alltitle
+    <com.pumin.lzl.pumin.utils.Alltitle
         android:id="@+id/main_title"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
@@ -16,7 +16,7 @@
         android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <com.pumin.lzl.pumin.util.CircleImageView
+        <com.pumin.lzl.pumin.utils.CircleImageView
             android:id="@+id/sweep"
             style="?android:buttonBarButtonStyle"
             android:layout_width="wrap_content"

@@ -123,8 +123,10 @@ public class YunWeiMainActivity extends AppCompatActivity {
           public void onClick(View v) {
               Intent inter1 = getIntent();
               inter1.setClass(YunWeiMainActivity.this, CaptureActivity.class);
+              inter1.putExtra("str_all","0");
               inter1.putExtra("login", mlogin);
               startActivity(inter1);
+
           }
       });
         ImageView renwu= (ImageView) view1.findViewById(R.id.iv_renwu);

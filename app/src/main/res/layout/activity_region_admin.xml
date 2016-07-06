@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#e1e0dc"
     tools:context="com.pumin.view.Region_admin">
 
-    <com.pumin.lzl.pumin.util.Alltitle
+    <com.pumin.lzl.pumin.utils.Alltitle
         android:id="@+id/region_title"
         android:layout_width="match_parent"
         android:layout_height="40dp" />

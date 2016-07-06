@@ -3,11 +3,19 @@
     package="com.intentpumin.lsy.intentpumin">
     <!--网络连接-->
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.VIBRATE" />
     <!--相机权限-->
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <!-- 写入短信权限 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!-- 读取短信权限 -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!--拨打电话权限-->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!--查询网络连接权限-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <uses-feature android:name="android.hardware.camera" />
@@ -19,7 +27,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -68,7 +75,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/DayTheme">
-        <activity android:name=".LoginActivity">
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,16 +88,20 @@
         <activity
             android:name=".zxing.CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
+
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".zxing.WebViewActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
+
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".TaskslistActivity" />
-        <activity android:name=".List_ZxingActivity" />
+        <activity
+            android:name=".TaskslistActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".List_ZxingActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name="com.baidu.location.f"
@@ -103,24 +116,35 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="lTcjS1xctW7IGRML7puSoQMGnKN8bAIW" />
 
-        <activity android:name=".MainAdminActivity" />
+        <activity
+            android:name=".MainAdminActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AdminSSActivity"
             android:theme="@style/Theme.Transparent" />
-        <activity android:name=".AdminChartActivity" />
+        <activity
+            android:name=".AdminChartActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AdminStatActivity"
             android:theme="@style/Theme.Transparent" />
-        <activity android:name=".ChartAdminActivity" />
-        <activity android:name=".ChartLineActivity" />
-        <activity android:name=".HelloChartActivity" />
-        <activity android:name=".TastComActivity"
-            android:theme="@style/Theme.Transparent"></activity>
+        <activity
+            android:name=".ChartAdminActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChartLineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HelloChartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TastComActivity"
+            android:theme="@style/Theme.Transparent" />
 
-			<!-- 管理员主界面 -->
+        <!-- 管理员主界面 -->
         <activity
             android:name="com.pumin.lzl.pumin.MainActivity2"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 接收二维码信息 -->
         <activity
             android:name="com.pumin.lzl.pumin.Main_View"
@@ -140,7 +164,7 @@
         <!--运维人员管理界面-->
         <activity
             android:name="com.pumin.lzl.pumin.Management_Operations"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.intentpumin.lsy.intentpumin.R;
 import com.pumin.lzl.pumin.adapter.Operations_adapter;
-import com.pumin.lzl.pumin.util.Alltitle;
+import com.pumin.lzl.pumin.utils.Alltitle;
 
 import java.util.ArrayList;
 

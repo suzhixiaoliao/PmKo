@@ -1,4 +1,4 @@
-package com.pumin.lzl.pumin.util;
+package com.pumin.lzl.pumin.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
