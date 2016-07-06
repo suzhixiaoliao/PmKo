@@ -75,21 +75,13 @@ public class ZxingTaskGridAdapter extends BaseAdapter {
         Log.e("TAG", task.getFinished() + "==========" + list.get(i).getTask_name());
 
         if (task.getFinished().equals("Y")) {
-//            hodler.rl_tab_o.setSelected(true);
-            hodler.rl_tab_o.setBackgroundColor(context.getResources().getColor(R.color.divider));
+          hodler.rl_tab_o.setSelected(true);
+            hodler.rl_tab_o.setBackgroundResource(R.mipmap.task_undone);
         }
-//        else if(task.getFinished().equals("Y"))
-//        {
-//            hodler.rl_tab_o.setBackgroundColor(context.getResources().getColor(R.color.divider));
-//        }
         else if(task.getFinished().equals("N"))
         {
-            hodler.rl_tab_o.setBackgroundResource(R.drawable.myshape);
+            hodler.rl_tab_o.setBackgroundResource(R.mipmap.task_complete);
         }
-//        else {
-////            hodler.rl_tab_o.setSelected(false);
-//            hodler.rl_tab_o.setBackgroundResource(R.drawable.myshape);
-//        }
         hodler.rb_tab_o.setText(task.getTask_name());
 
         convertView.setTag(hodler);

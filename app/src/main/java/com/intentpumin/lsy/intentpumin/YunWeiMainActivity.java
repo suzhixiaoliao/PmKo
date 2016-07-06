@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -37,6 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.OnItemClick;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
@@ -133,7 +135,6 @@ public class YunWeiMainActivity extends BaseActivity{
             public void onClick(View v) {
                 Intent inter1 = getIntent();
                 inter1.setClass(YunWeiMainActivity.this, TaskslistActivity.class);
-                //inter1.setClass(MainActivity.this, CaptureActivity.class);
                 mlogin.getPhoneno();
                 startActivity(inter1);
 
@@ -177,10 +178,12 @@ public class YunWeiMainActivity extends BaseActivity{
                         Gson gson = new Gson();
                         resulut = gson.fromJson(s, RusultItem.class);
                         //正常情况是用result.getData().getItems得到数据组，而不是直接去获取result.getData().getItems().get(0)
-                        if (resulut != null && resulut.getData() != null && resulut.getData().getItems() != null && resulut.getData().getItems().size() > 0) {
+                        if (resulut != null && resulut.getData() != null && resulut.getData()
+                                .getItems() != null && resulut.getData().getItems().size() > 0) {
                             date = resulut.getData().getItems().get(0).getDate();
                             eqpt_name = resulut.getData().getItems().get(0).getEqpt_name();
                             loct_name = resulut.getData().getItems().get(0).getLoct_name();
+
                         }
                     }
 

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bg_pumin"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,8 +13,6 @@
         >
         <include
             android:id="@+id/list_zxing_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             layout="@layout/layout_list_zxing_title" />
     </RelativeLayout>
     <RelativeLayout
@@ -26,6 +25,7 @@
             android:id="@+id/gv_task"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/bg_pumin"
             android:numColumns="3" />
     </RelativeLayout>
     <RelativeLayout
@@ -36,42 +36,44 @@
         >
         <ListView
             android:id="@+id/gv_shuju"
+            android:background="@color/bg_pumin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@mipmap/main_title"
-        android:layout_weight="2"
+        android:layout_height="0px"
+        android:background="@color/bg_pumin"
+        android:layout_weight="1"
         >
 
         <View
             android:id="@+id/view_fengeixi"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:layout_centerInParent="true"
-            android:background="@color/white"
+            android:background="@color/bg_pumin"
             android:layout_marginTop="30dp"
             />
         <TextView
             android:id="@+id/tv_queding"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/white"
+            android:background="@mipmap/sure_pumin"
             android:text="确定"
-            android:textSize="20dp"
             android:layout_toLeftOf="@+id/view_fengeixi"
             />
         <TextView
             android:id="@+id/tv_fanhui"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="返回"
+            android:background="@mipmap/undo_pumin"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:layout_toRightOf="@+id/view_fengeixi"

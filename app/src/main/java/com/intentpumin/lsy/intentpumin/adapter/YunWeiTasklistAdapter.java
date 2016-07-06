@@ -16,6 +16,8 @@ import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
 
 import java.util.List;
 
+import butterknife.OnItemClick;
+
 /**
  * Created by yang on 2016/4/5.
  */
@@ -51,7 +53,6 @@ public class YunWeiTasklistAdapter extends BaseAdapter {
             return 0;
         }
     }
-
     @Override
     public View getView(int i, View convertView, ViewGroup parent) {
         ViewHodler hodler = null;
@@ -76,12 +77,6 @@ public class YunWeiTasklistAdapter extends BaseAdapter {
         hodler.tv_time.setText(list.get(i).getDate());
         hodler.tv_device.setText(list.get(i).getEqpt_name());
         hodler.tv_Location.setText(list.get(i).getLoct_name());
-       /* tv_tasklist_device.setText(info.get(position).getEQPT_NAME());
-        tv_tasklist_Location.setText(info.get(position).getLOCT_NAME());
-        tv_tasklist_time.setText(info.get(position).getDATE());*/
-      /*  hodler.tv_device.setText("DDC-1");
-        hodler.tv_Location.setText("长寿路");
-        hodler.tv_time.setText("2012-04-08");*/
       convertView.setTag(hodler);
         return convertView;
     }
@@ -99,11 +94,8 @@ public class YunWeiTasklistAdapter extends BaseAdapter {
         this.list = list;
         notifyDataSetChanged();
         if (list!=null&&list.size()>0){
-        System.out.println("list的size是"+list.size());}else {
-            System.out.println("list的null");
         }
     }
-
     class ViewHodler {
         private TextView tv_time;
         private TextView tv_device;
