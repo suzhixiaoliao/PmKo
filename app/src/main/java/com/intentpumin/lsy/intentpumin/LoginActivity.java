@@ -34,13 +34,9 @@ public class LoginActivity extends BaseActivity {
     private TextView btn_login;
     public  final static String SER_KEY = "com.intentpumin.lsy.intentpumin.ser";
     public  final static String PAR_KEY = "com.intentpumin.lsy.intentpumin.par";
-
     public static final String SETTING_INFOS = "SETTING_Infos";
-
     public static final String NAME = "NAME";
-
     public static final String PASSWORD = "PASSWORD";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

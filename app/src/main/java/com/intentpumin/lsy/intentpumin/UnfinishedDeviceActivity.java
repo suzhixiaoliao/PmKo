@@ -55,7 +55,7 @@ public class UnfinishedDeviceActivity extends BaseActivity {
             @Override
             public void onRefresh() {
                 swip.setRefreshing(false);
-                //  requestData();
+                 // requestData();
 
             }
         });
@@ -71,6 +71,8 @@ public class UnfinishedDeviceActivity extends BaseActivity {
                 items items = mdata.get(position);
                 Log.d("un",mdata.toString());
                 Intent intent = new Intent(UnfinishedDeviceActivity.this, CaptureActivity.class);
+
+                intent.putExtra("item", items);
                 UnfinishedDeviceActivity.this.startActivity(intent);
             }
         });

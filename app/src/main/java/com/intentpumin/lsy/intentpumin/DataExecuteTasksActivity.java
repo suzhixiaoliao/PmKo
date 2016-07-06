@@ -29,6 +29,7 @@ import com.intentpumin.lsy.intentpumin.adapter.TaskGridAdapter;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.network.LogUtils;
+import com.intentpumin.lsy.intentpumin.tools.device.items;
 import com.intentpumin.lsy.intentpumin.tools.stat.result_stat_get;
 import com.intentpumin.lsy.intentpumin.tools.stat.stat_get;
 import com.intentpumin.lsy.intentpumin.tools.task.result_task_get;
@@ -50,7 +51,6 @@ public class DataExecuteTasksActivity extends BaseActivity {
     private GridView mtasklist;
     private ListView mdatalist;
     private TaskGridAdapter adapter;
-
     // TODO: 2016/6/21
     private StatListAdapter dataadapter;
     private List<task_get> mtask;//任务
@@ -64,9 +64,16 @@ public class DataExecuteTasksActivity extends BaseActivity {
     double Mapx, Mapy;
     String result = "";
 
+    private com.intentpumin.lsy.intentpumin.tools.device.items items;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        items = (com.intentpumin.lsy.intentpumin.tools.device.items) getIntent().getSerializableExtra("item");
+        if (items != null) {
+            Log.e("DataExecute", "收到了"+items.toString());
+        }
         sp = getSharedPreferences("info", Context.MODE_PRIVATE);
         //透明状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -254,7 +261,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
 
     }
 
-//任务
+    //任务
     private void requestData(String eqptid) {
 
         //获取Sp数据
@@ -431,25 +438,25 @@ public class DataExecuteTasksActivity extends BaseActivity {
                 RequestParams params = new RequestParams();
                 SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String exec_time = sDateFormat.format(new java.util.Date());
-               // String date = b.getData().getItems().get(i).getDate();
-               // String area_id = b.getData().getItems().get(i).getArea_id();
-                String area_id ="47875310-1A24-2B35-2783-AE12D8334E2D";
-               // String eqpt_id = b.getData().getItems().get(i).getEqpt_id();
-                String eqpt_id ="47875315-1A24-2B35-2783-AE19D7334E2D";
-               // String tast_id = b.getData().getItems().get(i).getTask_id();
-                String task_id ="0456DAB3-6A37-FCAC-33C8-31FEA4B4B43E";
+                // String date = b.getData().getItems().get(i).getDate();
+                // String area_id = b.getData().getItems().get(i).getArea_id();
+                String area_id = "47875310-1A24-2B35-2783-AE12D8334E2D";
+                // String eqpt_id = b.getData().getItems().get(i).getEqpt_id();
+                String eqpt_id = "47875315-1A24-2B35-2783-AE19D7334E2D";
+                // String tast_id = b.getData().getItems().get(i).getTask_id();
+                String task_id = "0456DAB3-6A37-FCAC-33C8-31FEA4B4B43E";
                 //String finished="Y";
-                String phoneno="13000000000";
-                String signature="1";
-                String date="2016-06-21";
-                params.addFormDataPart("phoneno",phoneno);
-                params.addFormDataPart("date",date);
-                params.addFormDataPart("signature",signature);
-                params.addFormDataPart("area_id",area_id);
-                params.addFormDataPart("eqpt_id",eqpt_id);
-                params.addFormDataPart("task_id",task_id);
+                String phoneno = "13000000000";
+                String signature = "1";
+                String date = "2016-06-21";
+                params.addFormDataPart("phoneno", phoneno);
+                params.addFormDataPart("date", date);
+                params.addFormDataPart("signature", signature);
+                params.addFormDataPart("area_id", area_id);
+                params.addFormDataPart("eqpt_id", eqpt_id);
+                params.addFormDataPart("task_id", task_id);
                 //params.addFormDataPart("finished",finished);
-               // params.addFormDataPart("finished", b.getData().getItems().get(i).getFinished());
+                // params.addFormDataPart("finished", b.getData().getItems().get(i).getFinished());
                 if (item.getFinished().equals("Y1")) {
                     params.addFormDataPart("finished", "Y");
                     System.out.println("llllllllllll" + item.getFinished().toString());
@@ -461,7 +468,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
                 }
                 params.addFormDataPart("spot_x", Mapx);
                 params.addFormDataPart("spot_y", Mapy);
-                params.addFormDataPart("exec_time","2016-06-21");
+                params.addFormDataPart("exec_time", "2016-06-21");
                 HttpUtil.getInstance().post(MainLogic.SET_TASK, params, new StringHttpRequestCallback() {
                     @Override
                     protected void onSuccess(String s) {
