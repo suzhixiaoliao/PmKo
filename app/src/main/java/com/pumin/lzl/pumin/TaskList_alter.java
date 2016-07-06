@@ -3,6 +3,7 @@ package com.pumin.lzl.pumin;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,8 +36,6 @@ import java.util.ArrayList;
 
 public class TaskList_alter extends AppCompatActivity {
 
-
-    private TextView tasklist_name;
     private Alltitle tasklist_title;
 
 
@@ -71,18 +70,22 @@ public class TaskList_alter extends AppCompatActivity {
     //设置标题
     private void setTasklist_name() {
         tasklist_title.setTitle("任务清单");
+        tasklist_title.setLeftButton(null, R.drawable.down, new Alltitle.OnLeftButtonClickListener() {
+            @Override
+            public void onLeftBtnClick(View button) {
+                finish();
+            }
+        },null);
     }
 
 
     //初始化控件
     private void intiview() {
-        tasklist_name = (TextView) findViewById(R.id.tasklist_name);
         tasklist_title = (Alltitle) findViewById(R.id.tasklist_title);
         tasklist_maintenance = (ListView) findViewById(R.id.tasklist_maintenance);
         tasklist_parameter = (ListView) findViewById(R.id.tasklist_parameter);
     }
 
-    //列表得到数据
     //http://app.pumintech.com:40000/api/user/get_mt_details?signature=1
     //http://10.16.1.201:40000/api/user/get_mt_details?signature=1
     //查找规范：EQPT_ID和DATE一致

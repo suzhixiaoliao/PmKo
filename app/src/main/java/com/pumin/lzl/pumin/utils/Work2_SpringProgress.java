@@ -20,7 +20,7 @@ public class Work2_SpringProgress extends View {
     /**
      * 分段颜色
      */
-    private static final int[] SECTION_COLORS = {Color.GREEN, Color.BLUE};
+    private static final int[] SECTION_COLORS = {Color.rgb(179, 210, 107), Color.rgb(179,210,107)};
     /**
      * 进度条最大值
      */
@@ -62,10 +62,10 @@ public class Work2_SpringProgress extends View {
         mPaint.setAntiAlias(true);
         int round = mHeight / 100;
         System.out.println("max=" + maxCount + "  current=" + currentCount);
-        mPaint.setColor(Color.rgb(71, 76, 80));
+        mPaint.setColor(Color.BLACK);
         RectF rectBg = new RectF(0, 0, mWidth, mHeight);
         canvas.drawRoundRect(rectBg, round, round, mPaint);
-        mPaint.setColor(Color.BLACK);
+        mPaint.setColor(Color.rgb(225, 224, 220));
         RectF rectBlackBg = new RectF(2, 2, mWidth - 2, mHeight - 2);
         canvas.drawRoundRect(rectBlackBg, round, round, mPaint);
 

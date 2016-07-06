@@ -44,6 +44,7 @@ public class MainAdminActivity extends AppCompatActivity {
         iv_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //进入到扫描界面。
                 Intent   it = new Intent(MainAdminActivity.this, CaptureActivity.class);
                 it.putExtra("str_all","1");
                 startActivity(it);

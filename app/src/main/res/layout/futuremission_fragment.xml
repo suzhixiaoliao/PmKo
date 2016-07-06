@@ -2,15 +2,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#e1e0dc"
+    android:orientation="vertical"
     tools:context="com.pumin.fragment.Futuremission_fragment">
-    <TextView
-        android:background="#63d5ff"
-        android:gravity="center"
-        android:text="未来任务"
+
+    <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        android:layout_height="45dp"
+        android:background="#e1e0dc"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/futur" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="未来任务记录"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="#000" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,11 +44,9 @@
             android:id="@+id/future_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#000"
-            android:dividerHeight="2px">
+            android:divider="#817d7d"
+            android:dividerHeight="5px">
 
         </ListView>
-
-
     </LinearLayout>
 </LinearLayout>

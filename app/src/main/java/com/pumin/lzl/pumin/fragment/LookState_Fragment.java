@@ -47,7 +47,7 @@ public class LookState_Fragment extends Fragment {
     Lookstate_object look_object;
 
     //日期进度条
-    private TextView state_date;
+    private TextView state_date2;
     private SpringProgressView progressView;
     int last;  //一个月最多有几天
     int year;
@@ -84,7 +84,7 @@ public class LookState_Fragment extends Fragment {
 
     //初始化控件
     private void initview() {
-        state_date = (TextView) view.findViewById(R.id.state_date);
+        state_date2= (TextView) view.findViewById(R.id.state_date2);
         progressView = (SpringProgressView) view.findViewById(R.id.spring_progress_view);
 
 
@@ -101,11 +101,10 @@ public class LookState_Fragment extends Fragment {
     //日期进度条
     private void setprogerss() {
         Calendar c = Calendar.getInstance(); //获取系统时间
-        last = c.getMaximum(Calendar.DAY_OF_MONTH);
+        last = c.getActualMaximum(Calendar.DAY_OF_MONTH);
         year = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH);
         day = c.get(Calendar.DAY_OF_MONTH);
-
         progressView.setMaxCount(last);
         progressView.setCurrentCount(day);
     }

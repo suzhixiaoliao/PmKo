@@ -3,43 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#e1e0dc"
+    android:orientation="vertical"
     tools:context="com.pumin.view.TaskList_alter">
 
     <com.pumin.lzl.pumin.utils.Alltitle
         android:id="@+id/tasklist_title"
         android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        android:layout_height="50dp" />
 
     <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#b562a2e7"
-        android:gravity="center"
+        android:layout_height="45dp"
+        android:background="#e1e0dc"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp">
+        android:paddingLeft="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="30dp"
             android:layout_height="30dp"
-            android:text="管理员:" />
+            android:src="@mipmap/alter_list" />
 
         <TextView
-            android:id="@+id/tasklist_name"
             android:layout_width="wrap_content"
-            android:layout_height="30dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="设备维护任务"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:background="#6a7cf4"
-        android:gravity="center"
-        android:text="设备维护任务清单"
-        android:textStyle="bold" />
+        android:layout_height="1dp"
+        android:background="#000" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,18 +49,42 @@
             android:id="@+id/tasklist_maintenance"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#000"
-            android:dividerHeight="2px" />
+            android:divider="#d88b8585"
+            android:dividerHeight="10dp" />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="2dp"
-        android:background="#6a7cf4"
-        android:gravity="center"
-        android:text="设备记录参数"
-        android:textStyle="bold" />
+        android:layout_height="1dp"
+        android:background="#000" />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#e1e0dc"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/alter_list2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="设备记录参数"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,8 +95,8 @@
             android:id="@+id/tasklist_parameter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#000"
-            android:dividerHeight="2px" />
+            android:divider="#d88b8585"
+            android:dividerHeight="10dp" />
 
     </LinearLayout>
 </LinearLayout>
