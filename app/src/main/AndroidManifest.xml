@@ -75,7 +75,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".YunWeiMainActivity" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".zxing.CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -87,8 +87,8 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".TaskslistActivity" />
-        <activity android:name=".List_ZxingActivity" />
+        <activity android:name=".UnfinishedDeviceActivity" />
+        <activity android:name=".DataExecuteTasksActivity" />
 
         <service
             android:name="com.baidu.location.f"
@@ -108,13 +108,13 @@
         </meta-data>
         <activity android:name=".MainAdminActivity" />
         <activity
-            android:name=".AdminSSActivity"
+            android:name=".AdminDevicesActivity"
             android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".AdminStatActivity"
             android:theme="@style/Theme.Transparent" />
         <activity android:name=".HelloChartActivity" />
-        <activity android:name=".TastComActivity"
+        <activity android:name=".TaskRemarkActivity"
             android:theme="@style/Theme.Transparent"></activity>
 
 			<!-- 管理员主界面 -->

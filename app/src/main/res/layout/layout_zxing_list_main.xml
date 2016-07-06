@@ -18,7 +18,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@mipmap/main_title"
+        android:background="@color/bg_pumin"
         android:layout_weight="3"
         >
         <GridView
@@ -31,7 +31,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@mipmap/main_title"
+        android:background="@color/bg_pumin"
         android:layout_weight="3"
         >
         <ListView
@@ -64,7 +64,6 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:background="@mipmap/sure_pumin"
-            android:text="确定"
             android:layout_toLeftOf="@+id/view_fengeixi"
             />
         <TextView
@@ -72,7 +71,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="返回"
             android:background="@mipmap/undo_pumin"
             android:textColor="@color/white"
             android:textSize="20dp"

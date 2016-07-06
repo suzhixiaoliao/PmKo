@@ -10,8 +10,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import com.intentpumin.lsy.intentpumin.R;
-import com.intentpumin.lsy.intentpumin.tools.Add_eqpt;
-import com.intentpumin.lsy.intentpumin.tools.Add_stat;
+import com.intentpumin.lsy.intentpumin.tools.allstat.stats_all;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +21,11 @@ import java.util.List;
 public class AdminStatAdapter extends BaseAdapter {
     private SharedPreferences sp;
     private static final String TAG = "AdminStatAdapter";
-    private List<Add_stat> list;
+    private List<stats_all> list;
     private Context context;
     private LayoutInflater inflater;//布局填充器。生成所对应的view对象，系统内置
-    private List<Add_stat> checkList = new ArrayList<Add_stat>();
-    public AdminStatAdapter(Context context, List<Add_stat> list) {
+    private List<stats_all> checkList = new ArrayList<stats_all>();
+    public AdminStatAdapter(Context context, List<stats_all> list) {
         super();
         this.context = context;
         this.list = list;
@@ -94,7 +93,7 @@ public class AdminStatAdapter extends BaseAdapter {
         return list.size();
     }
 
-    public void setItems(List<Add_stat> list) {
+    public void setItems(List<stats_all> list) {
         this.list = list;
         notifyDataSetChanged();
         if (list!=null&&list.size()>0){
@@ -107,7 +106,7 @@ public class AdminStatAdapter extends BaseAdapter {
         private CheckBox tv_stat_xz;
         private TextView tv_stat_sb;
     }
-    public List<Add_stat> getCheckList() {
+    public List<stats_all> getCheckList() {
         return checkList;
     }
 }

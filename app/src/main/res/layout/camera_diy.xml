@@ -141,5 +141,4 @@
             android:textColor="@android:color/white"
             android:visibility="invisible" />
     </LinearLayout>
-
 </FrameLayout>

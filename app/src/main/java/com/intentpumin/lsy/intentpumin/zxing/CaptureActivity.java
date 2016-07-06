@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.intentpumin.lsy.intentpumin.List_ZxingActivity;
+import com.intentpumin.lsy.intentpumin.DataExecuteTasksActivity;
 import com.intentpumin.lsy.intentpumin.R;
 import com.intentpumin.lsy.intentpumin.util.LightControl;
 
@@ -174,8 +174,7 @@ public class CaptureActivity extends Activity implements Callback {
 				iv_big_circle.setBackgroundResource(R.mipmap.bar_code_center_grey);
 				iv_four_corner.setBackgroundResource(R.mipmap.bar_code_four_corner_grey);
 			}
-//			Intent resultIntent = new Intent(CaptureActivity.this, List_ZxingActivity.class);
-			Intent resultIntent=this.getIntent().setClass(CaptureActivity.this,List_ZxingActivity.class);
+			Intent resultIntent=this.getIntent().setClass(CaptureActivity.this,DataExecuteTasksActivity.class);
 			resultIntent.putExtra("result",""+resultString);
 			startActivity(resultIntent);
 		}

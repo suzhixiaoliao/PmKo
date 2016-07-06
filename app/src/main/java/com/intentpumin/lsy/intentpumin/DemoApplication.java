@@ -9,8 +9,6 @@ import com.intentpumin.lsy.intentpumin.network.CrashHandler;
  * Created by Eenie on 2016/4/23.
  */
 public class DemoApplication extends Application {
-
-
     @Override
     public void onCreate() {
         super.onCreate();
