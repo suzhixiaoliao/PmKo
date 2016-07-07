@@ -181,10 +181,8 @@ public class MainActivity extends BaseActivity{
                             date = resulut.getData().getItems().get(0).getDate();
                             eqpt_name = resulut.getData().getItems().get(0).getEqpt_name();
                             loct_name = resulut.getData().getItems().get(0).getLoct_name();
-
                         }
                     }
-
                 } catch (JsonSyntaxException e) {
                     e.printStackTrace();
                 }

@@ -61,7 +61,7 @@ public class MainDeviceAdapter extends BaseAdapter {
         hodler.tv_time.setText(list.get(i).getDate());
         hodler.tv_device.setText(list.get(i).getEqpt_name());
         hodler.tv_Location.setText(list.get(i).getLoct_name());
-      convertView.setTag(hodler);
+         convertView.setTag(hodler);
         return convertView;
     }
 
