@@ -11,14 +11,13 @@
             <!--android:layout_height="50dp">-->
             <TextView
                 android:id="@+id/tv_tab_o"
-                android:layout_width="122dp"
-                android:layout_height="56dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:button="@null"
                 android:checked="false"
                 android:focusable="true"
                 android:gravity="center"
-                android:text="摄像头"
-                android:textColor="#111111" />
+                android:text="摄像头" />
         <!--</TableRow>-->
 </RelativeLayout>

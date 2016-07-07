@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_pumin"
+    android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/device_zhu"
+    android:orientation="horizontal">
+    <TextView
+    android:paddingLeft="33dp"
+        android:id="@+id/tv_tasklist_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="时间"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/tv_tasklist_Location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_above="@+id/tv_tasklist_device"
+       android:paddingRight="@dimen/activity_horizontal_margin"
+        android:text="地点"
+        android:textSize="18sp" />
+        <TextView
+            android:layout_below="@+id/tv_tasklist_time"
+            android:id="@+id/tv_tasklist_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="30dp"
+            android:text="设备"
+            android:textColor="@color/shenlan"
+            android:textSize="30px" />
+</LinearLayout>
+    </RelativeLayout>

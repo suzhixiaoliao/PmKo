@@ -1,7 +1,5 @@
 package com.intentpumin.lsy.intentpumin.logic;
 
-import com.intentpumin.lsy.intentpumin.tools.data.LoginRequestMsg;
-
 /**
  * Created by yang on 2016/5/3.
  */
@@ -23,6 +21,10 @@ public class MainLogic extends BaseLogic {
     public final static String GET_STAT=HOST_URL+ "/get_stat_list_d";
     //数据上传
     public final static String SET_STAT=HOST_URL+"/set_stat_info";
+    //上传任务备注
+    public final static String SET_REMARK=HOST_URL+"/set_task_remark";
+    //更新任务备注
+    public final static String GET_REMARK=HOST_URL+"/get_task_remark";
     /**
    * 管理人员接口
    */
@@ -33,12 +35,6 @@ public class MainLogic extends BaseLogic {
     //管理人员获取指定日期及设备信息下的状态趋势图
     public final static String GET_VALUE=HOST_URL+"/get_stat_value";
 
-    public final static MainLogic sInstance = new MainLogic();
 
-    public void requestLogin(String phoneno,String pswd){
-        LoginRequestMsg loginRequestMsg=new LoginRequestMsg();
-        loginRequestMsg.setPhoneno(phoneno);
-        loginRequestMsg.setPswd(pswd);
-    }
 
 }

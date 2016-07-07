@@ -23,9 +23,9 @@
                     layout="@layout/activity_hello_chart"
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
-                    android:layout_marginLeft="10dip"
-                    android:layout_marginTop="10dip"
-                    android:layout_marginRight="10dip"
+                    android:layout_marginLeft="0dip"
+                    android:layout_marginTop="0dip"
+                    android:layout_marginRight="0dip"
                     android:layout_weight="1"/>
 
                 <ListView

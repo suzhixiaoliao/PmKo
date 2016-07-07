@@ -9,14 +9,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.intentpumin.lsy.intentpumin.AdminStatActivity;
 import com.intentpumin.lsy.intentpumin.R;
-import com.intentpumin.lsy.intentpumin.tools.Add_eqpt;
-import com.intentpumin.lsy.intentpumin.tools.items;
-import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
+import com.intentpumin.lsy.intentpumin.tools.alldevice.devices_all;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +23,12 @@ import java.util.List;
 public class AdminEqptAdapter extends BaseAdapter {
     private SharedPreferences sp;
     private static final String TAG = "AdminEqptAdapter";
-    private List<Add_eqpt> list;
+    private List<devices_all> list;
     private Context context;
     private LayoutInflater inflater;//布局填充器。生成所对应的view对象，系统内置
-    private List<Add_eqpt> checkList = new ArrayList<>();
+    private List<devices_all> checkList = new ArrayList<>();
 
-    public AdminEqptAdapter(Context context, List<Add_eqpt> list) {
+    public AdminEqptAdapter(Context context, List<devices_all> list) {
         super();
         this.context = context;
         this.list = list;
@@ -83,25 +79,19 @@ public class AdminEqptAdapter extends BaseAdapter {
             hodler.tv_sb = (TextView) convertView.findViewById(R.id.tv_sb);
             hodler.tv_tz = (TextView) convertView.findViewById(R.id.tv_tz);
             hodler.tv_id = (TextView) convertView.findViewById(R.id.tv_id);
-            hodler.tv_tz.setOnClickListener(new View.OnClickListener() {
+           /* hodler.tv_tz.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, AdminStatActivity.class);
                     context.startActivity(intent);
                 }
-            });
+            });*/
 
         } else {
             hodler = (ViewHodler) convertView.getTag();
         }
         hodler.tv_sb.setText(list.get(i).getEqpt_name());
         hodler.tv_id.setText(list.get(i).getEqpt_id());
-       /* tv_tasklist_device.setText(info.get(position).getEQPT_NAME());
-        tv_tasklist_Location.setText(info.get(position).getLOCT_NAME());
-        tv_tasklist_time.setText(info.get(position).getDATE());*/
-      /*  hodler.tv_device.setText("DDC-1");
-        hodler.tv_Location.setText("长寿路");
-        hodler.tv_time.setText("2012-04-08");*/
         convertView.setTag(hodler);
         return convertView;
     }
@@ -116,7 +106,7 @@ public class AdminEqptAdapter extends BaseAdapter {
         return list.size();
     }
 
-    public void setItems(List<Add_eqpt> list) {
+    public void setItems(List<devices_all> list) {
         this.list = list;
         notifyDataSetChanged();
         if (list != null && list.size() > 0) {
@@ -132,7 +122,7 @@ public class AdminEqptAdapter extends BaseAdapter {
         private TextView tv_tz;
         private TextView tv_id;
     }
-    public List<Add_eqpt> getCheckList() {
+    public List<devices_all> getCheckList() {
         return checkList;
     }
 }

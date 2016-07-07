@@ -6,20 +6,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
-import com.intentpumin.lsy.intentpumin.logic.BaseLogic;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
-import com.intentpumin.lsy.intentpumin.network.LogUtils;
-import com.intentpumin.lsy.intentpumin.tools.login;
-import com.zhy.autolayout.AutoLayoutActivity;
+import com.intentpumin.lsy.intentpumin.tools.logindate.login;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,21 +26,17 @@ import java.io.Serializable;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private static final String TAG = "LoginActivity";
     private String userNameValue, passwordValue;
     private EditText et_name;
     private EditText et_psd;
-    private ImageView btn_login;
+    private TextView btn_login;
     public  final static String SER_KEY = "com.intentpumin.lsy.intentpumin.ser";
     public  final static String PAR_KEY = "com.intentpumin.lsy.intentpumin.par";
-
     public static final String SETTING_INFOS = "SETTING_Infos";
-
     public static final String NAME = "NAME";
-
     public static final String PASSWORD = "PASSWORD";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +48,9 @@ public class LoginActivity extends AppCompatActivity {
         itiv();
         //判断网络连接状态
         if (isNetworkAvailable(LoginActivity.this)) {
-            Toast.makeText(getApplicationContext(), "当前有可用网络！", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "当前有可用网络！", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(), "当前没有可用网络！", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "当前没有可用网络！", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -93,13 +86,13 @@ public class LoginActivity extends AppCompatActivity {
 
   private void itiv() {
       et_name = (EditText) findViewById(R.id.et_name);
-      et_psd = (EditText) findViewById(R.id.et_psd);
+      et_psd = (EditText) findViewById(R.id.et_pwd);
       SharedPreferences settings = getSharedPreferences(SETTING_INFOS, 0); //获取一个SharedPreferences对象
       final String name = settings.getString(NAME, "");  //取出保存的NAME
       String password = settings.getString(PASSWORD, ""); //取出保存的PASSWORD
       et_name.setText(name);
       et_psd.setText(password);
-      btn_login = (ImageView) findViewById(R.id.btn_login);
+      btn_login = (TextView) findViewById(R.id.tv_login_x);
       btn_login.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -141,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                       }
                       System.out.println(s);
                       if (login.getPriv().equals("0")) {
-                          Intent i = new Intent(LoginActivity.this, YunWeiMainActivity.class);
+                          Intent i = new Intent(LoginActivity.this, MainActivity.class);
                           //第三步
                           i.putExtra("login", (Serializable)login);
                           startActivity(i);

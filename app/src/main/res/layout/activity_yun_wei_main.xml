@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.intentpumin.lsy.intentpumin.YunWeiMainActivity">
+    tools:context=".MainActivity">
     <include
         android:id="@+id/main_title"
         layout="@layout/layout_main_title"/>
@@ -15,6 +15,7 @@
         >
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
+            android:background="@color/bg_pumin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </android.support.v4.view.ViewPager>
@@ -22,13 +23,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/zhu_btl"
-        android:layout_weight="2"
-        >
+        android:background="@color/bg_pumin"
+        android:layout_weight="2">
         <include
-            layout="@layout/layout_tasklist_fu"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            layout="@layout/layout_tasklist_fu" />
         </RelativeLayout>
 </LinearLayout>

@@ -78,5 +78,6 @@
     <color name="login_button_bg">#4e4d4d</color>
     <color name="transparent">#00000000</color>
     <color name="detail_bg">#F2F2F2</color>
-    <color name="black">#000000</color>
+    <color name="black">#1b1b1b</color>
+    <color name="bg_pumin">#e1e0dc</color>
 </resources>

@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:id="@+id/yy"
+        android:gravity="left"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/et_yunxing"
+            android:background="@mipmap/value_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_toRightOf="@+id/yy"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+
+        >
     <TextView
         android:id="@+id/tv_date_start"
-        android:text="yy"
-        android:textSize="20dp"
-        android:background="#90caF9"
-        android:layout_width="180dp"
-        android:layout_height="50dp" />
+        android:hint="2016-06-01"
+        android:background="@mipmap/value_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <View
+            android:id="@+id/ww"
+            android:layout_toRightOf="@+id/tv_date_start"
+            android:layout_width="20dp"
+            android:background="@color/shenlan"
+            android:layout_height="1dp" />
     <TextView
+        android:layout_toRightOf="@+id/ww"
+        android:background="@mipmap/value_date"
         android:id="@+id/tv_date_end"
-        android:text="mm"
+        android:hint="2016-06-04"
         android:gravity="end"
-        android:textSize="20dp"
-        android:background="#90caF9"
-        android:layout_alignParentRight="true"
-        android:layout_width="200dp"
-        android:layout_height="50dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     </RelativeLayout>
-<RelativeLayout
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <Button
-        android:id="@+id/et_yunxing"
-        android:text="设备"
-        android:background="#90caF9"
-        android:layout_width="180dp"
-        android:layout_height="50dp" />
 
 </RelativeLayout>
-</LinearLayout>

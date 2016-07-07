@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_pumin"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/yy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/data_bg"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_stat_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/bg_pumin" />
+
+        <TextView
+            android:id="@+id/tv_wendu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_stat_picture"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="温度"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_wendu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="20"
+            android:textColor="@color/shenlan"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/tv_wendushe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="CAAAA"
+            android:textSize="20sp" />
+    </LinearLayout>
+    >
+
+</RelativeLayout>
+

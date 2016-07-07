@@ -34,8 +34,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
-    compile 'com.github.lecho:hellocharts-android:v1.5.8'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'cn.finalteam:okhttpfinal:2.0.6'
     compile files('libs/baidumapapi_v3_5_0.jar')
@@ -43,6 +41,5 @@ dependencies {
     compile files('libs/volley.jar')
     compile files('libs/zxing.jar');
     compile 'com.google.code.gson:gson:2.6.2'
-    compile files('libs/xcl-charts.jar')
     compile 'com.zhy:autolayout:1.4.3'
 }

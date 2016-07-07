@@ -10,6 +10,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -22,8 +23,9 @@ import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.intentpumin.lsy.intentpumin.List_ZxingActivity;
+import com.intentpumin.lsy.intentpumin.DataExecuteTasksActivity;
 import com.intentpumin.lsy.intentpumin.R;
+import com.intentpumin.lsy.intentpumin.tools.device.items;
 import com.intentpumin.lsy.intentpumin.util.LightControl;
 import com.pumin.lzl.pumin.Main_View;
 
@@ -37,7 +39,15 @@ import java.util.Vector;
  * @author Ryan.Tang
  */
 public class CaptureActivity extends Activity implements Callback {
+
     private Bundle bundle;
+
+
+
+    private final String TAG = getClass().getSimpleName();
+
+
+
     private CaptureActivityHandler handler;
     private ViewfinderView viewfinderView;
     private boolean hasSurface;
@@ -59,13 +69,29 @@ public class CaptureActivity extends Activity implements Callback {
     private Button mBack;
 
 
+
+    private items items;
+
+
+
     /**
      * Called when the activity is first created.
      */
     @Override
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_diy);
+
+        items = (com.intentpumin.lsy.intentpumin.tools.device.items) getIntent().getSerializableExtra("item");
+
+
+        if (items != null) {
+            Log.e(TAG, "收到了 ");
+        }
+
+
+
         pg = (ProgressBar) findViewById(R.id.pg_camera_diy);
         iv_pg_bg_grey = (ImageView) findViewById(R.id.iv_camera_diy);
         iv_big_circle = (ImageView) findViewById(R.id.iv_camera_diy_circle);
@@ -186,10 +212,12 @@ public class CaptureActivity extends Activity implements Callback {
                 it2.putExtra("put_equipment", resultString);
                 startActivity(it2);
             }else{
-                Intent resultIntent = this.getIntent().setClass(CaptureActivity.this, List_ZxingActivity.class);
+                Intent resultIntent = this.getIntent().setClass(CaptureActivity.this, DataExecuteTasksActivity.class);
+                resultIntent.putExtra("item", items);
                 resultIntent.putExtra("result", "" + resultString);
                 startActivity(resultIntent);
             }
+
         }
         CaptureActivity.this.finish();
     }
@@ -198,9 +226,14 @@ public class CaptureActivity extends Activity implements Callback {
         try {
             CameraManager.get().openDriver(surfaceHolder);
         } catch (IOException ioe) {
+            ioe.printStackTrace();
             return;
         } catch (RuntimeException e) {
+            e.printStackTrace();
             return;
+        } finally {
+            Log.e(TAG, "initCamera: 报错了");
+
         }
         if (handler == null) {
             handler = new CaptureActivityHandler(this, decodeFormats,

@@ -3,14 +3,12 @@ package com.intentpumin.lsy.intentpumin.http;
 
 import android.content.Context;
 
-import com.intentpumin.lsy.intentpumin.tools.data.LoginRequestMsg;
 
 import cn.finalteam.okhttpfinal.BaseHttpRequestCallback;
 import cn.finalteam.okhttpfinal.HttpRequest;
 import cn.finalteam.okhttpfinal.OkHttpFinal;
 import cn.finalteam.okhttpfinal.OkHttpFinalConfiguration;
 import cn.finalteam.okhttpfinal.RequestParams;
-import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 import okhttp3.CookieJar;
 
 public class HttpUtil {

@@ -3,7 +3,6 @@ package com.intentpumin.lsy.intentpumin;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -19,14 +19,15 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
-import com.intentpumin.lsy.intentpumin.tools.Add_eqpt;
-import com.intentpumin.lsy.intentpumin.tools.Add_stat;
-import com.intentpumin.lsy.intentpumin.tools.data.base.DataBean;
-import com.intentpumin.lsy.intentpumin.tools.data.base.ItemsBean;
-import com.intentpumin.lsy.intentpumin.tools.data.base.Rustatvalue;
-import com.zhy.autolayout.AutoLayoutActivity;
+import com.intentpumin.lsy.intentpumin.tools.alldevice.devices_all;
+import com.intentpumin.lsy.intentpumin.tools.allstat.stats_all;
+import com.intentpumin.lsy.intentpumin.tools.value.values_all_items;
+import com.intentpumin.lsy.intentpumin.tools.value.result_values_all_get;
+import com.intentpumin.lsy.intentpumin.tools.value.values_devices_get;
+import com.intentpumin.lsy.intentpumin.util.Stats_icon;
 
 import java.lang.reflect.Type;
 import java.text.DateFormat;
@@ -42,16 +43,9 @@ import java.util.Map;
 
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
-import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
-import lecho.lib.hellocharts.model.Axis;
-import lecho.lib.hellocharts.model.AxisValue;
-import lecho.lib.hellocharts.model.Line;
-import lecho.lib.hellocharts.model.LineChartData;
-import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.util.ChartUtils;
-import lecho.lib.hellocharts.view.LineChartView;
 
-public class HelloChartActivity extends AppCompatActivity {
+
+public class HelloChartActivity extends BaseActivity {
     private ListView listview;
     private ChartAdapter chartadapter;
     private LineChartView lineChartView;
@@ -74,7 +68,7 @@ public class HelloChartActivity extends AppCompatActivity {
     List<String> statIds = new ArrayList<>();
 
 
-    Map<Add_eqpt, List<Add_stat>> resData = new LinkedHashMap<>();
+    Map<devices_all, List<stats_all>> resData = new LinkedHashMap<>();
 
     TimePickerDialog.OnTimeSetListener t = new TimePickerDialog.OnTimeSetListener() {
 
@@ -112,7 +106,7 @@ public class HelloChartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent inter = getIntent();
-                inter.setClass(HelloChartActivity.this, AdminSSActivity.class);
+                inter.setClass(HelloChartActivity.this, AdminDevicesActivity.class);
                 startActivityForResult(inter, 100);
             }
         });
@@ -196,14 +190,14 @@ public class HelloChartActivity extends AppCompatActivity {
             @Override
             protected void onSuccess(String s) {
                 Gson gson = new Gson();
-                Type type = new TypeToken<Rustatvalue>() {
+                Type type = new TypeToken<result_values_all_get>() {
                 }.getType();
-                Rustatvalue result = gson.fromJson(s, type);
+                result_values_all_get result = gson.fromJson(s, type);
                 System.out.println(s);
                 // 这里
                 if (result.getRes() == 1) {
                     Toast.makeText(getApplicationContext(), "后台获取数据成功", Toast.LENGTH_SHORT).show();
-                    List<DataBean> datas = result.getData();
+                    List<values_devices_get> datas = result.getData();
                     lineChartView.setLineChartData(generateLineChartData("", "", datas));
                     listData.clear();
                     listData.addAll(result.getData());
@@ -223,7 +217,7 @@ public class HelloChartActivity extends AppCompatActivity {
             }
         });
     }
-    private LineChartData generateLineChartData(String eqpt_name, String stat_name, List<DataBean> datas) {
+    private LineChartData generateLineChartData(String eqpt_name, String stat_name, List<values_devices_get> datas) {
         //构建20个点的数据
         List<Line> lines = new ArrayList<>();
         // value.
@@ -244,12 +238,12 @@ public class HelloChartActivity extends AppCompatActivity {
             }
             List<PointValue> values = new ArrayList<>();
             List<String> dates = new ArrayList<>();
-            DataBean itemData = datas.get(index);
-            List<ItemsBean> itemsData = itemData.getItems();
+            values_devices_get itemData = datas.get(index);
+            List<values_all_items> itemsData = itemData.getItems();
             for (int i = 0; i < itemsData.size(); i++) {
-                ItemsBean itemsBean = itemsData.get(i);
+                values_all_items valuesallitems = itemsData.get(i);
                 //三目運算符 如果不是怎麼樣 那麼就怎麼樣
-                String rValue = "".equals(itemsBean.getItem().getR_value()) ? "0": itemsBean
+                String rValue = "".equals(valuesallitems.getItem().getR_value()) ? "0": valuesallitems
                         .getItem().getR_value();
                // values.add(new PointValue(i,(float) Double.parseDouble(rValue)) == 0 ? Float.NaN :(Double.parseDouble(rValue)));
                 values.add(new PointValue(i,(float)(Float.parseFloat(rValue)) == 0? Float.NaN : (Float.parseFloat(rValue))));
@@ -289,7 +283,7 @@ public class HelloChartActivity extends AppCompatActivity {
     }
 
     //初始化x轴的值
-    public List<AxisValue> getAxisValues(List<ItemsBean> hours) {
+    public List<AxisValue> getAxisValues(List<values_all_items> hours) {
         int numSubcolumns = 1;
         List<AxisValue> axisValues = new ArrayList<>();
         for (int i = 0; i < hours.size(); ++i) {
@@ -313,7 +307,7 @@ public class HelloChartActivity extends AppCompatActivity {
         return "";
     }
 
-    private List<DataBean> listData = new ArrayList<>();
+    private List<values_devices_get> listData = new ArrayList<>();
 
     private class ChartAdapter extends BaseAdapter {
         private ViewHolder holder;
@@ -324,7 +318,7 @@ public class HelloChartActivity extends AppCompatActivity {
         }
 
         @Override
-        public DataBean getItem(int position) {
+        public values_devices_get getItem(int position) {
             return listData.get(position);
         }
 
@@ -335,26 +329,31 @@ public class HelloChartActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            DataBean dataBean = getItem(position);
+            values_devices_get valuesdevicesget = getItem(position);
             if (convertView == null) {
-                convertView = LayoutInflater.from(HelloChartActivity.this).inflate(R.layout.layout_item, null);
+                convertView = LayoutInflater.from(HelloChartActivity.this).inflate(R.layout.item_value_list, null);
                 holder = new ViewHolder(convertView);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            holder.driverNameTv.setText("eqpt " + dataBean.getEqpt_name());
-            holder.driverStatusTv.setText("status " + dataBean.getStat_name());
-            convertView.setOnClickListener(new ItemListener(dataBean));
+            holder.driverNameTv.setText("设备： " + valuesdevicesget.getEqpt_name());
+            holder.driverStatusTv.setText("状态： " + valuesdevicesget.getStat_name());
+            int resId = Stats_icon.getStatIcon(valuesdevicesget.getStat_id());
+            holder.pictureIv.setImageResource(resId);
+
+            convertView.setOnClickListener(new ItemListener(valuesdevicesget));
             return convertView;
         }
 
         private class ViewHolder {
             public TextView driverNameTv;
             public TextView driverStatusTv;
+            public ImageView pictureIv;
 
             public ViewHolder(View convertView) {
                 driverNameTv = (TextView) convertView.findViewById(R.id.tv_driver_name);
                 driverStatusTv = (TextView) convertView.findViewById(R.id.tv_driver_status);
+                pictureIv= (ImageView) convertView.findViewById(R.id.iv_picture);
                 convertView.setTag(this);
             }
 
@@ -362,15 +361,15 @@ public class HelloChartActivity extends AppCompatActivity {
     }
 
     private class ItemListener implements View.OnClickListener {
-        private final DataBean dataBean;
+        private final values_devices_get valuesdevicesget;
 
-        public ItemListener(DataBean dataBean) {
-            this.dataBean = dataBean;
+        public ItemListener(values_devices_get valuesdevicesget) {
+            this.valuesdevicesget = valuesdevicesget;
         }
 
         @Override
         public void onClick(View v) {
-            lineChartView.setLineChartData(generateLineChartData(dataBean.getEqpt_name(), dataBean.getStat_name(), listData));
+            lineChartView.setLineChartData(generateLineChartData(valuesdevicesget.getEqpt_name(), valuesdevicesget.getStat_name(), listData));
         }
     }
 
@@ -393,14 +392,14 @@ public class HelloChartActivity extends AppCompatActivity {
 
         if (requestCode == 100 && resultCode == 101) {
 
-            resData = (Map<Add_eqpt, List<Add_stat>>) data.getBundleExtra("ids").getSerializable("checkList");
+            resData = (Map<devices_all, List<stats_all>>) data.getBundleExtra("ids").getSerializable("checkList");
             System.out.println("add_eqpt selected size is " + resData.size());
             eqptIds.clear();
             statIds.clear();
 
 
-            for (Map.Entry<Add_eqpt, List<Add_stat>> entry : resData.entrySet()) {
-                for (Add_stat stat : entry.getValue()) {
+            for (Map.Entry<devices_all, List<stats_all>> entry : resData.entrySet()) {
+                for (stats_all stat : entry.getValue()) {
                     eqptIds.add(entry.getKey().getEqpt_id());
                     statIds.add(stat.getStat_id());
                 }

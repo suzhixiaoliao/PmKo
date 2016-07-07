@@ -1,30 +1,31 @@
 package com.intentpumin.lsy.intentpumin;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.network.LogUtils;
-import com.intentpumin.lsy.intentpumin.tools.login;
+
 import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
-import com.pumin.lzl.pumin.MainActivity2;
+
+import com.intentpumin.lsy.intentpumin.tools.logindate.login;
+
+
 
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class MainAdminActivity extends AppCompatActivity {
+public class MainAdminActivity extends BaseActivity {
     private TextView tv_main;
     private ImageView iv_ss;
     private TextView tv_return;
     private ImageView iv_scan;
-    // String url = "http://app.pumintech.com:40000/api/user/logout";
-    String url = "http://10.16.1.201:40000/api/user/logout";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

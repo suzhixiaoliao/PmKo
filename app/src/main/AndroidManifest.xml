@@ -84,7 +84,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".YunWeiMainActivity" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".zxing.CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -96,12 +96,11 @@
             android:configChanges="orientation|keyboardHidden"
 
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name=".TaskslistActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".List_ZxingActivity"
-            android:screenOrientation="portrait" />
+
+
+        <activity android:name=".UnfinishedDeviceActivity" />
+        <activity android:name=".DataExecuteTasksActivity" />
+
 
         <service
             android:name="com.baidu.location.f"
@@ -116,30 +115,26 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="lTcjS1xctW7IGRML7puSoQMGnKN8bAIW" />
 
+
         <activity
             android:name=".MainAdminActivity"
             android:screenOrientation="portrait" />
+
+        <meta-data android:name="design_width" android:value="768">
+        </meta-data>
+        <meta-data android:name="design_height" android:value="1280">
+        </meta-data>
+
         <activity
-            android:name=".AdminSSActivity"
+            android:name=".AdminDevicesActivity"
             android:theme="@style/Theme.Transparent" />
-        <activity
-            android:name=".AdminChartActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".AdminStatActivity"
-            android:theme="@style/Theme.Transparent" />
-        <activity
-            android:name=".ChartAdminActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ChartLineActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".HelloChartActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".TastComActivity"
-            android:theme="@style/Theme.Transparent" />
+
+        <activity android:name=".TaskRemarkActivity"
+            android:theme="@style/Theme.Transparent"></activity>
+
 
         <!-- 管理员主界面 -->
         <activity
