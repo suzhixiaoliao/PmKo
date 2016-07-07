@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="F:\Android_pmscience\android_pm\PuminKeJi\helloLibary\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="F:\Android_pmscience\android_pm\PuminKeJi\helloLibary\src\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\Puminzy\helloLibary\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="D:\Puminzy\helloLibary\src\debug\jniLibs"/></dataSet></merger>

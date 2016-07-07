@@ -5,28 +5,21 @@
     android:orientation="vertical"
     android:background="@color/bg_pumin"
     >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@mipmap/main_title"
-        android:layout_weight="1"
-        >
         <include
             android:id="@+id/list_zxing_title"
             layout="@layout/layout_list_zxing_title" />
-    </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/bg_pumin"
-        android:layout_weight="3"
+        android:layout_weight="1"
         >
         <GridView
             android:id="@+id/gv_task"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/bg_pumin"
-            android:numColumns="3" />
+            android:numColumns="6" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,6 +32,9 @@
             android:background="@color/bg_pumin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:horizontalSpacing="60dp"
+            android:verticalSpacing="60dp"
             />
     </RelativeLayout>
     <RelativeLayout

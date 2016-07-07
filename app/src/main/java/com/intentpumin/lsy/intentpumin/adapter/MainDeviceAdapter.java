@@ -58,10 +58,12 @@ public class MainDeviceAdapter extends BaseAdapter {
         } else {
             hodler = (ViewHodler) convertView.getTag();
         }
-        hodler.tv_time.setText(list.get(i).getDate());
+        String s=list.get(i).getDate();
+        String subDate=s.substring(0,10);//这里将会获得Hello
+        hodler.tv_time.setText(subDate);
         hodler.tv_device.setText(list.get(i).getEqpt_name());
         hodler.tv_Location.setText(list.get(i).getLoct_name());
-      convertView.setTag(hodler);
+         convertView.setTag(hodler);
         return convertView;
     }
 
