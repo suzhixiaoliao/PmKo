@@ -88,9 +88,9 @@
         <activity
             android:name=".zxing.CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
-
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
             android:name=".zxing.WebViewActivity"
             android:configChanges="orientation|keyboardHidden"

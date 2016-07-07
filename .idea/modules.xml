@@ -4,12 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PuminKeJi.iml" filepath="$PROJECT_DIR$/PuminKeJi.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-
-      <module fileurl="file://$PROJECT_DIR$/hellocharts-library/hellocharts.iml" filepath="$PROJECT_DIR$/hellocharts-library/hellocharts.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hellolibrary/hellolibrary.iml" filepath="$PROJECT_DIR$/hellolibrary/hellolibrary.iml" />
-
       <module fileurl="file://$PROJECT_DIR$/helloLibary/helloLibary.iml" filepath="$PROJECT_DIR$/helloLibary/helloLibary.iml" />
-
+      <module fileurl="file://$PROJECT_DIR$/helloLibary/helloLibary.iml" filepath="$PROJECT_DIR$/helloLibary/helloLibary.iml" />
     </modules>
   </component>
 </project>

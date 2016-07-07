@@ -72,7 +72,6 @@ public class MainActivity extends BaseActivity{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                items items=mdata.get(position);
                 Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
-                intent.putExtra("str_all","0");
                 MainActivity.this.startActivity(intent);
             }
         });
@@ -123,6 +122,7 @@ public class MainActivity extends BaseActivity{
           public void onClick(View v) {
               Intent inter1 = getIntent();
               inter1.setClass(MainActivity.this, CaptureActivity.class);
+              inter1.putExtra("str_all", "0");
               inter1.putExtra("login", mlogin);
               startActivity(inter1);
           }
