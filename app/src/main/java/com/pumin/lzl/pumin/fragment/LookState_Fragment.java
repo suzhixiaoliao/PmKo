@@ -203,7 +203,6 @@ public class LookState_Fragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     //工作完成百分比---单参数  按时完成百分比---单参数

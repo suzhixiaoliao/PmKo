@@ -70,12 +70,12 @@ public class TaskList_alter extends AppCompatActivity {
     //设置标题
     private void setTasklist_name() {
         tasklist_title.setTitle("任务清单");
-        tasklist_title.setLeftButton(null, R.drawable.down, new Alltitle.OnLeftButtonClickListener() {
+        tasklist_title.setLeftButton(null, R.mipmap.back, new Alltitle.OnLeftButtonClickListener() {
             @Override
             public void onLeftBtnClick(View button) {
                 finish();
             }
-        },null);
+        }, null);
     }
 
 

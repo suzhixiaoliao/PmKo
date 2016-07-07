@@ -122,7 +122,7 @@ public class Main_View extends AppCompatActivity {
     //设置标题栏
     private void initTitle() {
         equipment.setTitle("设备信息");
-        equipment.setLeftButton(null, R.drawable.down, new Alltitle.OnLeftButtonClickListener() {
+        equipment.setLeftButton(null, R.mipmap.back, new Alltitle.OnLeftButtonClickListener() {
             @Override
             public void onLeftBtnClick(View button) {
                 finish();
@@ -172,8 +172,7 @@ public class Main_View extends AppCompatActivity {
         }
     }
 
-
-    //请求
+    //请求接口
     public void query() {
         try {
             str = getIntent().getStringExtra("put_equipment");

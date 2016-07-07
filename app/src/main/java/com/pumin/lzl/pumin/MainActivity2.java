@@ -57,7 +57,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
     //设置标题栏
     private void setMain_title() {
         main_title.setTitle("浦敏科技");
-        main_title.setLeftButton(null, R.drawable.down, new Alltitle.OnLeftButtonClickListener() {
+        main_title.setLeftButton(null, R.mipmap.back, new Alltitle.OnLeftButtonClickListener() {
             @Override
             public void onLeftBtnClick(View button) {
                 exit();

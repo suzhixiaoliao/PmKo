@@ -106,7 +106,6 @@ public class Futuremission_fragment extends Fragment {
                         }
                         Log.d("TAG", info);
                         initadapter(info);
-//                        AllToast.alltoast(Gravity.CENTER, getContext(), "加载完成", R.drawable.pmlogo);
                     }
 
                 }, new Response.ErrorListener() {

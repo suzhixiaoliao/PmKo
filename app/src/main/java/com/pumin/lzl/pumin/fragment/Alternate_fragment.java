@@ -96,8 +96,6 @@ public class Alternate_fragment extends Fragment {
         //把path转码
         try {
             str = bundle1.getString("set_url");
-//
-//            System.out.println(str + "这是传过来的参数");
             //接口规范
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/?signature=1

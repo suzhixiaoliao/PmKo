@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/bg_pumin"
     android:orientation="vertical"
-    android:layout_height="wrap_content"
     android:weightSum="1">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@mipmap/titile_pumin">
+
         <TextView
             android:id="@+id/tv_return"
             android:layout_width="40dp"
@@ -20,16 +22,17 @@
             android:onClick="fh"
             android:text="  "
             android:textSize="20sp" />
+
         <TextView
             android:id="@+id/tv_main"
             android:layout_width="match_parent"
             android:layout_height="24dp"
-            android:text="小廖"
-            android:layout_marginTop="11dp"
             android:layout_marginBottom="9dp"
             android:layout_marginRight="44dp"
-            android:gravity="center"
+            android:layout_marginTop="11dp"
             android:layout_weight="1"
+            android:gravity="center"
+            android:text="小廖"
             android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>
