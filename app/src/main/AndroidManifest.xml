@@ -87,6 +87,7 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".zxing.CaptureActivity"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -98,8 +99,10 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
 
-        <activity android:name=".UnfinishedDeviceActivity" />
-        <activity android:name=".DataExecuteTasksActivity" />
+        <activity android:name=".UnfinishedDeviceActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DataExecuteTasksActivity"
+            android:screenOrientation="portrait"/>
 
 
         <service
@@ -127,12 +130,14 @@
 
         <activity
             android:name=".AdminDevicesActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".HelloChartActivity"
             android:screenOrientation="portrait" />
 
         <activity android:name=".TaskRemarkActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent"></activity>
 
 

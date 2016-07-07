@@ -14,8 +14,9 @@
 
         <ImageView
             android:id="@+id/iv_stat_picture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="64px"
+            android:layout_marginLeft="40px"
+            android:layout_height="64px"
             android:layout_weight="1"
             android:background="@color/bg_pumin" />
 
@@ -50,7 +51,6 @@
             android:text="CAAAA"
             android:textSize="20sp" />
     </LinearLayout>
-    >
 
 </RelativeLayout>
 
