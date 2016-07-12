@@ -53,7 +53,7 @@ public class AdminDevicesActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_ss);
+        setContentView(R.layout.activity_admindevices);
         mlist = (ListView) findViewById(R.id.list_adminss);
         init();
     }

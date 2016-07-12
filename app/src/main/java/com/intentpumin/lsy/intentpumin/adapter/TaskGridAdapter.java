@@ -54,7 +54,7 @@ public class TaskGridAdapter extends BaseAdapter {
         ViewHodler hodler = null;
         if (convertView == null) {
             hodler = new ViewHodler();
-            convertView = LayoutInflater.from(context).inflate(R.layout.activity_list__zxing, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.layout_gridtask, null);
             hodler.rb_tab_o = (TextView) convertView.findViewById(R.id.tv_tab_o);
             hodler.rl_tab_o=(RelativeLayout)convertView.findViewById(R.id.rl__tb_o);
         } else {

@@ -48,7 +48,7 @@ public class UnfinishedDeviceActivity extends BaseActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        setContentView(R.layout.layout_tasklist);
+        setContentView(R.layout.activity_unfinisheddevice);
         mtasklist = (ListView) findViewById(R.id.list_tasklist);
         swip = (SwipeRefreshLayout) findViewById(R.id.swip);
         swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

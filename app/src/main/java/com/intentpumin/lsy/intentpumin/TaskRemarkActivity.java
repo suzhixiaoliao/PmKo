@@ -1,7 +1,6 @@
 package com.intentpumin.lsy.intentpumin;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,7 @@ import com.intentpumin.lsy.intentpumin.tools.logindate.login;
 
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
-
+//备注页面
 public class TaskRemarkActivity extends Activity {
     private EditText et_tast_com;
     private Button bt_tast_qd;
@@ -23,7 +22,7 @@ public class TaskRemarkActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tast_com);
+        setContentView(R.layout.activity_taskremark);
         init();
     }
 

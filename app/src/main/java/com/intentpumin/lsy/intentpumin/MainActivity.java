@@ -37,6 +37,7 @@ import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 public class MainActivity extends BaseActivity{
     private TextView tv_main;
     private TextView tv_return;
+    private TextView tv_chakan;
     private ListView mtasklist;
     private MainDeviceAdapter adapter;
     private List<items> mdata;
@@ -50,7 +51,7 @@ public class MainActivity extends BaseActivity{
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        setContentView(R.layout.activity_yun_wei_main);
+        setContentView(R.layout.activity_main);
         initViewpager();
         mtasklist = (ListView) findViewById(R.id.list_tasklist);
         swip = (SwipeRefreshLayout) findViewById(R.id.swip);
@@ -87,6 +88,7 @@ public class MainActivity extends BaseActivity{
         final login mlogin= (login) getIntent().getSerializableExtra("login");
         tv_main.setText(mlogin.getName() + ",您好");
         tv_return = (TextView) findViewById(R.id.tv_return);
+
         tv_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

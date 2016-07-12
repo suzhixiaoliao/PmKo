@@ -28,12 +28,12 @@ import com.intentpumin.lsy.intentpumin.adapter.TaskGridAdapter;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.network.LogUtils;
+import com.intentpumin.lsy.intentpumin.tools.device.result_device_items;
+import com.intentpumin.lsy.intentpumin.tools.logindate.login;
 import com.intentpumin.lsy.intentpumin.tools.stat.result_stat_get;
 import com.intentpumin.lsy.intentpumin.tools.stat.stat_get;
 import com.intentpumin.lsy.intentpumin.tools.task.result_task_get;
-import com.intentpumin.lsy.intentpumin.tools.device.result_device_items;
 import com.intentpumin.lsy.intentpumin.tools.task.task_get;
-import com.intentpumin.lsy.intentpumin.tools.logindate.login;
 import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
 
 import java.io.Serializable;
@@ -45,7 +45,7 @@ import java.util.List;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class DataExecuteTasksActivity extends BaseActivity {
+public class DataExecuteTasks2Activity extends BaseActivity{
     private GridView mtasklist;
     private ListView mdatalist;
     private TaskGridAdapter adapter;
@@ -70,7 +70,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         items = (com.intentpumin.lsy.intentpumin.tools.device.items) getIntent().getSerializableExtra("item");
         if (items != null) {
-            Log.e("DataExecute", "收到了"+items.toString());
+            Log.e("DataExecute", "收到了" + items.toString());
         }
         sp = getSharedPreferences("info", Context.MODE_PRIVATE);
         //透明状态栏
@@ -143,7 +143,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
 
                 task_get task = (task_get) adapter.getItem(position);
                 Intent inter = getIntent();
-                inter.setClass(DataExecuteTasksActivity.this, TaskRemarkActivity.class);
+                inter.setClass(DataExecuteTasks2Activity.this, TaskRemarkActivity.class);
                 inter.putExtra("task", (Serializable) task);
                 startActivityForResult(inter, 1);
                 return true;
@@ -156,7 +156,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
         tv_fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DataExecuteTasksActivity.this, CaptureActivity.class);
+                Intent i = new Intent(DataExecuteTasks2Activity.this, CaptureActivity.class);
                 startActivity(i);
             }
         });
@@ -402,7 +402,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
 
                         System.out.println(s);
                         LogUtils.LOGD("login6", s.toString());
-                        Toast.makeText(DataExecuteTasksActivity.this, "保存数据成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DataExecuteTasks2Activity.this, "保存数据成功", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -482,7 +482,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
 
                         System.out.println(s);
                         LogUtils.LOGD("login6", s.toString());
-                        Toast.makeText(DataExecuteTasksActivity.this, "保存任务成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DataExecuteTasks2Activity.this, "保存任务成功", Toast.LENGTH_SHORT).show();
 
                     }
 
