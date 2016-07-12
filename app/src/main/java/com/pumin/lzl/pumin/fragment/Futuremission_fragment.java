@@ -31,6 +31,8 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 /*
 *@author lzl
 *created at 2016/6/8 12:49
@@ -53,6 +55,7 @@ public class Futuremission_fragment extends Fragment {
     String info; //url解析的数据
     Future_object fu_object;  //保存数据的对象
     private String start_time; //获取开始日期
+    private String END_time; //获取本月最后一天
 
     public Futuremission_fragment() {
         // Required empty public constructor
@@ -80,14 +83,20 @@ public class Futuremission_fragment extends Fragment {
         SimpleDateFormat sdateformat = new SimpleDateFormat("yyyy-MM-dd");
         start_time = sdateformat.format(new java.util.Date());
 
+        Calendar calendar  =   new GregorianCalendar();
+        calendar.set( Calendar.DATE,  1 );
+        calendar.roll(Calendar.DATE,  - 1 );
+        SimpleDateFormat simpleFormate  =   new  SimpleDateFormat( "yyyy-MM-dd" );
+        END_time=simpleFormate.format(calendar.getTime());
+        System.out.println(simpleFormate.format(calendar.getTime()));
 
         Bundle bundle1 = getArguments(); //获得传递过来的值
         str = bundle1.getString("set_url");
-        //接口规范
+        //接口规范(设备编号+开始时间+结束时间>>>就是查询条件)
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/login?signature=1
         path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
-                "signature=1&s_date=" + start_time + "&e_date=2113-01-01" + "&eqpt_id=" + str;
+                "signature=1&s_date=" + start_time + "&e_date="+END_time + "&eqpt_id=" + str;
         System.out.println("这是futuremission中的url" + path);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(path, null,

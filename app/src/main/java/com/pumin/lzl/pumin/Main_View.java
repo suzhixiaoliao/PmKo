@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -88,6 +89,8 @@ public class Main_View extends AppCompatActivity {
     String info;
     String path = "";
 
+    int[] drawble={1,R.mipmap.abxhs,R.mipmap.abbjq,R.mipmap.abdh,R.mipmap.abdzx};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +103,6 @@ public class Main_View extends AppCompatActivity {
         callphone();
         setvalue();
         Alldot_layout.dot(this, adapters_list, dot_layout); //创建点的视图
-        getimg(R.drawable.deive);
         view_page.setCurrentItem(1);  //创建时加载第二个界面
     }
 
@@ -162,7 +164,6 @@ public class Main_View extends AppCompatActivity {
             }
         });
     }
-
 
     //圆点的变化(黑白)
     private void updateinfo() {
@@ -301,6 +302,13 @@ public class Main_View extends AppCompatActivity {
             jsonObj = new JSONObject(data);
 
             String name = jsonObj.getString("eqpt_name");
+//            for(int i=1;i<10;i++){
+//                if(name.equals("A00000"+i)){
+//                    getimg(drawble[i]);
+//                }else{
+//                    getimg(R.mipmap.ic_launcher);
+//                }
+//            }
             device_name.setText(name); //设备名称
 
             String type2_name = jsonObj.getString("next_rpd_date");

@@ -26,6 +26,7 @@ public class MainAdminActivity extends BaseActivity {
     private ImageView iv_ss;
     private TextView tv_return;
     private ImageView iv_scan;
+    private ImageView iv_renwu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,17 @@ public class MainAdminActivity extends BaseActivity {
                 startActivity(it);
             }
         });
+
+        iv_renwu= (ImageView) findViewById(R.id.iv_renwu);
+        iv_renwu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //进入部署任务界面(搜索，扫描，选择)
+
+            }
+        });
+
+
         login mlogin = (login) getIntent().getSerializableExtra("login");
         tv_main.setText(mlogin.getName() + ",您好");
         iv_ss = (ImageView) findViewById(R.id.iv_ss);

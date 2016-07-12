@@ -13,7 +13,7 @@ import android.view.View;
 /*
 *@author lzl
 *created at 2016/6/20 16:39
-* 自定义进度条-工具包
+* 自定义进度条-工具包---已经完成工作量
 */
 public class Work2_SpringProgress extends View {
 

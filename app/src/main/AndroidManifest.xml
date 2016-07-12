@@ -142,9 +142,6 @@
 
 
         <!-- 管理员主界面 -->
-        <activity
-            android:name="com.pumin.lzl.pumin.MainActivity2"
-            android:screenOrientation="portrait" />
         <!-- 接收二维码信息 -->
         <activity
             android:name="com.pumin.lzl.pumin.Main_View"
@@ -152,18 +149,6 @@
         <!-- 任务列表界面 -->
         <activity
             android:name="com.pumin.lzl.pumin.TaskList_alter"
-            android:screenOrientation="portrait" />
-        <!-- 设备管理界面 -->
-        <activity
-            android:name="com.pumin.lzl.pumin.Management_activity"
-            android:screenOrientation="portrait" />
-        <!-- 区域管理 -->
-        <activity
-            android:name="com.pumin.lzl.pumin.Region_admin"
-            android:screenOrientation="portrait" />
-        <!--运维人员管理界面-->
-        <activity
-            android:name="com.pumin.lzl.pumin.Management_Operations"
             android:screenOrientation="portrait" />
     </application>
 

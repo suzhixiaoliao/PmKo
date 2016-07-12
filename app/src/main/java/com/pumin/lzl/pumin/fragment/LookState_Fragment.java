@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -181,7 +182,9 @@ public class LookState_Fragment extends Fragment {
             String datas = jsonobject.getString("data");
 
             jsonobject = new JSONObject(datas);
-
+            if(datas==null){
+                Toast.makeText(getContext(), "没有数据", Toast.LENGTH_SHORT).show();
+            }
             String totals = jsonobject.getString("total");
             String expects = jsonobject.getString("expect");
 

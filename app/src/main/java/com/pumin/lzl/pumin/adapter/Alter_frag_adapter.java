@@ -69,8 +69,8 @@ public class Alter_frag_adapter extends BaseAdapter {
         }
             //从后台拿数据到对象里面得值
             holder.alter_row_time.setText(alter_obj.getStart_time());
-            if (alter_obj.getIsok().equals("N")) {
-                holder.alter_row_task.setText("未完成");
+            if (alter_obj.getIsok().equals("N")||alter_obj.getIsok().equals("未知")) {
+                holder.alter_row_task.setText("未知");
             } else if (alter_obj.getIsok().equals("Y")) {
                 holder.alter_row_task.setText("已完成");
             }

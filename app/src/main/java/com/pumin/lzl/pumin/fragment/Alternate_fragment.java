@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -24,7 +23,6 @@ import com.intentpumin.lsy.intentpumin.R;
 import com.pumin.lzl.pumin.TaskList_alter;
 import com.pumin.lzl.pumin.adapter.Alter_frag_adapter;
 import com.pumin.lzl.pumin.bean.Alternate_object;
-import com.pumin.lzl.pumin.utils.Alltitle;
 
 
 import org.json.JSONArray;
@@ -34,6 +32,8 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /*
 *@author lzl
@@ -55,12 +55,13 @@ public class Alternate_fragment extends Fragment {
     //网络加载
     String str;
     //日期选择
-    private String end_time;
+    private String end_time; //目前日期
+    private String s;  //本月当前第一天
     //适配器的数据适配
     ArrayList<Alternate_object> alter_Array = new ArrayList<>();
     Alter_frag_adapter alter_adapter;
     private ListView alter_list;
-
+    private String isok; //工作是否完成
 
     public Alternate_fragment() {
         // Required empty public constructor
@@ -84,12 +85,18 @@ public class Alternate_fragment extends Fragment {
     }
 
 
-
     //请求--网络加载
     public void query() {
 
         SimpleDateFormat sdateformat = new SimpleDateFormat("yyyy-MM-dd");
         end_time = sdateformat.format(new java.util.Date());
+
+        Calendar calendar = new GregorianCalendar();
+        calendar.set(Calendar.DATE, 1);
+        SimpleDateFormat simpleFormate = new SimpleDateFormat("yyyy-MM-dd");
+        s = simpleFormate.format(calendar.getTime());
+        System.out.println("xxxxxxxxxxxx" + s);
+
 
         Bundle bundle1 = getArguments(); //获取main中传来的值
         String path = "";
@@ -100,7 +107,7 @@ public class Alternate_fragment extends Fragment {
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/?signature=1
             path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
-                    "signature=1&s_date=2013-01-01" + "&e_date=" + end_time + "&eqpt_id=" + str;
+                    "signature=1&s_date=" + s + "&e_date=" + end_time + "&eqpt_id=" + str;
 
             System.out.println("Alternate" + path);
         } catch (Exception e) {
@@ -186,21 +193,23 @@ public class Alternate_fragment extends Fragment {
         alter_adapter = new Alter_frag_adapter(alter_Array, getContext());
         alter_list.setAdapter(alter_adapter);
         //listview的点击事件
-        String isok = alter_object.getStart_time().toString();
-        if (isok.equals("未知")) {
-            Toast.makeText(getContext(), "没有详细信息", Toast.LENGTH_SHORT).show();
-        } else {
-            alter_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        isok = alter_object.getStart_time().toString();
+        //逻辑判断是否有数据，能否进入查看准确数据
+        alter_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (isok.equals("未知")) {
+                    Toast.makeText(getContext(), "没有详细信息", Toast.LENGTH_SHORT).show();
+                } else {
                     Alternate_object alter_obj = alter_Array.get(position);
                     it = new Intent(getContext(), TaskList_alter.class);
                     it.putExtra("charge", str);
                     it.putExtra("inputdate", alter_obj.getStart_time());
                     startActivity(it);
                 }
-            });
-        }
+            }
+        });
+
 
     }
 }
