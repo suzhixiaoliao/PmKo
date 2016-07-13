@@ -53,14 +53,6 @@ public class MainAdminActivity extends BaseActivity {
         });
         login mlogin = (login) getIntent().getSerializableExtra("login");
         tv_main.setText(mlogin.getName() + ",您好");
-        iv_ss = (ImageView) findViewById(R.id.iv_ss);
-        iv_ss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainAdminActivity.this, HelloChartActivity.class);
-                startActivity(i);
-            }
-        });
         tv_return = (TextView) findViewById(R.id.tv_return);
         tv_return.setOnClickListener(new View.OnClickListener() {
             @Override

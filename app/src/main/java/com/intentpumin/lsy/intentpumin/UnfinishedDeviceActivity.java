@@ -55,7 +55,7 @@ public class UnfinishedDeviceActivity extends BaseActivity {
             @Override
             public void onRefresh() {
                 swip.setRefreshing(false);
-                 // requestData();
+                 requestData();
 
             }
         });
@@ -77,7 +77,6 @@ public class UnfinishedDeviceActivity extends BaseActivity {
             }
         });
         requestData();
-
     }
 
     private void requestData() {

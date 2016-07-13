@@ -57,18 +57,10 @@ public class DeviceAdapter extends BaseAdapter {
         ViewHodler hodler = null;
         if (convertView == null) {
             hodler = new ViewHodler();
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_device_lv, null);
-            hodler.tv_time = (TextView) convertView.findViewById(R.id.tv_tasklist_time);
-            hodler.tv_device = (TextView) convertView.findViewById(R.id.tv_tasklist_device);
-            hodler.tv_Location = (TextView) convertView.findViewById(R.id.tv_tasklist_Location);
-            ImageView bt_tasklist_scan = (ImageView) convertView.findViewById(R.id.bt_tasklist_scan);
-            bt_tasklist_scan.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, CaptureActivity.class);
-                    context.startActivity(intent);
-                }
-            });
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_device_lv_z, null);
+            hodler.tv_time = (TextView) convertView.findViewById(R.id.tv_device_time);
+            hodler.tv_device = (TextView) convertView.findViewById(R.id.tv_device_device);
+            hodler.tv_Location = (TextView) convertView.findViewById(R.id.tv_device_Location);
 
         } else {
             hodler = (ViewHodler) convertView.getTag();

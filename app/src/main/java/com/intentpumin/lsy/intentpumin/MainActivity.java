@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -37,7 +38,6 @@ import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 public class MainActivity extends BaseActivity{
     private TextView tv_main;
     private TextView tv_return;
-    private TextView tv_chakan;
     private ListView mtasklist;
     private MainDeviceAdapter adapter;
     private List<items> mdata;
@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onRefresh() {
                 swip.setRefreshing(false);
-                //  requestData();
+                requestData();
 
             }
         });
@@ -71,9 +71,12 @@ public class MainActivity extends BaseActivity{
         mtasklist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               items items=mdata.get(position);
+
+               items items = mdata.get(position);
+                Log.d("un", mdata.toString());
                 Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
-                MainActivity.this.startActivity(intent);
+
+                intent.putExtra("item", items);
             }
         });
         requestData();
@@ -135,6 +138,17 @@ public class MainActivity extends BaseActivity{
             public void onClick(View v) {
                 Intent inter1 = getIntent();
                 inter1.setClass(MainActivity.this, UnfinishedDeviceActivity.class);
+                mlogin.getPhoneno();
+                startActivity(inter1);
+
+            }
+        });
+        ImageView chakan= (ImageView) view1.findViewById(R.id.iv_ss);
+       chakan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent inter1 = getIntent();
+                inter1.setClass(MainActivity.this, HelloChartActivity.class);
                 mlogin.getPhoneno();
                 startActivity(inter1);
 

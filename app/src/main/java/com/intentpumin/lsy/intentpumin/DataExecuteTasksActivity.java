@@ -45,7 +45,7 @@ import java.util.List;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class DataExecuteTasksActivity extends BaseActivity {
+public class DataExecuteTasksActivity extends Activity {
     private GridView mtasklist;
     private ListView mdatalist;
     private TaskGridAdapter adapter;
@@ -60,7 +60,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
     public LocationClient mClient;//定位SDK的核心类
     public MyLocationListener mMyLocationListener;//定义监听类
     double Mapx, Mapy;
-    String result = "";
+   // String result = "";
 
     private com.intentpumin.lsy.intentpumin.tools.device.items items;
 
@@ -78,11 +78,11 @@ public class DataExecuteTasksActivity extends BaseActivity {
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         setContentView(R.layout.activity_data_execute_tasks);
-        result = this.getIntent().getStringExtra("result");
-        Log.e("TAG", "===========result==========" + result);
+        //result = this.getIntent().getStringExtra("result");
+        //Log.e("TAG", "===========result==========" + result);
         mContext = this;
         init();
-        initAction();
+       // initAction();
         initLocation();
     }
     private void initLocation() {
@@ -114,7 +114,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
         mClient.registerLocationListener(mMyLocationListener);
     }
 
-    private void initAction() {
+   /* private void initAction() {
         mtasklist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -132,7 +132,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
             }
         });
 
-    }
+    }*/
 
     private void init() {
         mtasklist = (GridView) findViewById(R.id.gv_task);
@@ -169,7 +169,8 @@ public class DataExecuteTasksActivity extends BaseActivity {
             System.out.println("=============you neirong is null");
         }
         mtasklist.setAdapter(adapter);
-        requestData(result);
+       // requestData(result);
+        requestData(null);
         mstat = new ArrayList<>();
         dataadapter = new StatListAdapter(this, mstat);
 
@@ -198,14 +199,14 @@ public class DataExecuteTasksActivity extends BaseActivity {
         result_device_items b = gson.fromJson(tastList, type);
         final login mlogin = (login) getIntent().getSerializableExtra("login");
         RequestParams params = new RequestParams();
-        final String date = "2016-06-21";
-        String phoneno = "13000000000";
+        final String date = items.getDate();
+        String phoneno = mlogin.getPhoneno();
       /*  if (mlogin != null && !TextUtils.isEmpty(mlogin.getPhoneno())) {
         String phoneno = mlogin.getPhoneno();
         }*/
         //String area_id =b.getData().getItems().get(0).getArea_id();
-        String area_id = "47875310-1A24-2B35-2783-AE12D8334E2D";
-        String eqpt_id = "47875315-1A24-2B35-2783-AE19D7334E2D";
+        String area_id = items.getArea_id();
+        String eqpt_id =items.getEqpt_id();
         //String eqpt_id = b.getData().getItems().get(0).getEqpt_id();
         params.addFormDataPart("signature", 1);
         params.addFormDataPart("date", date);
@@ -259,7 +260,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
 
     }
 
-    //任务
+    //获取任务接口
     private void requestData(String eqptid) {
 
         //获取Sp数据
@@ -274,13 +275,13 @@ public class DataExecuteTasksActivity extends BaseActivity {
         RequestParams params = new RequestParams();
         //SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd    hh:mm:ss");
         // String date =  sDateFormat.format(new  java.util.Date());
-        String phoneno = "13000000000";
+        String phoneno = mlogin.getPhoneno();
       /*  if (mlogin != null && !TextUtils.isEmpty(mlogin.getPhoneno())) {
             phoneno = mlogin.getPhoneno();
         }*/
-        String date = "2016-06-21";
-        String area_id = "47875310-1A24-2B35-2783-AE12D8334E2D";
-        String eqpt_id = "47875315-1A24-2B35-2783-AE19D7334E2D";
+        String date = items.getDate();
+        String area_id = items.getArea_id();
+        String eqpt_id = items.getEqpt_id();
 //        String area_id =b.getData().getItems().get(0).getArea_id();
 //        String eqpt_id = b.getData().getItems().get(0).getEqpt_id();
         params.addFormDataPart("signature", 1);
@@ -334,8 +335,6 @@ public class DataExecuteTasksActivity extends BaseActivity {
     private void requestqueding() {
 
         postTask();
-
-
         postStat(null);
 
 
@@ -367,7 +366,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
                 String eqpt_id = b.getData().getItems().get(i).getEqpt_id();
                 String stat_id = b.getData().getItems().get(i).getStat_id();
                 params.addFormDataPart("signature", 1);
-                params.addFormDataPart("date", "2016-06-21");
+                params.addFormDataPart("date", date);
                 params.addFormDataPart("area_id", area_id);
                 params.addFormDataPart("eqpt_id", eqpt_id);
                 params.addFormDataPart("stat_id", stat_id);
@@ -436,17 +435,17 @@ public class DataExecuteTasksActivity extends BaseActivity {
                 RequestParams params = new RequestParams();
                 SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String exec_time = sDateFormat.format(new java.util.Date());
-                // String date = b.getData().getItems().get(i).getDate();
-                // String area_id = b.getData().getItems().get(i).getArea_id();
-                String area_id = "47875310-1A24-2B35-2783-AE12D8334E2D";
-                // String eqpt_id = b.getData().getItems().get(i).getEqpt_id();
-                String eqpt_id = "47875315-1A24-2B35-2783-AE19D7334E2D";
-                // String tast_id = b.getData().getItems().get(i).getTask_id();
-                String task_id = "0456DAB3-6A37-FCAC-33C8-31FEA4B4B43E";
+                 String date = b.getData().getItems().get(i).getDate();
+                 String area_id = b.getData().getItems().get(i).getArea_id();
+                //String area_id = "47875310-1A24-2B35-2783-AE12D8334E2D";
+                String eqpt_id = b.getData().getItems().get(i).getEqpt_id();
+               // String eqpt_id = "47875315-1A24-2B35-2783-AE19D7334E2D";
+                 String task_id = b.getData().getItems().get(i).getTask_id();
+                //String task_id = "0456DAB3-6A37-FCAC-33C8-31FEA4B4B43E";
                 //String finished="Y";
                 String phoneno = "13000000000";
                 String signature = "1";
-                String date = "2016-06-21";
+                //String date = "2016-06-21";
                 params.addFormDataPart("phoneno", phoneno);
                 params.addFormDataPart("date", date);
                 params.addFormDataPart("signature", signature);
@@ -466,7 +465,7 @@ public class DataExecuteTasksActivity extends BaseActivity {
                 }
                 params.addFormDataPart("spot_x", Mapx);
                 params.addFormDataPart("spot_y", Mapy);
-                params.addFormDataPart("exec_time", "2016-06-21");
+                params.addFormDataPart("exec_time", exec_time);
                 HttpUtil.getInstance().post(MainLogic.SET_TASK, params, new StringHttpRequestCallback() {
                     @Override
                     protected void onSuccess(String s) {
