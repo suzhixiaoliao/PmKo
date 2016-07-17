@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
+    android:padding="5dp"
+    android:gravity="center"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,40 +12,43 @@
         android:orientation="horizontal">
         <RelativeLayout
             android:id="@+id/real_1"
-            android:layout_width="75dp"
-            android:layout_height="80dp"
-            android:layout_toLeftOf="@+id/view"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
             >
             <ImageView
-                android:id="@+id/iv_renwu_r1"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_renwu_t"
+                android:layout_centerHorizontal="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/renwu"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="任务"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:layout_gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/iv_renwu_r1"
+
+                android:layout_below="@+id/iv_renwu_t"
                 />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/real_2"
-            android:layout_width="75dp"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_alignLeft="@+id/real_1"
-            android:layout_above="@+id/real_1"
             >
             <ImageView
-                android:id="@+id/iv_scan_r2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_scan_t"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
                 android:src="@mipmap/scan"
                 />
             <TextView
@@ -52,21 +57,24 @@
                 android:text="扫描"
                 android:textColor="@color/black"
                 android:textSize="16dp"
+                android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/iv_scan_r2"
+                android:layout_below="@+id/iv_scan_t"
                 />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/real_3"
-            android:layout_width="75dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/view"
-            android:layout_height="80dp">
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
             <ImageView
-                android:id="@+id/image_center_right_r3"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_shangchuang_t"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
                 android:src="@mipmap/shangchuang"
                 />
             <TextView
@@ -75,45 +83,50 @@
                 android:text="上传"
                 android:textColor="@color/black"
                 android:textSize="16dp"
+                android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/image_center_right_r3"
+                android:layout_below="@+id/iv_shangchuang_t"
                 />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/real_4"
-            android:layout_width="75dp"
             android:layout_centerVertical="true"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <ImageView
-                android:id="@+id/image_center_righ_r4"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_xiazai_t"
+                android:layout_width="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="50dp"
                 android:src="@mipmap/xiazai"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="下載"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/image_center_righ_r4"
+                android:layout_below="@+id/iv_xiazai_t"
                 />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/real_5"
-            android:layout_width="75dp"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/view"
             >
             <ImageView
-                android:id="@+id/iv_ss_r5"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_chakan_t"
+                android:layout_width="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="50dp"
                 android:src="@mipmap/chakan"
                 />
             <TextView
@@ -121,9 +134,10 @@
                 android:layout_height="wrap_content"
                 android:text="查看"
                 android:textSize="16dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/iv_ss_r5"
+                android:layout_below="@+id/iv_chakan_t"
                 />
         </RelativeLayout>
     </LinearLayout>
@@ -131,19 +145,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
         <RelativeLayout
             android:id="@+id/real_center_left22"
-            android:layout_width="75dp"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/view"
             >
             <ImageView
-                android:id="@+id/iv_renwu22"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_renwu_t2"
+                android:layout_width="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="50dp"
                 android:src="@mipmap/renwu"
                 />
             <TextView
@@ -152,103 +168,116 @@
                 android:text="任务"
                 android:textColor="@color/black"
                 android:textSize="16dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/iv_renwu22"
+                android:layout_below="@+id/iv_renwu_t2"
                 />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/real_above_right22"
-            android:layout_width="75dp"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_alignLeft="@+id/real_center_right"
             android:layout_above="@+id/real_center_right"
             >
             <ImageView
-                android:id="@+id/iv_scan22"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_scan_t2"
+                android:layout_width="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="50dp"
                 android:src="@mipmap/scan"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="扫描"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/iv_scan22"
+                android:layout_below="@+id/iv_scan_t2"
                 />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/real_center_right22"
-            android:layout_width="75dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/view"
-            android:layout_height="80dp">
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
             <ImageView
-                android:id="@+id/image_center_right22"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_shangchuang_t2"
+                android:layout_width="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="50dp"
                 android:src="@mipmap/shangchuang"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="上传"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/image_center_right22"
+                android:layout_below="@+id/iv_shangchuang_t2"
                 />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/real_center_righ22"
-            android:layout_width="75dp"
             android:layout_centerVertical="true"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="vertical">
             <ImageView
-                android:id="@+id/image_center_righ22"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_xiazai_t2"
+                android:layout_width="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="50dp"
                 android:src="@mipmap/xiazai"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="下載"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/image_center_righ22"
+                android:layout_below="@+id/iv_xiazai_t2"
                 />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/real_center_lef22"
-            android:layout_width="75dp"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/view"
             >
             <ImageView
-                android:id="@+id/iv_ss22"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_chakan_t2"
+                android:layout_width="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="50dp"
                 android:src="@mipmap/chakan"
                 />
             <TextView
+                android:text="查看"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="查看"
                 android:textSize="16dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/iv_ss22"
+                android:layout_below="@+id/iv_chakan_t2"
                 />
         </RelativeLayout>
     </LinearLayout>

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.intentpumin.lsy.intentpumin.R;
-import com.intentpumin.lsy.intentpumin.tools.maindevice.items;
+import com.intentpumin.lsy.intentpumin.tools.device.items;
 
 import java.util.List;
 
@@ -76,7 +76,7 @@ public class MainDeviceAdapter extends BaseAdapter {
         return list.size();
     }
 
-    public void setItems(List<com.intentpumin.lsy.intentpumin.tools.maindevice.items> mdata) {
+    public void setItems(List<items> mdata) {
         this.list=mdata;
         notifyDataSetChanged();
         if (list!=null&&list.size()>0){

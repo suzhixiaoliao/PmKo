@@ -2,76 +2,83 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/bg_pumin"
-    >
-        <include
-            android:id="@+id/list_zxing_title"
-            layout="@layout/layout_list_zxing_title" />
-    <RelativeLayout
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/list_zxing_title"
+        layout="@layout/layout_list_zxing_title" />
+
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/bg_pumin"
-        android:layout_weight="1"
-        >
-        <GridView
-            android:id="@+id/gv_task"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:fillViewport="false">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/bg_pumin"
-            android:numColumns="6" />
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:background="@color/bg_pumin">
+
+            <GridView
+                android:id="@+id/gv_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:numColumns="auto_fit"
+                android:stretchMode="spacingWidthUniform" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/bg_pumin"
         android:layout_weight="3"
-        >
+        android:background="@color/bg_pumin">
+
         <ListView
             android:id="@+id/gv_shuju"
-            android:background="@color/bg_pumin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
+            android:background="@color/bg_pumin"
             android:horizontalSpacing="60dp"
-            android:verticalSpacing="60dp"
-            />
+            android:verticalSpacing="60dp" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:background="@color/bg_pumin"
         android:layout_weight="1"
-        >
+        android:background="@color/bg_pumin">
 
         <View
             android:id="@+id/view_fengeixi"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
             android:layout_centerInParent="true"
-            android:background="@color/bg_pumin"
+            android:layout_marginBottom="40dp"
             android:layout_marginTop="30dp"
-            />
+            android:background="@color/bg_pumin" />
+
         <TextView
             android:id="@+id/tv_queding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:background="@mipmap/sure_pumin"
             android:layout_toLeftOf="@+id/view_fengeixi"
-            />
+            android:background="@mipmap/sure_pumin"
+            android:gravity="center"
+            android:textColor="@color/white" />
+
         <TextView
             android:id="@+id/tv_fanhui"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="@mipmap/undo_pumin"
-            android:textColor="@color/white"
-            android:textSize="20dp"
             android:layout_toRightOf="@+id/view_fengeixi"
-            />
+            android:background="@mipmap/undo_pumin"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
 
 
     </RelativeLayout>

@@ -198,8 +198,8 @@ public class CaptureActivity extends Activity implements Callback {
                 it2.putExtra("put_equipment", resultString);
                 startActivity(it2);
             }else {
-                Intent resultIntent = this.getIntent().setClass(CaptureActivity.this, HelloChartActivity.class);
-                resultIntent.putExtra("item", items);
+                Intent resultIntent = this.getIntent().setClass(CaptureActivity.this, DataExecuteTasksActivity.class);
+               // resultIntent.putExtra("item", items);
                 resultIntent.putExtra("result", "" + resultString);
                 startActivity(resultIntent);
 

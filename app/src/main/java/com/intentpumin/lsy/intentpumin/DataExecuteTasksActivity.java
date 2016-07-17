@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +25,6 @@ import com.baidu.location.LocationClientOption;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.adapter.StatListAdapter;
 import com.intentpumin.lsy.intentpumin.adapter.TaskGridAdapter;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
@@ -49,6 +51,7 @@ public class DataExecuteTasksActivity extends Activity {
     private GridView mtasklist;
     private ListView mdatalist;
     private TaskGridAdapter adapter;
+    private RelativeLayout inflater;
     // TODO: 2016/6/21
     private StatListAdapter dataadapter;
     private List<task_get> mtask;//任务
@@ -60,7 +63,7 @@ public class DataExecuteTasksActivity extends Activity {
     public LocationClient mClient;//定位SDK的核心类
     public MyLocationListener mMyLocationListener;//定义监听类
     double Mapx, Mapy;
-   // String result = "";
+    String result = "";
 
     private com.intentpumin.lsy.intentpumin.tools.device.items items;
 
@@ -68,21 +71,21 @@ public class DataExecuteTasksActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        items = (com.intentpumin.lsy.intentpumin.tools.device.items) getIntent().getSerializableExtra("item");
+       /* items = (com.intentpumin.lsy.intentpumin.tools.device.items) getIntent().getSerializableExtra("item");
         if (items != null) {
             Log.e("DataExecute", "收到了"+items.toString());
-        }
+        }*/
         sp = getSharedPreferences("info", Context.MODE_PRIVATE);
         //透明状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         setContentView(R.layout.activity_data_execute_tasks);
-        //result = this.getIntent().getStringExtra("result");
-        //Log.e("TAG", "===========result==========" + result);
+        result = this.getIntent().getStringExtra("result");
+        Log.e("TAG", "===========result==========" + result);
         mContext = this;
         init();
-       // initAction();
+        initAction();
         initLocation();
     }
     private void initLocation() {
@@ -114,11 +117,10 @@ public class DataExecuteTasksActivity extends Activity {
         mClient.registerLocationListener(mMyLocationListener);
     }
 
-   /* private void initAction() {
+    private void initAction() {
         mtasklist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("TAG", "onItemClick: " + position);
                 //最后提交的时候，需要循环数组把N1和Y1对应的变为N
                 String finished = mtask.get(position).getFinished();
                 if (finished.equals("N")) {
@@ -132,7 +134,7 @@ public class DataExecuteTasksActivity extends Activity {
             }
         });
 
-    }*/
+    }
 
     private void init() {
         mtasklist = (GridView) findViewById(R.id.gv_task);
@@ -151,6 +153,8 @@ public class DataExecuteTasksActivity extends Activity {
 
         });
         mdatalist = (ListView) findViewById(R.id.gv_shuju);
+
+
         tv_queding = (TextView) findViewById(R.id.tv_queding);
         tv_fanhui = (TextView) findViewById(R.id.tv_fanhui);
         tv_fanhui.setOnClickListener(new View.OnClickListener() {
@@ -162,20 +166,17 @@ public class DataExecuteTasksActivity extends Activity {
         });
         mtask = new ArrayList<>();
         mstat = new ArrayList<>();
-
-        adapter = new TaskGridAdapter(this, mtask);
+        int ScreeWidth = getWindowManager().getDefaultDisplay().getWidth();//获取屏幕的宽度
+        adapter = new TaskGridAdapter(this, mtask, ScreeWidth / 21);
 
         if (mtasklist == null || adapter == null) {
-            System.out.println("=============you neirong is null");
         }
         mtasklist.setAdapter(adapter);
-       // requestData(result);
         requestData(null);
         mstat = new ArrayList<>();
         dataadapter = new StatListAdapter(this, mstat);
-
-        if (mdatalist == null || dataadapter == null) {
-            System.out.println("=============you neirong is null");
+        mtasklist.setAdapter(adapter);
+      if (mdatalist == null || dataadapter == null) {
         }
         mdatalist.setAdapter(dataadapter);
         requestvalue();
@@ -189,27 +190,16 @@ public class DataExecuteTasksActivity extends Activity {
 
     // TODO: 2016/6/22     获取数据接口
     private void requestvalue() {
-        //获取Sp数据
-        SharedPreferences sp = getSharedPreferences("lsy", Activity.MODE_PRIVATE);
-        String tastList = sp.getString("TastList", "");
-        //进行解析
-        Type type = new TypeToken<result_device_items>() {
-        }.getType();
-        Gson gson = new Gson();
-        result_device_items b = gson.fromJson(tastList, type);
         final login mlogin = (login) getIntent().getSerializableExtra("login");
         RequestParams params = new RequestParams();
-        final String date = items.getDate();
-        String phoneno = mlogin.getPhoneno();
-      /*  if (mlogin != null && !TextUtils.isEmpty(mlogin.getPhoneno())) {
-        String phoneno = mlogin.getPhoneno();
-        }*/
-        //String area_id =b.getData().getItems().get(0).getArea_id();
-        String area_id = items.getArea_id();
-        String eqpt_id =items.getEqpt_id();
-        //String eqpt_id = b.getData().getItems().get(0).getEqpt_id();
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String exec_time = sDateFormat.format(new java.util.Date());
+        final String date = exec_time;
+        String phoneno = "13000000000";
+        String area_id = " ";
+        String eqpt_id =result;
         params.addFormDataPart("signature", 1);
-        params.addFormDataPart("date", date);
+        params.addFormDataPart("date","2016-07-14");
         params.addFormDataPart("phoneno", phoneno);
         params.addFormDataPart("area_id", area_id);
         params.addFormDataPart("eqpt_id", eqpt_id);
@@ -246,8 +236,29 @@ public class DataExecuteTasksActivity extends Activity {
                     mstat.addAll(resulut.getData().getItems());
                     Log.d("mlist", "" + mstat.size());
                 }
+
+                setAutoGridViewWidth();
                 dataadapter.notifyDataSetChanged();
 //                LogUtils.LOGD("login4", mdata.toString());
+            }
+
+            /**
+             *根据屏幕适配，动态设置GridVeiw的宽度。。。
+             */
+            private void setAutoGridViewWidth() {
+                int size = mtask.size();
+                DisplayMetrics dm = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(dm);
+                float density = dm.density;
+                int allWidth = (int) (110 * size * density);
+                int itemWidth = (int) (100 * density);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        allWidth, LinearLayout.LayoutParams.FILL_PARENT);
+                mtasklist.setLayoutParams(params);
+                mtasklist.setColumnWidth(itemWidth);
+                mtasklist.setHorizontalSpacing(10);
+                mtasklist.setStretchMode(GridView.NO_STRETCH);
+                mtasklist.setNumColumns(size);
             }
 
             @Override
@@ -264,28 +275,23 @@ public class DataExecuteTasksActivity extends Activity {
     private void requestData(String eqptid) {
 
         //获取Sp数据
-        SharedPreferences sp = getSharedPreferences("lsy", Activity.MODE_PRIVATE);
+       /* SharedPreferences sp = getSharedPreferences("lsy", Activity.MODE_PRIVATE);
         String tastList = sp.getString("TastList", "");
         //进行解析
         Type type = new TypeToken<result_device_items>() {
         }.getType();
         Gson gson = new Gson();
         result_device_items b = gson.fromJson(tastList, type);
-        final login mlogin = (login) getIntent().getSerializableExtra("login");
+        final login mlogin = (login) getIntent().getSerializableExtra("login");*/
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String exec_time = sDateFormat.format(new java.util.Date());
         RequestParams params = new RequestParams();
-        //SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd    hh:mm:ss");
-        // String date =  sDateFormat.format(new  java.util.Date());
-        String phoneno = mlogin.getPhoneno();
-      /*  if (mlogin != null && !TextUtils.isEmpty(mlogin.getPhoneno())) {
-            phoneno = mlogin.getPhoneno();
-        }*/
-        String date = items.getDate();
-        String area_id = items.getArea_id();
-        String eqpt_id = items.getEqpt_id();
-//        String area_id =b.getData().getItems().get(0).getArea_id();
-//        String eqpt_id = b.getData().getItems().get(0).getEqpt_id();
+        String phoneno ="13000000000";
+        String date = exec_time;
+        String area_id = "";
+        String eqpt_id = result;
         params.addFormDataPart("signature", 1);
-        params.addFormDataPart("date", date);
+        params.addFormDataPart("date", "2016-07-14");
         params.addFormDataPart("phoneno", phoneno);
         params.addFormDataPart("area_id", area_id);
         params.addFormDataPart("eqpt_id", eqpt_id);
@@ -312,11 +318,10 @@ public class DataExecuteTasksActivity extends Activity {
 
                 System.out.println("task list " + s);
 
-                mtask = result.getData().getItems();
-                adapter.setItems(mtask);
+                mtask = result.getData().items;
+                adapter.setData(mtask);
+//                adapter.setItems(mtask);
                 adapter.notifyDataSetChanged();
-
-
                 LogUtils.LOGD("login4", mtask.toString());
             }
 
@@ -352,21 +357,20 @@ public class DataExecuteTasksActivity extends Activity {
         Type type = new TypeToken<result_stat_get>() {
         }.getType();
         Gson gson = new Gson();
-        result_stat_get b = gson.fromJson(resulut, type);
+        result_stat_get s = gson.fromJson(resulut, type);
         if (mstat != null && mstat.size() > 0) {
             for (int i = 0; i < mstat.size(); i++) {
                 final int j = i;
                 stat_get item = mstat.get(i);
-//                if (item.getFinished().equals("Y1")) {
                 RequestParams params = new RequestParams();
                 SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String exec_time = sDateFormat.format(new java.util.Date());
-                String date = b.getData().getItems().get(i).getData();
-                String area_id = b.getData().getItems().get(i).getArea_id();
-                String eqpt_id = b.getData().getItems().get(i).getEqpt_id();
-                String stat_id = b.getData().getItems().get(i).getStat_id();
+                   String mdate = s.getData().getItems().get(i).getDate().substring(0,10);
+                String area_id = s.getData().getItems().get(i).getArea_id();
+                String eqpt_id = s.getData().getItems().get(i).getEqpt_id();
+                String stat_id = s.getData().getItems().get(i).getStat_id();
                 params.addFormDataPart("signature", 1);
-                params.addFormDataPart("date", date);
+                params.addFormDataPart("date", mdate);
                 params.addFormDataPart("area_id", area_id);
                 params.addFormDataPart("eqpt_id", eqpt_id);
                 params.addFormDataPart("stat_id", stat_id);
@@ -435,17 +439,20 @@ public class DataExecuteTasksActivity extends Activity {
                 RequestParams params = new RequestParams();
                 SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String exec_time = sDateFormat.format(new java.util.Date());
-                 String date = b.getData().getItems().get(i).getDate();
-                 String area_id = b.getData().getItems().get(i).getArea_id();
+                String mdate = b.getData().items.get(i).date;
+               // String mdate=b.getData().getItems().get(i).getDate();
+                 String date = mdate.substring(0,10);
+
+                 String area_id = b.getData().items.get(i).area_id;
                 //String area_id = "47875310-1A24-2B35-2783-AE12D8334E2D";
-                String eqpt_id = b.getData().getItems().get(i).getEqpt_id();
+                String eqpt_id = b.getData().items.get(i).eqpt_id;
                // String eqpt_id = "47875315-1A24-2B35-2783-AE19D7334E2D";
-                 String task_id = b.getData().getItems().get(i).getTask_id();
+                 String task_id = b.getData().items.get(i).task_id;
                 //String task_id = "0456DAB3-6A37-FCAC-33C8-31FEA4B4B43E";
                 //String finished="Y";
                 String phoneno = "13000000000";
                 String signature = "1";
-                //String date = "2016-06-21";
+               // String date = "2016-06-21";
                 params.addFormDataPart("phoneno", phoneno);
                 params.addFormDataPart("date", date);
                 params.addFormDataPart("signature", signature);
@@ -470,15 +477,6 @@ public class DataExecuteTasksActivity extends Activity {
                     @Override
                     protected void onSuccess(String s) {
                         System.out.println("onSuccess=======" + s);
-                        if (mtask.get(j).getFinished().equals("Y1")) {
-                            mtask.get(j).setFinished("Y");
-                            LogUtils.LOGD("login8", s.toString());
-                        }
-                        if (mtask.get(j).getFinished().equals("N1")) {
-                            mtask.get(j).setFinished("N");
-                            LogUtils.LOGD("login9", s.toString());
-                        }
-
                         System.out.println(s);
                         LogUtils.LOGD("login6", s.toString());
                         Toast.makeText(DataExecuteTasksActivity.this, "保存任务成功", Toast.LENGTH_SHORT).show();

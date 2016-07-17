@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:background="#e1e0dc"
         android:layout_height="match_parent"
-        android:id="@+id/list_tasklist"
+        android:id="@+id/list_tasklist_fu"
         />
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

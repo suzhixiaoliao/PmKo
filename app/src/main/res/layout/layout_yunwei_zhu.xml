@@ -1,132 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_pumin"
+    android:padding="5dp"
+    android:gravity="center"
     android:orientation="vertical">
-    <com.zhy.autolayout.AutoLinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
-    <com.zhy.autolayout.AutoRelativeLayout
+    <RelativeLayout
         android:id="@+id/real_center_left"
-        android:layout_width="90px"
-        android:layout_height="120px"
+        android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_toLeftOf="@+id/view"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
         >
         <ImageView
             android:id="@+id/iv_renwu"
-            android:layout_width="40px"
-            android:layout_height="40px"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@mipmap/main_renwu" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="任务"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/iv_renwu"
             />
-    </com.zhy.autolayout.AutoRelativeLayout>
-    <com.zhy.autolayout.AutoRelativeLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/real_above_right"
-        android:layout_width="90px"
-        android:layout_height="120px"
+        android:layout_width="0dp"
         android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/real_center_left"
         android:layout_above="@+id/real_center_left"
         >
         <ImageView
             android:id="@+id/iv_scan"
-            android:layout_width="40px"
-            android:layout_height="40px"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@mipmap/main_scan"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="扫描"
-            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/iv_scan"
             />
-    </com.zhy.autolayout.AutoRelativeLayout>
-    <com.zhy.autolayout.AutoRelativeLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/real_center_right"
-        android:layout_width="90px"
-        android:layout_centerVertical="true"
+        android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_toRightOf="@+id/view"
-        android:layout_height="120px">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true">
         <ImageView
-            android:id="@+id/image_center_right"
-            android:layout_width="40px"
-            android:layout_height="40px"
-            android:layout_centerInParent="true"
+            android:id="@+id/iv_shangchaung"
+            android:layout_centerHorizontal="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@mipmap/main_uploading"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="上传"
-            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/image_center_right"
+            android:layout_below="@+id/iv_shangchaung"
             />
-    </com.zhy.autolayout.AutoRelativeLayout>
+    </RelativeLayout>
     <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/real_center_righ"
-        android:layout_width="90px"
-        android:layout_centerVertical="true"
-        android:layout_height="120px"
+        android:layout_width="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true">
         <ImageView
-            android:id="@+id/image_center_righ"
-            android:layout_width="40px"
-            android:layout_height="40px"
-            android:layout_centerInParent="true"
+            android:id="@+id/iv_download"
+            android:layout_centerHorizontal="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@mipmap/main_download"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="下載"
-            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/image_center_righ"
+            android:layout_below="@+id/iv_download"
             />
     </com.zhy.autolayout.AutoRelativeLayout>
     <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/real_center_lef"
-        android:layout_width="90px"
-        android:layout_height="120px"
+        android:layout_width="0dp"
         android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/view"
         >
         <ImageView
-            android:id="@+id/iv_ss"
-            android:layout_width="40px"
-            android:layout_height="40px"
-            android:layout_centerInParent="true"
+            android:id="@+id/iv_chakan"
+            android:layout_centerHorizontal="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@mipmap/main_chakan"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="查看"
-            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/iv_ss"
+            android:layout_below="@+id/iv_chakan"
             />
     </com.zhy.autolayout.AutoRelativeLayout>
-    </com.zhy.autolayout.AutoLinearLayout>
+    </LinearLayout>
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -134,122 +143,130 @@
         android:orientation="horizontal">
         <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/real_center_left2"
-            android:layout_width="90px"
-            android:layout_height="120px"
+            android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/view"
             >
             <ImageView
                 android:id="@+id/iv_renwu2"
-                android:layout_width="40px"
-                android:layout_height="40px"
-                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/main_renwu"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="任务"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/iv_renwu2"
                 />
         </com.zhy.autolayout.AutoRelativeLayout>
         <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/real_above_right2"
-            android:layout_width="90px"
-            android:layout_height="120px"
+            android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
             android:layout_alignLeft="@+id/real_center_right"
             android:layout_above="@+id/real_center_right"
             >
             <ImageView
                 android:id="@+id/iv_scan2"
-                android:layout_width="40px"
-                android:layout_height="40px"
-                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/main_scan"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="扫描"
-                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/iv_scan2"
                 />
         </com.zhy.autolayout.AutoRelativeLayout>
         <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/real_center_right2"
-            android:layout_width="90px"
+            android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/view"
-            android:layout_height="120px">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true">
             <ImageView
-                android:id="@+id/image_center_right2"
-                android:layout_width="40px"
-                android:layout_height="40px"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_shangchuang2"
+                android:layout_centerHorizontal="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/main_uploading"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="上传"
-                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/image_center_right2"
+                android:layout_below="@+id/iv_shangchuang2"
                 />
         </com.zhy.autolayout.AutoRelativeLayout>
         <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/real_center_righ2"
-            android:layout_width="90px"
+            android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_centerVertical="true"
-            android:layout_height="120px"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true">
             <ImageView
-                android:id="@+id/image_center_righ2"
-                android:layout_width="40px"
-                android:layout_height="40px"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_download2"
+                android:layout_centerHorizontal="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/main_download"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="下載"
-                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/image_center_righ2"
+                android:layout_below="@+id/iv_download2"
                 />
         </com.zhy.autolayout.AutoRelativeLayout>
         <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/real_center_lef2"
-            android:layout_width="90px"
-            android:layout_height="120px"
+            android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/view"
             >
             <ImageView
-                android:id="@+id/iv_ss2"
-                android:layout_width="40px"
-                android:layout_height="40px"
-                android:layout_centerInParent="true"
+                android:id="@+id/iv_chakan2"
+                android:layout_centerHorizontal="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/main_chakan"
                 />
             <TextView
+                android:text="查看"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="查看"
-                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/iv_ss2"
+                android:layout_below="@+id/iv_chakan2"
                 />
         </com.zhy.autolayout.AutoRelativeLayout>
     </com.zhy.autolayout.AutoLinearLayout>
-</com.zhy.autolayout.AutoLinearLayout>
+</LinearLayout>
