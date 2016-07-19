@@ -36,7 +36,6 @@ public class UnfinishedDeviceActivity extends BaseActivity {
     private ListView mtasklist;
     private DeviceAdapter adapter;
     private List<items> mdata;
-    String result = "";
     private SharedPreferences sp;
     private SwipeRefreshLayout swip;
 
@@ -48,14 +47,14 @@ public class UnfinishedDeviceActivity extends BaseActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        setContentView(R.layout.layout_tasklist);
+        setContentView(R.layout.activity_unfinisheddevice);
         mtasklist = (ListView) findViewById(R.id.list_tasklist);
         swip = (SwipeRefreshLayout) findViewById(R.id.swip);
         swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 swip.setRefreshing(false);
-                 // requestData();
+                requestData();
 
             }
         });
@@ -70,14 +69,13 @@ public class UnfinishedDeviceActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 items items = mdata.get(position);
                 Log.d("un",mdata.toString());
-                Intent intent = new Intent(UnfinishedDeviceActivity.this, CaptureActivity.class);
+                Intent intent = new Intent(UnfinishedDeviceActivity.this, DataExecuteTasks2Activity.class);
 
                 intent.putExtra("item", items);
                 UnfinishedDeviceActivity.this.startActivity(intent);
             }
         });
         requestData();
-
     }
 
     private void requestData() {

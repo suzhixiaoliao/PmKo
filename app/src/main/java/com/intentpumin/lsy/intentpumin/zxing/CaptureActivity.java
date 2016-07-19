@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.intentpumin.lsy.intentpumin.DataExecuteTasksActivity;
+import com.intentpumin.lsy.intentpumin.HelloChartActivity;
 import com.intentpumin.lsy.intentpumin.R;
 import com.intentpumin.lsy.intentpumin.tools.device.items;
 import com.intentpumin.lsy.intentpumin.util.LightControl;
@@ -39,15 +40,8 @@ import java.util.Vector;
  * @author Ryan.Tang
  */
 public class CaptureActivity extends Activity implements Callback {
-
     private Bundle bundle;
-
-
-
     private final String TAG = getClass().getSimpleName();
-
-
-
     private CaptureActivityHandler handler;
     private ViewfinderView viewfinderView;
     private boolean hasSurface;
@@ -61,19 +55,12 @@ public class CaptureActivity extends Activity implements Callback {
     private ImageView cancelScanButton;
     private Button btn_light_control;
     private boolean isShow = false;
-
     private ProgressBar pg;
     private ImageView iv_pg_bg_grey;
     private ImageView iv_big_circle;
     private ImageView iv_four_corner;
     private Button mBack;
-
-
-
     private items items;
-
-
-
     /**
      * Called when the activity is first created.
      */
@@ -96,7 +83,6 @@ public class CaptureActivity extends Activity implements Callback {
         iv_pg_bg_grey = (ImageView) findViewById(R.id.iv_camera_diy);
         iv_big_circle = (ImageView) findViewById(R.id.iv_camera_diy_circle);
         iv_four_corner = (ImageView) findViewById(R.id.iv_camera_diy_corner);
-        //ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);
         CameraManager.init(getApplication());
         viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
         cancelScanButton = (ImageView) this.findViewById(R.id.btn_cancel_scan);
@@ -196,7 +182,7 @@ public class CaptureActivity extends Activity implements Callback {
         String resultString = result.getText();
         //FIXME
         if (resultString.equals("")) {
-            Toast.makeText(CaptureActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CaptureActivity.this, "扫描失败!", Toast.LENGTH_SHORT).show();
         } else {
 //			System.out.println("Result:"+resultString);
             if (pg != null && pg.isShown()) {
@@ -211,15 +197,16 @@ public class CaptureActivity extends Activity implements Callback {
                 Intent it2 = new Intent(CaptureActivity.this, Main_View.class);
                 it2.putExtra("put_equipment", resultString);
                 startActivity(it2);
-            }else{
+            }else {
                 Intent resultIntent = this.getIntent().setClass(CaptureActivity.this, DataExecuteTasksActivity.class);
-                resultIntent.putExtra("item", items);
+               // resultIntent.putExtra("item", items);
                 resultIntent.putExtra("result", "" + resultString);
                 startActivity(resultIntent);
-            }
 
+            }
+            CaptureActivity.this.finish();
         }
-        CaptureActivity.this.finish();
+
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {

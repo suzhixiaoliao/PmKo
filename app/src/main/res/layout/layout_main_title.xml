@@ -19,7 +19,6 @@
             android:layout_marginTop="2dp"
             android:clickable="true"
             android:gravity="center"
-            android:onClick="fh"
             android:text="  "
             android:textSize="20sp" />
 

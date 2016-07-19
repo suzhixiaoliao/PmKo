@@ -7,12 +7,15 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -23,10 +26,11 @@ import com.intentpumin.lsy.intentpumin.adapter.MainDeviceAdapter;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.network.LogUtils;
+import com.intentpumin.lsy.intentpumin.tools.device.items;
+import com.intentpumin.lsy.intentpumin.tools.device.result_device_items;
 import com.intentpumin.lsy.intentpumin.tools.logindate.login;
-import com.intentpumin.lsy.intentpumin.tools.maindevice.items;
-import com.intentpumin.lsy.intentpumin.tools.maindevice.result_device_items;
 import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
+import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +46,7 @@ public class MainActivity extends BaseActivity{
     private List<items> mdata;
     private SharedPreferences sp;
     private SwipeRefreshLayout swip;
+    private int ScreeWidth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,15 +55,15 @@ public class MainActivity extends BaseActivity{
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        setContentView(R.layout.activity_yun_wei_main);
+        setContentView(R.layout.activity_main);
         initViewpager();
-        mtasklist = (ListView) findViewById(R.id.list_tasklist);
+        mtasklist = (ListView) findViewById(R.id.list_tasklist_fu);
         swip = (SwipeRefreshLayout) findViewById(R.id.swip);
         swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 swip.setRefreshing(false);
-                //  requestData();
+                requestData();
 
             }
         });
@@ -70,9 +75,11 @@ public class MainActivity extends BaseActivity{
         mtasklist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               items items=mdata.get(position);
-                Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
-                MainActivity.this.startActivity(intent);
+
+               items items = mdata.get(position);
+                Log.d("un", mdata.toString());
+                Intent intent = new Intent(MainActivity.this, DataExecuteTasks2Activity.class);
+                intent.putExtra("item", items);
             }
         });
         requestData();
@@ -84,9 +91,10 @@ public class MainActivity extends BaseActivity{
         final login login = new login();
         tv_main = (TextView) findViewById(R.id.tv_main);
         //第四步
-        final login mlogin= (login) getIntent().getSerializableExtra("login");
+        final login mlogin = (login) getIntent().getSerializableExtra("login");
         tv_main.setText(mlogin.getName() + ",您好");
         tv_return = (TextView) findViewById(R.id.tv_return);
+
         tv_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,22 +121,29 @@ public class MainActivity extends BaseActivity{
                 });
             }
         });
-        ViewPager viewPager = (ViewPager)findViewById(R.id.viewPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         View view1 = LayoutInflater.from(this).inflate(R.layout.layout_yunwei_zhu, null);
-      ImageView scan= (ImageView) view1.findViewById(R.id.iv_scan);
+        ImageView  uploading= (ImageView) view1.findViewById(R.id.iv_download);
+        ImageView uploading1 = (ImageView) view1.findViewById(R.id.iv_download2);
+        ImageView  shangchuang = (ImageView) view1.findViewById(R.id.iv_shangchaung);
+        ImageView shangchuang1 = (ImageView) view1.findViewById(R.id.iv_shangchuang2);
+        ImageView scan1 = (ImageView) view1.findViewById(R.id.iv_scan2);
+        ImageView renwu1 = (ImageView) view1.findViewById(R.id.iv_renwu2);
+        ImageView chakan1 = (ImageView) view1.findViewById(R.id.iv_chakan2);
+        ImageView scan = (ImageView) view1.findViewById(R.id.iv_scan);
         //第四步
-      scan.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              Intent inter1 = getIntent();
-              inter1.setClass(MainActivity.this, CaptureActivity.class);
-              inter1.putExtra("str_all", "0");
-              inter1.putExtra("login", mlogin);
-              startActivity(inter1);
-          }
-      });
-        ImageView renwu= (ImageView) view1.findViewById(R.id.iv_renwu);
-         renwu.setOnClickListener(new View.OnClickListener() {
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent inter1 = getIntent();
+                inter1.setClass(MainActivity.this, CaptureActivity.class);
+                inter1.putExtra("str_all", "0");
+                inter1.putExtra("login", mlogin);
+                startActivity(inter1);
+            }
+        });
+        ImageView renwu = (ImageView) view1.findViewById(R.id.iv_renwu);
+        renwu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent inter1 = getIntent();
@@ -138,18 +153,70 @@ public class MainActivity extends BaseActivity{
 
             }
         });
+        ImageView chakan = (ImageView) view1.findViewById(R.id.iv_chakan);
+        chakan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent inter1 = getIntent();
+                inter1.setClass(MainActivity.this, HelloChartActivity.class);
+                mlogin.getPhoneno();
+                startActivity(inter1);
+            }
+        });
+        ScreeWidth = (getWindowManager().getDefaultDisplay().getWidth())/8;//获取屏幕的宽度的1/8作为ImgageView的宽度和高度
+        setAutoWidth(uploading);
+        setAutoWidth(uploading1);
+        setAutoWidth(shangchuang);
+        setAutoWidth(shangchuang1);
+        setAutoWidth(scan1);
+        setAutoWidth(renwu1);
+        setAutoWidth(chakan1);
+        setAutoWidth(scan);
+        setAutoWidth(renwu);
+        setAutoWidth(chakan);
         View view2 = LayoutInflater.from(this).inflate(R.layout.layout_yunwei_two, null);
-        View view3 = LayoutInflater.from(this).inflate(R.layout.layout_yunwei_there, null);
+        ImageView  xiazai_t= (ImageView) view2.findViewById(R.id.iv_xiazai_t);
+        ImageView xiazai_t2 = (ImageView) view2.findViewById(R.id.iv_xiazai_t2);
+        ImageView  shangchuang_t = (ImageView) view2.findViewById(R.id.iv_shangchuang_t);
+        ImageView shangchuang_t2 = (ImageView) view2.findViewById(R.id.iv_shangchuang_t2);
+        ImageView scan_t = (ImageView) view2.findViewById(R.id.iv_scan_t);
+        ImageView scan_t2 = (ImageView) view2.findViewById(R.id.iv_scan_t2);
+        ImageView chakan_t2 = (ImageView) view2.findViewById(R.id.iv_chakan_t2);
+        ImageView chakan_t = (ImageView) view2.findViewById(R.id.iv_chakan_t);
+        ImageView renwu_t2= (ImageView) view2.findViewById(R.id.iv_renwu_t2);
+        ImageView renwu_t = (ImageView) view2.findViewById(R.id.iv_renwu_t);
+        setAutoWidth(xiazai_t2);
+        setAutoWidth(xiazai_t);
+        setAutoWidth(shangchuang_t);
+        setAutoWidth(shangchuang_t2);
+        setAutoWidth(scan_t);
+        setAutoWidth(renwu_t2);
+        setAutoWidth(chakan_t2);
+        setAutoWidth(scan_t2);
+        setAutoWidth(renwu_t);
+        setAutoWidth(chakan_t);
 
         ArrayList<View> views = new ArrayList<View>();
         views.add(view1);
         views.add(view2);
-        views.add(view3);
-
         MainViewPagerAdapter adapter = new MainViewPagerAdapter();
         adapter.setViews(views);
         viewPager.setAdapter(adapter);
     }
+
+    /**
+     * 动态设置ImageView的宽高，屏幕适配
+     * @param image
+     * @param
+     */
+    public void setAutoWidth(ImageView image){
+        RelativeLayout.LayoutParams ps = (RelativeLayout.LayoutParams) image.getLayoutParams();
+        ps.height = ScreeWidth;
+        ps.width = ScreeWidth;
+        image.setLayoutParams(ps);
+        image.setScaleType(ImageView.ScaleType.FIT_XY);
+    }
+
     private void requestData() {
         RequestParams params = new RequestParams();
         final login mlogin = (login) getIntent().getSerializableExtra("login");

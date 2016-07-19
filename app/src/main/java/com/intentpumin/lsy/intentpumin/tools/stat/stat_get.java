@@ -5,7 +5,7 @@ package com.intentpumin.lsy.intentpumin.tools.stat;
  */
 public class stat_get {
     String id;
-    String data;
+    String date;
     String area_id;
     String loct_id;
     String area_name;
@@ -33,12 +33,12 @@ public class stat_get {
         this.id = id;
     }
 
-    public String getData() {
-        return data;
+    public String getDate() {
+        return date;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getArea_id() {

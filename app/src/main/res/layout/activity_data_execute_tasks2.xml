@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_pumin"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/list_zxing_title"
+        layout="@layout/layout_list_zxing_title" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_pumin">
+
+            <GridView
+                android:id="@+id/gv_task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:numColumns="auto_fit"
+                android:stretchMode="spacingWidthUniform" />
+            <!--  android:stretchMode="columnWidth"
+              android:background="@color/bg_pumin"
+              android:numColumns="3" -->
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@color/bg_pumin">
+
+        <ListView
+            android:id="@+id/gv_shuju"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/bg_pumin"
+            android:horizontalSpacing="60dp"
+            android:verticalSpacing="60dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:background="@color/bg_pumin">
+
+        <View
+            android:id="@+id/view_fengeixi"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/bg_pumin" />
+
+        <TextView
+            android:id="@+id/tv_queding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/view_fengeixi"
+            android:background="@mipmap/sure_pumin"
+            android:gravity="center"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_fanhui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/view_fengeixi"
+            android:background="@mipmap/undo_pumin"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+</LinearLayout>

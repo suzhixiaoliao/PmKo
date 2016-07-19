@@ -93,7 +93,7 @@ public class HelloChartActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_char);
+        setContentView(R.layout.activity_adminchar);
         init();
         initChart();
     }
@@ -348,7 +348,6 @@ public class HelloChartActivity extends BaseActivity {
             holder.driverStatusTv.setText("状态： " + valuesdevicesget.getStat_name());
             int resId = Stats_icon.getStatIcon(valuesdevicesget.getStat_id());
             holder.pictureIv.setImageResource(resId);
-
             convertView.setOnClickListener(new ItemListener(valuesdevicesget));
             return convertView;
         }
