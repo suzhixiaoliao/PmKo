@@ -40,7 +40,7 @@ import java.util.GregorianCalendar;
 */
 
 public class Futuremission_fragment extends Fragment {
-    View view;
+    View view;  //全局view
 
     //数据适配器
     Future_frag_adapter future_adapter;
@@ -60,7 +60,6 @@ public class Futuremission_fragment extends Fragment {
     public Futuremission_fragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,8 +86,7 @@ public class Futuremission_fragment extends Fragment {
         calendar.set( Calendar.DATE,  1 );
         calendar.roll(Calendar.DATE,  - 1 );
         SimpleDateFormat simpleFormate  =   new  SimpleDateFormat( "yyyy-MM-dd" );
-        END_time=simpleFormate.format(calendar.getTime());
-        System.out.println(simpleFormate.format(calendar.getTime()));
+        END_time=simpleFormate.format(calendar.getTime());  //获取本月的最后一天
 
         Bundle bundle1 = getArguments(); //获得传递过来的值
         str = bundle1.getString("set_url");
@@ -173,8 +171,13 @@ public class Futuremission_fragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         future_adapter = new Future_frag_adapter(getContext(), future_Array);
         future_list.setAdapter(future_adapter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        future_Array.clear();
     }
 }

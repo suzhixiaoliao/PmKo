@@ -89,6 +89,7 @@ public class TaskList_alter extends AppCompatActivity {
     //http://app.pumintech.com:40000/api/user/get_mt_details?signature=1
     //http://10.16.1.201:40000/api/user/get_mt_details?signature=1
     //查找规范：EQPT_ID和DATE一致
+    //表名：D_EXEC_D_TASK,D_EXEC_D_STAT
     private void qurey() {
         str = getIntent().getStringExtra("charge").toString();
         time = getIntent().getStringExtra("inputdate").toString();

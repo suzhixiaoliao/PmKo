@@ -15,7 +15,7 @@ import com.intentpumin.lsy.intentpumin.network.LogUtils;
 import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
 
 import com.intentpumin.lsy.intentpumin.tools.logindate.login;
-
+import com.pumin.lzl.pumin.Areaselection;
 
 
 import cn.finalteam.okhttpfinal.RequestParams;
@@ -58,10 +58,10 @@ public class MainAdminActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //进入部署任务界面(搜索，扫描，选择)
-
+                Intent it=new Intent(MainAdminActivity.this, Areaselection.class);
+                startActivity(it);
             }
         });
-
 
         login mlogin = (login) getIntent().getSerializableExtra("login");
         tv_main.setText(mlogin.getName() + ",您好");

@@ -180,6 +180,7 @@ public class Main_View extends AppCompatActivity {
             //接口规范
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/?signature=1
+            //表名:S_EQPT_M
             path = "http://10.16.1.201:40000/api/user/get_eqpt_info?signature=1&eqpt_id=" + str;
 
         } catch (Exception e) {

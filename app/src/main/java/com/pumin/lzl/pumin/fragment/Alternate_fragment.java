@@ -56,7 +56,7 @@ public class Alternate_fragment extends Fragment {
     String str;
     //日期选择
     private String end_time; //目前日期
-    private String s;  //本月当前第一天
+    private String star;  //本月当前第一天
     //适配器的数据适配
     ArrayList<Alternate_object> alter_Array = new ArrayList<>();
     Alter_frag_adapter alter_adapter;
@@ -87,15 +87,13 @@ public class Alternate_fragment extends Fragment {
 
     //请求--网络加载
     public void query() {
-
         SimpleDateFormat sdateformat = new SimpleDateFormat("yyyy-MM-dd");
         end_time = sdateformat.format(new java.util.Date());
 
         Calendar calendar = new GregorianCalendar();
         calendar.set(Calendar.DATE, 1);
         SimpleDateFormat simpleFormate = new SimpleDateFormat("yyyy-MM-dd");
-        s = simpleFormate.format(calendar.getTime());
-        System.out.println("xxxxxxxxxxxx" + s);
+        star = simpleFormate.format(calendar.getTime());
 
 
         Bundle bundle1 = getArguments(); //获取main中传来的值
@@ -104,23 +102,21 @@ public class Alternate_fragment extends Fragment {
         try {
             str = bundle1.getString("set_url");
             //接口规范
+            //表名：D_EXEC_M
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/?signature=1
             path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
-                    "signature=1&s_date=" + s + "&e_date=" + end_time + "&eqpt_id=" + str;
+                    "signature=1&s_date=" + star + "&e_date=" + end_time + "&eqpt_id=" + str;
 
-            System.out.println("Alternate" + path);
         } catch (Exception e) {
             e.printStackTrace();
         }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(path, null,
                 new Response.Listener<JSONObject>() {
-
                     @Override
                     public void onResponse(final JSONObject response) {
                         // 成功获取数据后将数据显示在屏幕上
                         try {
-
                             info = response.toString();
                             // info = response.getString("UTF-8");
                         } catch (Exception e) {
@@ -131,7 +127,6 @@ public class Alternate_fragment extends Fragment {
                         initadapter(info);
                         System.out.println("这是alter_fragment中加载数据，数据加载成功" + info);
                     }
-
                 }, new Response.ErrorListener() {
 
             @Override
@@ -144,7 +139,6 @@ public class Alternate_fragment extends Fragment {
             @Override
             protected Response<JSONObject> parseNetworkResponse(
                     NetworkResponse response) {
-
                 try {
                     JSONObject jsonObject = new JSONObject(
                             new String(response.data, "UTF-8"));
@@ -155,7 +149,6 @@ public class Alternate_fragment extends Fragment {
                     return Response.error(new ParseError(je));
                 }
             }
-
         };
         request.add(jsonObjectRequest);
     }
@@ -177,9 +170,7 @@ public class Alternate_fragment extends Fragment {
                     object = array.getJSONObject(w);
                     alter_object = new Alternate_object(
                             object.getString("date"), object.getString("pmt_name")
-                            , object.getString("smt_name"), object.getString("finished")
-
-                    );
+                            , object.getString("smt_name"), object.getString("finished"));
                     alter_Array.add(alter_object);
                 }
             } else {
@@ -209,7 +200,11 @@ public class Alternate_fragment extends Fragment {
                 }
             }
         });
+    }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        alter_Array.clear();
     }
 }

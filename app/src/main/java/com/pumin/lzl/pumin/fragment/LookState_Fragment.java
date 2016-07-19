@@ -122,6 +122,7 @@ public class LookState_Fragment extends Fragment {
             //接口规范
 //            http://app.pumintech.com:40000/api/user/get_stat_info?signature=1
 //            http://10.16.1.201:40000/api/user/get_stat_info?signature=1
+            //表名：D_EXEC_D_TASK
             //参数---时间参数
             path = "http://10.16.1.201:40000/api/user/get_stat_info?signature=1&eqpt_id=" + str;
             System.out.println("Lookstate" + path);
@@ -139,7 +140,7 @@ public class LookState_Fragment extends Fragment {
                             info = response.toString();
                             // info = response.getString("UTF-8");
                         } catch (Exception e) {
-                            // TODO Auto-generated catch block
+                            // TODO Auto-ge  nerated catch block
                             e.printStackTrace();
                         }
                         Log.e("TAG", response + "" + "url");
