@@ -4,6 +4,6 @@
 
     xmlns:android="http://schemas.android.com/apk/res/android">
     <!--碎片flag黑色白色圆点-->
-<solid android:color="#000"/>
+<solid android:color="#707072"/>
 
 </shape>

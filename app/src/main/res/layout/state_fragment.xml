@@ -116,7 +116,7 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <com.pumin.lzl.pumin.utils.Work_SpringProgress
+                <com.pumin.lzl.pumin.utils.Works_SpringProgress
                     android:id="@+id/Otwork_progress_view"
                     android:layout_width="300dp"
                     android:layout_height="45dp"

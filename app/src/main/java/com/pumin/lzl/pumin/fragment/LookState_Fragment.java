@@ -22,6 +22,7 @@ import com.pumin.lzl.pumin.bean.Lookstate_object;
 import com.pumin.lzl.pumin.utils.SpringProgressView;
 import com.pumin.lzl.pumin.utils.Work2_SpringProgress;
 import com.pumin.lzl.pumin.utils.Work_SpringProgress;
+import com.pumin.lzl.pumin.utils.Works_SpringProgress;
 
 
 import org.json.JSONException;
@@ -64,7 +65,7 @@ public class LookState_Fragment extends Fragment {
     private Work_SpringProgress workok_progress_view;
 
     private TextView Otwork_number;
-    private Work_SpringProgress Otwork_progress_view;
+    private Works_SpringProgress Otwork_progress_view;
 
 
     public LookState_Fragment() {
@@ -96,7 +97,7 @@ public class LookState_Fragment extends Fragment {
         workok_progress_view = (Work_SpringProgress) view.findViewById(R.id.workok_progress_view);
 
         Otwork_number = (TextView) view.findViewById(R.id.Otwork_number);
-        Otwork_progress_view = (Work_SpringProgress) view.findViewById(R.id.Otwork_progress_view);
+        Otwork_progress_view = (Works_SpringProgress) view.findViewById(R.id.Otwork_progress_view);
     }
 
     //日期进度条

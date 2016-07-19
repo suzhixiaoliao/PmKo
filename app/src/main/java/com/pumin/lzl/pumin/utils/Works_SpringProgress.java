@@ -15,13 +15,13 @@ import android.view.View;
 *created at 2016/6/20 16:39
 * 自定义进度条-工具包--百分比进度条
 */
-public class Work_SpringProgress extends View {
+public class Works_SpringProgress extends View {
 
 
     /**
      * 分段颜色
      */
-    private static final int[] SECTION_COLORS = {Color.BLUE, Color.BLUE};
+    private static final int[] SECTION_COLORS = {Color.rgb(205, 75, 80), Color.rgb(205, 75, 80)};
     /**
      * 进度条最大值
      */
@@ -36,18 +36,18 @@ public class Work_SpringProgress extends View {
     private Paint mPaint;
     private int mWidth, mHeight;
 
-    public Work_SpringProgress(Context context, AttributeSet attrs,
-                               int defStyleAttr) {
+    public Works_SpringProgress(Context context, AttributeSet attrs,
+                                int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(context);
     }
 
-    public Work_SpringProgress(Context context, AttributeSet attrs) {
+    public Works_SpringProgress(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context);
     }
 
-    public Work_SpringProgress(Context context) {
+    public Works_SpringProgress(Context context) {
         super(context);
         initView(context);
     }

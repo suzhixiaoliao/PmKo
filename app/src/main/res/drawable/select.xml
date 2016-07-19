@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_enabled="true"
-        android:drawable="@drawable/pressun"/>
+        android:drawable="@drawable/press"/>
     <item
-        android:drawable="@drawable/press"
+        android:drawable="@drawable/pressun"
         ></item>
 </selector>
