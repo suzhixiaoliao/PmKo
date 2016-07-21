@@ -130,7 +130,7 @@ public class MainActivity extends BaseActivity{
         ImageView scan1 = (ImageView) view1.findViewById(R.id.iv_scan2);
         ImageView renwu1 = (ImageView) view1.findViewById(R.id.iv_renwu2);
         ImageView chakan1 = (ImageView) view1.findViewById(R.id.iv_chakan2);
-        ImageView scan = (ImageView) view1.findViewById(R.id.iv_scan);
+        ImageView scan = (ImageView) view1.findViewById(R.id.iv_scans);
         //第四步
         scan.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -191,7 +191,7 @@ public class LoginActivity extends BaseActivity {
                   public void onFinish() {
                   login login=new login();
                  if (login.getPriv()==""){
-                   Toast.makeText(LoginActivity.this,"用户名或者密码有误，请重新输入！",Toast.LENGTH_SHORT).show();
+                   //Toast.makeText(LoginActivity.this,"用户名或者密码有误，请重新输入！",Toast.LENGTH_SHORT).show();
                }
                }
               });

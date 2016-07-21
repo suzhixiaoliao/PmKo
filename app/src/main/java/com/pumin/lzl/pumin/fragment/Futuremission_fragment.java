@@ -82,11 +82,11 @@ public class Futuremission_fragment extends Fragment {
         SimpleDateFormat sdateformat = new SimpleDateFormat("yyyy-MM-dd");
         start_time = sdateformat.format(new java.util.Date());
 
-        Calendar calendar  =   new GregorianCalendar();
-        calendar.set( Calendar.DATE,  1 );
-        calendar.roll(Calendar.DATE,  - 1 );
-        SimpleDateFormat simpleFormate  =   new  SimpleDateFormat( "yyyy-MM-dd" );
-        END_time=simpleFormate.format(calendar.getTime());  //获取本月的最后一天
+        Calendar calendar = new GregorianCalendar();
+        calendar.set(Calendar.DATE, 1);
+        calendar.roll(Calendar.DATE, -1);
+        SimpleDateFormat simpleFormate = new SimpleDateFormat("yyyy-MM-dd");
+        END_time = simpleFormate.format(calendar.getTime());  //获取本月的最后一天
 
         Bundle bundle1 = getArguments(); //获得传递过来的值
         str = bundle1.getString("set_url");
@@ -94,7 +94,7 @@ public class Futuremission_fragment extends Fragment {
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/login?signature=1
         path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
-                "signature=1&s_date=" + start_time + "&e_date="+END_time + "&eqpt_id=" + str;
+                "signature=1&s_date=" + start_time + "&e_date=" + END_time + "&eqpt_id=" + str;
         System.out.println("这是futuremission中的url" + path);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(path, null,
@@ -104,7 +104,6 @@ public class Futuremission_fragment extends Fragment {
                     public void onResponse(final JSONObject response) {
                         // 成功获取数据后将数据显示在屏幕上
                         try {
-
                             info = response.toString();
                             // info = response.getString("UTF-8");
                         } catch (Exception e) {
@@ -160,11 +159,11 @@ public class Futuremission_fragment extends Fragment {
                 for (int w = 0; w < array.length(); w++) {
                     object = array.getJSONObject(w);
                     fu_object = new Future_object(object.getString("date"), object.getString("pmt_name")
-                            , object.getString("smt_name"));
+                            , object.getString("smt_name"), object.getString("finished"));
+                    future_Array.add(fu_object);  //把数据存放在对象数组中
                 }
-                future_Array.add(fu_object);  //把数据存放在对象数组中
             } else {
-                fu_object = new Future_object("暂定", "暂定", "暂定");
+                fu_object = new Future_object("暂定", "暂定", "暂定", "未完成");
                 future_Array.add(fu_object);  //把数据存放在对象数组中
             }
 
@@ -175,9 +174,4 @@ public class Futuremission_fragment extends Fragment {
         future_list.setAdapter(future_adapter);
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        future_Array.clear();
-    }
 }

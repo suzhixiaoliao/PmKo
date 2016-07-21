@@ -1,6 +1,7 @@
 package com.pumin.lzl.pumin.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -49,6 +50,8 @@ public class Alter_frag_adapter extends BaseAdapter {
         TextView alter_row_task;
         TextView alter_row_charge;
         TextView alter_row_charge2;
+        TextView alter_row_phone;
+        TextView alter_row_phone2;
     }
 
     @Override
@@ -62,21 +65,25 @@ public class Alter_frag_adapter extends BaseAdapter {
             holder.alter_row_task = (TextView) convertView.findViewById(R.id.alter_row_task);
             holder.alter_row_charge = (TextView) convertView.findViewById(R.id.alter_row_charge);
             holder.alter_row_charge2 = (TextView) convertView.findViewById(R.id.alter_row_charge2);
+            holder.alter_row_phone = (TextView) convertView.findViewById(R.id.alter_row_phone);
+            holder.alter_row_phone2 = (TextView) convertView.findViewById(R.id.alter_row_phone2);
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-            //从后台拿数据到对象里面得值
-            holder.alter_row_time.setText(alter_obj.getStart_time());
-            if (alter_obj.getIsok().equals("N")||alter_obj.getIsok().equals("未知")) {
-                holder.alter_row_task.setText("未知");
-            } else if (alter_obj.getIsok().equals("Y")) {
-                holder.alter_row_task.setText("已完成");
-            }
+        //从后台拿数据到对象里面得值
+        holder.alter_row_time.setText(alter_obj.getStart_time());
+        if (alter_obj.getIsok().equals("N")) {
+            holder.alter_row_task.setText("未完成");
+            holder.alter_row_task.setTextColor(Color.RED);
+        } else if (alter_obj.getIsok().equals("Y")) {
+            holder.alter_row_task.setText("已完成");
+            holder.alter_row_task.setTextColor(Color.BLUE);
+        }
 
-            holder.alter_row_charge.setText(alter_obj.getPmt_name());
-            holder.alter_row_charge2.setText(alter_obj.getSmt_name());
+        holder.alter_row_charge.setText(alter_obj.getPmt_name()+":");
+        holder.alter_row_charge2.setText(alter_obj.getSmt_name()+":");
 
         return convertView;
     }

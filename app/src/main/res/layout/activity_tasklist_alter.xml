@@ -49,7 +49,7 @@
             android:id="@+id/tasklist_maintenance"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#d88b8585"
+            android:divider="#e1e0dc"
             android:dividerHeight="10dp" />
     </LinearLayout>
 
@@ -95,7 +95,7 @@
             android:id="@+id/tasklist_parameter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#d88b8585"
+            android:divider="#e1e0dc"
             android:dividerHeight="10dp" />
 
     </LinearLayout>

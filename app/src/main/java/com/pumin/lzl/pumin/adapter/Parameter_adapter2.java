@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -39,6 +40,7 @@ public class Parameter_adapter2 extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
+
         return position;
     }
 
@@ -46,10 +48,12 @@ public class Parameter_adapter2 extends BaseAdapter {
         TextView task_statname;
         TextView task_unit;
         TextView task_value;
+        LinearLayout linear_task;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         ViewHolder2 holder2;
         Tasklist_object2 object = task_list2.get(position);
         if (convertView == null) {
@@ -58,13 +62,24 @@ public class Parameter_adapter2 extends BaseAdapter {
             holder2.task_statname = (TextView) convertView.findViewById(R.id.task_statname);
             holder2.task_unit = (TextView) convertView.findViewById(R.id.task_unit);
             holder2.task_value = (TextView) convertView.findViewById(R.id.task_value);
+            holder2.linear_task = (LinearLayout) convertView.findViewById(R.id.linear_task);
             convertView.setTag(holder2);
         } else {
             holder2 = (ViewHolder2) convertView.getTag();
         }
+
+        if (position % 2 == 0) {
+            holder2.linear_task.setBackgroundResource(R.mipmap.bk2_tasklist);
+        } else {
+            holder2.linear_task.setBackgroundResource(R.mipmap.bk_tasklist);
+        }
         holder2.task_statname.setText(object.getStatname());
         holder2.task_unit.setText(object.getUnit());
-        holder2.task_value.setText(object.getRvalue());
+        if (object.getRvalue().equals("null")) {
+            holder2.task_value.setText("没有记录");
+        } else {
+            holder2.task_value.setText(object.getRvalue());
+        }
         return convertView;
     }
 }

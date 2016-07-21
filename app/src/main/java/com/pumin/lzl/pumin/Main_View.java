@@ -38,6 +38,7 @@ import com.pumin.lzl.pumin.fragment.LookState_Fragment;
 import com.pumin.lzl.pumin.utils.AllToast;
 import com.pumin.lzl.pumin.utils.Alldot_layout;
 import com.pumin.lzl.pumin.utils.Alltitle;
+import com.pumin.lzl.pumin.utils.F_image;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -233,42 +234,8 @@ public class Main_View extends AppCompatActivity {
         request.add(jsonObjectRequest);
     }
 
-    //图片的压缩
-    public static int calculateInSampleSize(BitmapFactory.Options options,
-                                            int reqWidth, int reqHeight) {
-        // 源图片的高度和宽度
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-        if (height > reqHeight || width > reqWidth) {
-            // 计算出实际宽高和目标宽高的比率
-            final int heightRatio = Math.round((float) height / (float) reqHeight);
-            final int widthRatio = Math.round((float) width / (float) reqWidth);
-            // 选择宽和高中最小的比率作为inSampleSize的值，这样可以保证最终图片的宽和高
-            // 一定都会大于等于目标的宽和高。
-            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
-        }
-        return inSampleSize;
-    }
 
-    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
-                                                         int reqWidth, int reqHeight) {
-        // 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(res, resId, options);
-        // 调用上面定义的方法计算inSampleSize值
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-        // 使用获取到的inSampleSize值再次解析图片
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeResource(res, resId, options);
-    }
 
-    //假设图片
-    private void getimg(int img) {
-        device_image.setImageBitmap(decodeSampledBitmapFromResource(getResources(), img, 100, 100));
-        imageonclick();
-    }
 
     //预留接口--点击设备样子(进行拍照)上传图片
     private void imageonclick() {
@@ -303,14 +270,10 @@ public class Main_View extends AppCompatActivity {
             jsonObj = new JSONObject(data);
 
             String name = jsonObj.getString("eqpt_name");
-//            for(int i=1;i<10;i++){
-//                if(name.equals("A00000"+i)){
-//                    getimg(drawble[i]);
-//                }else{
-//                    getimg(R.mipmap.ic_launcher);
-//                }
-//            }
             device_name.setText(name); //设备名称
+
+            String ids=jsonObj.getString("eqpt_id");
+            F_image.image_s(ids,device_image,this);
 
             String type2_name = jsonObj.getString("next_rpd_date");
             device_type.setText(type2_name); //下次维修日期

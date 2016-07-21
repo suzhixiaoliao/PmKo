@@ -200,7 +200,7 @@ public class CaptureActivity extends Activity implements Callback {
             }else {
                 Intent resultIntent = this.getIntent().setClass(CaptureActivity.this, DataExecuteTasksActivity.class);
                // resultIntent.putExtra("item", items);
-                resultIntent.putExtra("result", "" + resultString);
+                resultIntent.putExtra("result",resultString);
                 startActivity(resultIntent);
 
             }

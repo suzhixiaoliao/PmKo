@@ -94,7 +94,7 @@ public class Alternate_fragment extends Fragment {
         calendar.set(Calendar.DATE, 1);
         SimpleDateFormat simpleFormate = new SimpleDateFormat("yyyy-MM-dd");
         star = simpleFormate.format(calendar.getTime());
-
+        System.out.print(star+"xxxxxxxxxxxxxxxxxxxxx");
 
         Bundle bundle1 = getArguments(); //获取main中传来的值
         String path = "";

@@ -13,14 +13,15 @@ import android.view.View;
 /*
 *@author lzl
 *created at 2016/6/20 16:39
-* 自定义进度条-工具包--日期进度条
+* 自定义进度条-工具包--百分比进度条
 */
-public class SpringProgressView extends View {
+public class Oncount_SpringProgress extends View {
+
 
     /**
      * 分段颜色
      */
-    private static final int[] SECTION_COLORS = {Color.rgb(250,128,10), Color.rgb(250,128,10), Color.rgb(250,128,10)};
+    private static final int[] SECTION_COLORS = {Color.BLUE, Color.BLUE};
     /**
      * 进度条最大值
      */
@@ -35,18 +36,18 @@ public class SpringProgressView extends View {
     private Paint mPaint;
     private int mWidth, mHeight;
 
-    public SpringProgressView(Context context, AttributeSet attrs,
-                              int defStyleAttr) {
+    public Oncount_SpringProgress(Context context, AttributeSet attrs,
+                                  int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(context);
     }
 
-    public SpringProgressView(Context context, AttributeSet attrs) {
+    public Oncount_SpringProgress(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context);
     }
 
-    public SpringProgressView(Context context) {
+    public Oncount_SpringProgress(Context context) {
         super(context);
         initView(context);
     }
@@ -59,38 +60,38 @@ public class SpringProgressView extends View {
         super.onDraw(canvas);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        int round = mHeight / 2;
+        int round = mHeight / 30;
         System.out.println("max=" + maxCount + "  current=" + currentCount);
-        mPaint.setColor(Color.BLACK);
+//        mPaint.setColor(Color.BLACK);
         RectF rectBg = new RectF(0, 0, mWidth, mHeight);
-        canvas.drawRoundRect(rectBg, round, round, mPaint);
-        mPaint.setColor(Color.rgb(225, 224, 220));
+//		canvas.drawRoundRect(rectBg, round, round, mPaint);
+//		mPaint.setColor(Color.rgb(225, 224, 220));
         RectF rectBlackBg = new RectF(2, 2, mWidth - 2, mHeight - 2);
-        canvas.drawRoundRect(rectBlackBg, round, round, mPaint);
+//		canvas.drawRoundRect(rectBlackBg, round, round, mPaint);
 
         float section = currentCount / maxCount;
-        RectF rectProgressBg = new RectF(3, 3, (mWidth - 3) * section, mHeight - 3);
-        if (section <= 1.0f / 3.0f) {
+        RectF rectProgressBg = new RectF(2, 2, (mWidth - 3) * section, mHeight - 3);
+        if (section <= 1.0f / 2.0f) {
             if (section != 0.0f) {
                 mPaint.setColor(SECTION_COLORS[0]);
             } else {
                 mPaint.setColor(Color.TRANSPARENT);
             }
         } else {
-            int count = (section <= 1.0f / 3.0f * 2) ? 2 : 3;
+            int count = (section <= 1.0f / 3.0f * 2) ? 1 : 2;
             int[] colors = new int[count];
             System.arraycopy(SECTION_COLORS, 0, colors, 0, count);
             float[] positions = new float[count];
-            if (count == 2) {
+            if (count == 1) {
                 positions[0] = 0.0f;
                 positions[1] = 1.0f - positions[0];
             } else {
-                positions[0] = 0.0f;
-                positions[1] = (maxCount / 3) / currentCount;
-                positions[2] = 1.0f - positions[0] * 2;
+//				positions[0] = 0.0f;
+//				positions[1] = (maxCount/3)/currentCount;
+//				positions[2] = 1.0f-positions[0]*2;
             }
             positions[positions.length - 1] = 1.0f;
-            LinearGradient shader = new LinearGradient(3, 3, (mWidth - 3) * section, mHeight - 3, colors, null, Shader.TileMode.MIRROR);
+            LinearGradient shader = new LinearGradient(2, 2, (mWidth - 3) * section, mHeight - 3, colors, null, Shader.TileMode.MIRROR);
             mPaint.setShader(shader);
         }
         canvas.drawRoundRect(rectProgressBg, round, round, mPaint);

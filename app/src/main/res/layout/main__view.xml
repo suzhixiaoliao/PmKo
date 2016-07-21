@@ -145,7 +145,7 @@
                 android:id="@+id/device_image"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
-                android:background="#e6e4e4" />
+                android:background="#e1e0dc" />
         </LinearLayout>
 
     </LinearLayout>

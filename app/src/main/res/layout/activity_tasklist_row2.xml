@@ -5,8 +5,14 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/linear_task"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/bk2_tasklist"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -15,24 +21,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="温度" />
-
-        <TextView
-            android:id="@+id/task_unit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="摄氏度" />
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/task_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="12.0" />
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/task_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
     </LinearLayout>
 
 </LinearLayout>

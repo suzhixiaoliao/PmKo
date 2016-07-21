@@ -15,7 +15,7 @@ import android.view.View;
 *created at 2016/6/20 16:39
 * 自定义进度条-工具包--百分比进度条
 */
-public class Works_SpringProgress extends View {
+public class Ontime_SpringProgress extends View {
 
 
     /**
@@ -36,18 +36,18 @@ public class Works_SpringProgress extends View {
     private Paint mPaint;
     private int mWidth, mHeight;
 
-    public Works_SpringProgress(Context context, AttributeSet attrs,
-                                int defStyleAttr) {
+    public Ontime_SpringProgress(Context context, AttributeSet attrs,
+                                 int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(context);
     }
 
-    public Works_SpringProgress(Context context, AttributeSet attrs) {
+    public Ontime_SpringProgress(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context);
     }
 
-    public Works_SpringProgress(Context context) {
+    public Ontime_SpringProgress(Context context) {
         super(context);
         initView(context);
     }
@@ -60,14 +60,14 @@ public class Works_SpringProgress extends View {
         super.onDraw(canvas);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        int round = mHeight / 100;
+        int round = mHeight / 30;
         System.out.println("max=" + maxCount + "  current=" + currentCount);
-        mPaint.setColor(Color.BLACK);
+//        mPaint.setColor(Color.BLACK);
         RectF rectBg = new RectF(0, 0, mWidth, mHeight);
-		canvas.drawRoundRect(rectBg, round, round, mPaint);
-		mPaint.setColor(Color.rgb(225, 224, 220));
+//		canvas.drawRoundRect(rectBg, round, round, mPaint);
+//		mPaint.setColor(Color.rgb(225, 224, 220));
         RectF rectBlackBg = new RectF(2, 2, mWidth - 2, mHeight - 2);
-		canvas.drawRoundRect(rectBlackBg, round, round, mPaint);
+//		canvas.drawRoundRect(rectBlackBg, round, round, mPaint);
 
         float section = currentCount / maxCount;
         RectF rectProgressBg = new RectF(2, 2, (mWidth - 3) * section, mHeight - 3);

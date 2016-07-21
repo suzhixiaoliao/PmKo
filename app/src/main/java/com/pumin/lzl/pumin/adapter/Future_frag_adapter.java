@@ -1,6 +1,7 @@
 package com.pumin.lzl.pumin.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -65,7 +66,10 @@ public class Future_frag_adapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.future_row_time.setText(object.getStart_time());
-        holder.future_row_task.setText("未完成");
+        if(object.getIsok2().equals("N")||object.getIsok2().equals("未完成")||object.getIsok2().equals("")){
+            holder.future_row_task.setText("未完成");
+            holder.future_row_task.setTextColor(Color.RED);
+        }
         holder.future_row_charge.setText(object.getPtm_name());
         holder.future_row_charge2.setText(object.getStm_name());
 

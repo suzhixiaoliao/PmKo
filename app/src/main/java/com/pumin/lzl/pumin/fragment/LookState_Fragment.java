@@ -19,10 +19,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.intentpumin.lsy.intentpumin.R;
 import com.pumin.lzl.pumin.bean.Lookstate_object;
-import com.pumin.lzl.pumin.utils.SpringProgressView;
-import com.pumin.lzl.pumin.utils.Work2_SpringProgress;
-import com.pumin.lzl.pumin.utils.Work_SpringProgress;
-import com.pumin.lzl.pumin.utils.Works_SpringProgress;
+import com.pumin.lzl.pumin.utils.Date_SpringProgressView;
+import com.pumin.lzl.pumin.utils.Oncount_SpringProgress;
+import com.pumin.lzl.pumin.utils.Ontime_SpringProgress;
+import com.pumin.lzl.pumin.utils.Task_SpringProgress;
 
 
 import org.json.JSONException;
@@ -50,7 +50,7 @@ public class LookState_Fragment extends Fragment {
 
     //日期进度条
     private TextView state_date2;
-    private SpringProgressView progressView;
+    private Date_SpringProgressView progressView;
     int last;  //一个月最多有几天
     int year;
     int day;
@@ -58,14 +58,14 @@ public class LookState_Fragment extends Fragment {
 
     //工作完成度
     private TextView work_number;
-    private Work2_SpringProgress work_progress_view;
+    private Task_SpringProgress task_progress_view;
 
     //工作完成百分比
     private TextView workok_number;
-    private Work_SpringProgress workok_progress_view;
+    private Oncount_SpringProgress workok_progress_view;
 
     private TextView Otwork_number;
-    private Works_SpringProgress Otwork_progress_view;
+    private Ontime_SpringProgress Otwork_progress_view;
 
 
     public LookState_Fragment() {
@@ -86,18 +86,18 @@ public class LookState_Fragment extends Fragment {
 
     //初始化控件
     private void initview() {
-        state_date2= (TextView) view.findViewById(R.id.state_date2);
-        progressView = (SpringProgressView) view.findViewById(R.id.spring_progress_view);
+        state_date2 = (TextView) view.findViewById(R.id.state_date2);
+        progressView = (Date_SpringProgressView) view.findViewById(R.id.spring_progress_view);
 
 
         work_number = (TextView) view.findViewById(R.id.work_number);
-        work_progress_view = (Work2_SpringProgress) view.findViewById(R.id.work_progress_view);
+        task_progress_view = (Task_SpringProgress) view.findViewById(R.id.task_progress_view);
 
         workok_number = (TextView) view.findViewById(R.id.workok_number);
-        workok_progress_view = (Work_SpringProgress) view.findViewById(R.id.workok_progress_view);
+        workok_progress_view = (Oncount_SpringProgress) view.findViewById(R.id.workok_progress_view);
 
         Otwork_number = (TextView) view.findViewById(R.id.Otwork_number);
-        Otwork_progress_view = (Works_SpringProgress) view.findViewById(R.id.Otwork_progress_view);
+        Otwork_progress_view = (Ontime_SpringProgress) view.findViewById(R.id.Otwork_progress_view);
     }
 
     //日期进度条
@@ -184,11 +184,14 @@ public class LookState_Fragment extends Fragment {
             String datas = jsonobject.getString("data");
 
             jsonobject = new JSONObject(datas);
-            if(datas==null){
+            if (datas == null) {
                 Toast.makeText(getContext(), "没有数据", Toast.LENGTH_SHORT).show();
             }
             String totals = jsonobject.getString("total");
             String expects = jsonobject.getString("expect");
+
+            String finish=jsonobject.getString("finish");
+            String ontime=jsonobject.getString("ontime");  //
 
             String finishs = jsonobject.getString("_finish");  //已经完成的工作量
             String ontimes = jsonobject.getString("_ontime"); //按时完成的量
@@ -196,38 +199,36 @@ public class LookState_Fragment extends Fragment {
             System.out.println("lookstate.......百分比" + finishs + "..." + ontimes);
 
 
-            look_object = new Lookstate_object(totals, expects, ontimes, finishs);
+            look_object = new Lookstate_object(totals, expects, ontimes, finishs,finish,ontime);
 
             int maxs = Integer.parseInt(look_object.getTotals());
             int counts = Integer.parseInt(look_object.getExpects());
+            int okcount= Integer.parseInt(look_object.getOkcount());
+            int omtime= Integer.parseInt(look_object.getOktime());
             int okcounts = Integer.parseInt(look_object.getFinishs());
             int ontime_s = Integer.parseInt(look_object.getOntimes());
 
-            percentage(okcounts, ontime_s); //百分比传值
-            Completionofwork(maxs, counts); //工作量传值
+            percentage(omtime,okcount,okcounts, ontime_s, maxs, counts); //百分比传值
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     //工作完成百分比---单参数  按时完成百分比---单参数
-    private void percentage(int okcount, int ontime) {
-        workok_progress_view.setMaxCount(100);
+    private void percentage(int ontime,int okcount,int okcounts, int ontimes,int max, int count) {
+        workok_progress_view.setMaxCount(max);
         workok_progress_view.setCurrentCount(okcount);
-        workok_number.setText("" + okcount + "%");
+        workok_number.setText("" + okcounts + "%");
 
-        Otwork_progress_view.setMaxCount(100);
+        Otwork_progress_view.setMaxCount(max);
         Otwork_progress_view.setCurrentCount(ontime);
-        Otwork_number.setText("" + ontime + "%");
+        Otwork_number.setText("" + ontimes + "%");
+
+//工作完成情况----两个参数 1.工作总量 2.已完成工作量 ..预留参数接口-网络请求
+        task_progress_view.setMaxCount(max);
+        task_progress_view.setCurrentCount(count);
+        work_number.setText("本月截止到今天,应该完成:" + count + "个任务,任务总数:" + max);
+        work_number.setTextSize(8);
     }
-
-
-    //工作完成情况----两个参数 1.工作总量 2.已完成工作量 ..预留参数接口-网络请求
-    private void Completionofwork(int max, int count) {
-        work_progress_view.setMaxCount(max);
-        work_progress_view.setCurrentCount(count);
-        work_number.setText("本月工作总量：" + max + "  完成：" + count);
-
-    }
-
 }

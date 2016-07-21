@@ -291,7 +291,7 @@ public class DataExecuteTasksActivity extends Activity {
         String area_id = "";
         String eqpt_id = result;
         params.addFormDataPart("signature", 1);
-        params.addFormDataPart("date", "2016-07-14");
+        params.addFormDataPart("date",date);
         params.addFormDataPart("phoneno", phoneno);
         params.addFormDataPart("area_id", area_id);
         params.addFormDataPart("eqpt_id", eqpt_id);
