@@ -278,7 +278,7 @@ public class HelloChartActivity extends BaseActivity {
         //设置底部x轴字体的颜色
         distanceAxis.setTextColor(ChartUtils.COLOR_ORANGE);
         distanceAxis.setMaxLabelChars(1);
-
+        distanceAxis.setHasSeparationLine(false);
         distanceAxis.setHasLines(true);
         distanceAxis.setHasTiltedLabels(true);
         distanceAxis.setName("   ");
