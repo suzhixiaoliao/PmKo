@@ -82,8 +82,8 @@ public class Alter_frag_adapter extends BaseAdapter {
             holder.alter_row_task.setTextColor(Color.BLUE);
         }
 
-        holder.alter_row_charge.setText(alter_obj.getPmt_name()+":");
-        holder.alter_row_charge2.setText(alter_obj.getSmt_name()+":");
+        holder.alter_row_charge.setText(alter_obj.getPmt_name() + ":");
+        holder.alter_row_charge2.setText(alter_obj.getSmt_name() + ":");
 
         return convertView;
     }

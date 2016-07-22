@@ -37,18 +37,19 @@
                 android:textSize="20dp" />
 
         </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="5dp"
-                android:background="#000" />
 
-            <ListView
-                android:id="@+id/future_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="#e1e0dc"
-                android:dividerHeight="5dp"
-                android:listSelector="@drawable/list_item_bg" />
-        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#000" />
+
+        <ListView
+            android:id="@+id/future_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#e1e0dc"
+            android:dividerHeight="5dp"
+            android:listSelector="@drawable/list_item_bg" />
+    </LinearLayout>
 </RelativeLayout>

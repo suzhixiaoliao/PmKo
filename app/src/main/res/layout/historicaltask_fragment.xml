@@ -2,12 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#e1e0dc"
+    android:orientation="vertical"
     tools:context="com.pumin.fragment.Historicaltask_fragment">
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="#e1e0dc"
@@ -18,7 +17,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@mipmap/futur" />
+            android:src="@mipmap/histor" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,9 +26,38 @@
             android:text="趋势信息"
             android:textSize="20dp" />
     </LinearLayout>
+
     <TextView
-        android:layout_marginTop="5dp"
-        android:background="#000"
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="#000" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/layout_chart_top"
+                    layout="@layout/layout_chart_top" />
+
+                <include
+                    android:id="@+id/layout_chart_top"
+                    layout="@layout/activity_hello_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_marginLeft="0dip"
+                    android:layout_marginTop="0dip"
+                    android:layout_marginRight="0dip"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

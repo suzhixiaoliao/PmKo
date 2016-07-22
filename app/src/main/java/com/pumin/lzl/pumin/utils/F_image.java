@@ -48,6 +48,7 @@ public abstract class F_image {
 
 
     public static void image_s(String eqpt, ImageView img, Context con) {
+        
         if (eqpt.equals("FA0101001")) {
             img.setImageBitmap(decodeSampledBitmapFromResource(con.getResources(), R.mipmap.abygtt, 100, 100));
         }

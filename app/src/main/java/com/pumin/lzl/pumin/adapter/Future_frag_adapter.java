@@ -70,6 +70,10 @@ public class Future_frag_adapter extends BaseAdapter {
             holder.future_row_task.setText("未完成");
             holder.future_row_task.setTextColor(Color.RED);
         }
+        if(object.getIsok2().equals("Y")){
+            holder.future_row_task.setText("已完成");
+            holder.future_row_task.setTextColor(Color.BLUE);
+        }
         holder.future_row_charge.setText(object.getPtm_name());
         holder.future_row_charge2.setText(object.getStm_name());
 
