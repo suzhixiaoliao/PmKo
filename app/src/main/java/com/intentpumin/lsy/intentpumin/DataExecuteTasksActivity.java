@@ -141,12 +141,10 @@ public class DataExecuteTasksActivity extends Activity {
         mtasklist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-                task_get task = (task_get) adapter.getItem(position);
+                task_get task_get =mtask.get(position);
                 Intent inter = getIntent();
                 inter.setClass(DataExecuteTasksActivity.this, TaskRemarkActivity.class);
-                inter.putExtra("task", (Serializable) task);
+                inter.putExtra("task", (Serializable) task_get);
                 startActivityForResult(inter, 1);
                 return true;
             }
@@ -196,11 +194,13 @@ public class DataExecuteTasksActivity extends Activity {
         String exec_time = sDateFormat.format(new java.util.Date());
         final String date = exec_time;
         String phoneno = "13000000000";
+        sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        String mPhoneno= sp.getString("phoneno","");
         String area_id = " ";
         String eqpt_id =result;
         params.addFormDataPart("signature", 1);
-        params.addFormDataPart("date","2016-07-14");
-        params.addFormDataPart("phoneno", phoneno);
+        params.addFormDataPart("date",date);
+        params.addFormDataPart("phoneno", mPhoneno);
         params.addFormDataPart("area_id", area_id);
         params.addFormDataPart("eqpt_id", eqpt_id);
         HttpUtil.getInstance().post(MainLogic.GET_STAT, params, new StringHttpRequestCallback() {
@@ -247,19 +247,22 @@ public class DataExecuteTasksActivity extends Activity {
              */
             private void setAutoGridViewWidth() {
                 int size = mtask.size();
+                Log.e("log", "GridView_Size:" + size);
                 DisplayMetrics dm = new DisplayMetrics();
-                getWindowManager().getDefaultDisplay().getMetrics(dm);
-                float density = dm.density;
-                int allWidth = (int) (110 * size * density);
-                int itemWidth = (int) (100 * density);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                        allWidth, LinearLayout.LayoutParams.FILL_PARENT);
+                int ScreeWidth = getWindowManager().getDefaultDisplay().getWidth();//获取屏幕的宽度
+                //int itemWidth = (int) (ScreeWidth / 3.0-ScreeWidth/21.0);
+                int itemWidth = (int) (ScreeWidth / 3.0);
+                int allWidth = itemWidth * size;
+                LinearLayout.LayoutParams params= (LinearLayout.LayoutParams) mtasklist.getLayoutParams();
+                params.width=allWidth;
+                params.height=LinearLayout.LayoutParams.FILL_PARENT;
                 mtasklist.setLayoutParams(params);
                 mtasklist.setColumnWidth(itemWidth);
-                mtasklist.setHorizontalSpacing(10);
+                //  mtasklist.setHorizontalSpacing(10);
                 mtasklist.setStretchMode(GridView.NO_STRETCH);
                 mtasklist.setNumColumns(size);
             }
+
 
             @Override
             public void onFinish() {
@@ -285,14 +288,16 @@ public class DataExecuteTasksActivity extends Activity {
         final login mlogin = (login) getIntent().getSerializableExtra("login");*/
         SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String exec_time = sDateFormat.format(new java.util.Date());
+        sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        String mPhoneno= sp.getString("phoneno", "");
         RequestParams params = new RequestParams();
         String phoneno ="13000000000";
         String date = exec_time;
         String area_id = "";
         String eqpt_id = result;
         params.addFormDataPart("signature", 1);
-        params.addFormDataPart("date", "2016-07-14");
-        params.addFormDataPart("phoneno", phoneno);
+        params.addFormDataPart("date", date);
+        params.addFormDataPart("phoneno", mPhoneno);
         params.addFormDataPart("area_id", area_id);
         params.addFormDataPart("eqpt_id", eqpt_id);
         HttpUtil.getInstance().post(MainLogic.GET_TASK, params, new StringHttpRequestCallback() {
@@ -306,9 +311,9 @@ public class DataExecuteTasksActivity extends Activity {
                         Gson gson = new Gson();
                         result = gson.fromJson(s, result_task_get.class);//将JSON数据转成Result对象
                         // TODO: 2016/6/22 保存Sp数据
-                        SharedPreferences sp = getSharedPreferences("lsytask", Activity.MODE_PRIVATE);
+                        SharedPreferences sp = getSharedPreferences("task", Activity.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sp.edit();
-                        editor.putString("result", s).commit();
+                        editor.putString("task", s).commit();
                     }
                 } catch (JsonSyntaxException e) {
                     e.printStackTrace();
@@ -358,6 +363,8 @@ public class DataExecuteTasksActivity extends Activity {
         }.getType();
         Gson gson = new Gson();
         result_stat_get s = gson.fromJson(resulut, type);
+        sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        String mPhoneno= sp.getString("phoneno", "");
         if (mstat != null && mstat.size() > 0) {
             for (int i = 0; i < mstat.size(); i++) {
                 final int j = i;
@@ -388,6 +395,7 @@ public class DataExecuteTasksActivity extends Activity {
                 params.addFormDataPart("spot_x", Mapx);
                 System.out.println("llllllllllll" + Mapx);
                 params.addFormDataPart("spot_y", Mapy);
+                params.addFormDataPart("phoneno",mPhoneno);
                 //   params.addFormDataPart("pmt_id", "47875310-1A24-2B35-2783-AE19D8334E2D");
                 params.addFormDataPart("exec_time", exec_time);
                 HttpUtil.getInstance().post(MainLogic.SET_STAT, params, new StringHttpRequestCallback() {
@@ -436,6 +444,8 @@ public class DataExecuteTasksActivity extends Activity {
                 final int j = i;
                 task_get item = mtask.get(i);
                 System.out.println("lsy" + i);
+                sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+                String mPhoneno= sp.getString("phoneno","");
                 RequestParams params = new RequestParams();
                 SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String exec_time = sDateFormat.format(new java.util.Date());
@@ -450,7 +460,7 @@ public class DataExecuteTasksActivity extends Activity {
                  String task_id = b.getData().items.get(i).task_id;
                 //String task_id = "0456DAB3-6A37-FCAC-33C8-31FEA4B4B43E";
                 //String finished="Y";
-                String phoneno = "13000000000";
+                String phoneno = mPhoneno;
                 String signature = "1";
                // String date = "2016-06-21";
                 params.addFormDataPart("phoneno", phoneno);

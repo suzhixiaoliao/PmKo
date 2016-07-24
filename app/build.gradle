@@ -41,5 +41,7 @@ android {
         compile 'com.google.code.gson:gson:2.6.2'
         compile 'com.zhy:autolayout:1.4.3'
         compile project(':helloLibary')
+        compile 'com.caverock:androidsvg:1.2.1'
+        compile 'com.nineoldandroids:library:2.4.0'
     }
 }

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
@@ -175,6 +176,8 @@ public class LoginActivity extends BaseActivity {
                           e.printStackTrace();
                       }
                       System.out.println(s);
+                      sp.edit().putString("name",login.getName()).putString("phoneno",login.getPhoneno())
+                              .putString("priv", login.getPriv()).commit();
                       if (login.getPriv().equals("0")) {
                           Intent i = new Intent(LoginActivity.this, MainActivity.class);
                           //第三步
@@ -183,16 +186,18 @@ public class LoginActivity extends BaseActivity {
                       } else if (login.getPriv().equals("1")) {
                           Intent i = new Intent(LoginActivity.this, MainAdminActivity.class);
                           //第三步
-                          i.putExtra("login", login);
+                          i.putExtra("login", (Serializable)login);
                           startActivity(i);
                       }
                   }
+                  @Override
+                  public void onFailure(int errorCode, String msg) {
+                      Toast.makeText(LoginActivity.this,"用户名或者密码有误，请重新输入！",Toast.LENGTH_SHORT).show();
+                      System.out.println("error code " + errorCode + "\nmsg " + msg);
+                  }
               @Override
                   public void onFinish() {
-                  login login=new login();
-                 if (login.getPriv()==""){
-                   Toast.makeText(LoginActivity.this,"用户名或者密码有误，请重新输入！",Toast.LENGTH_SHORT).show();
-               }
+
                }
               });
           }

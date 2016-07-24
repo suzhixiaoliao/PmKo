@@ -1,8 +1,5 @@
 package com.intentpumin.lsy.intentpumin.logic;
 
-/**
- * Created by yang on 2016/5/3.
- */
 public class MainLogic extends BaseLogic {
     /**
      * 运维人员接口

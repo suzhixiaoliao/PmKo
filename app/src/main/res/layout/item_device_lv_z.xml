@@ -13,8 +13,13 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/device_line" />
             <ImageView
                 android:id="@+id/device_dot"
                 android:layout_width="wrap_content"
@@ -23,7 +28,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:layout_below="@id/device_dot"
                 android:layout_gravity="center"
                 android:background="@mipmap/device_line" />
@@ -32,6 +37,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:layout_marginRight="10dp"
     android:background="@mipmap/device_dialog">
     <TextView
         android:id="@+id/tv_device_time"
@@ -65,10 +71,12 @@
    </RelativeLayout>
     </LinearLayout>
     <ImageView
-        android:id="@+id/bt_device_scan"
+        android:id="@+id/bt_tasklist_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:background="@mipmap/device_arrows" />
+
 </RelativeLayout>

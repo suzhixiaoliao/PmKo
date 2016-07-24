@@ -1,13 +1,11 @@
 package com.intentpumin.lsy.intentpumin;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SyncStatusObserver;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +15,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
-import com.intentpumin.lsy.intentpumin.tools.device.items;
 import com.intentpumin.lsy.intentpumin.tools.mRemark.remark_list;
 import com.intentpumin.lsy.intentpumin.tools.stat.result_stat_get;
 import com.intentpumin.lsy.intentpumin.tools.task.task_get;
@@ -29,7 +26,7 @@ import java.util.List;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 //备注页面
-public class TaskRemarkActivity extends Activity {
+public class TaskRemark2Activity extends Activity {
     private EditText et_tast_com;
     private Button bt_tast_qd;
     private Button bt_tast_qx;
@@ -53,6 +50,12 @@ public class TaskRemarkActivity extends Activity {
        // String mRemark = et_tast_com.getText().toString();
         bt_tast_qd= (Button) findViewById(R.id.bt_tast_qd);
         bt_tast_qx= (Button) findViewById(R.id.bt_tast_qx);
+        bt_tast_qx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         bt_tast_qd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +63,7 @@ public class TaskRemarkActivity extends Activity {
             }
         });
     }
+
     private void initDate() {
         SharedPreferences sp = getSharedPreferences("user", Activity.MODE_PRIVATE);
         String mPhoneno=sp.getString("phoneno", "");
@@ -70,18 +74,13 @@ public class TaskRemarkActivity extends Activity {
         final RequestParams params = new RequestParams();
 //        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 //        String date = sDateFormat.format(new java.util.Date()).substring(0, 10);
-//        params.addFormDataPart("signature", signature);
-//        params.addFormDataPart("phoneno",mPhoneno);
-//        params.addFormDataPart("task_id",task_id);
-//        params.addFormDataPart("eqpt_id",eqpt_id);
-//        params.addFormDataPart("date",mdate);
         params.addFormDataPart("signature", signature);
         params.addFormDataPart("phoneno",mPhoneno);
-        // params.addFormDataPart("task_id",task_id);
+       // params.addFormDataPart("task_id",task_id);
         params.addFormDataPart("task_id","FA0101001");
-        //  params.addFormDataPart("eqpt_id",eqpt_id);
+      //  params.addFormDataPart("eqpt_id",eqpt_id);
         params.addFormDataPart("eqpt_id","FA0101001");
-        // params.addFormDataPart("date",mdate);
+       // params.addFormDataPart("date",mdate);
         params.addFormDataPart("date","2016-07-01");
         HttpUtil.getInstance().post(MainLogic.GET_REMARK, params, new StringHttpRequestCallback() {
             @Override
@@ -150,7 +149,7 @@ public class TaskRemarkActivity extends Activity {
             @Override
             protected void onSuccess(String s) {
                 System.out.println(s);
-                Toast.makeText(TaskRemarkActivity.this, "任务备注成功！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TaskRemark2Activity.this, "任务备注成功！", Toast.LENGTH_SHORT).show();
             }
 
             @Override

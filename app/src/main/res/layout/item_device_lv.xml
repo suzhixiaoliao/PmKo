@@ -21,7 +21,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:paddingLeft="18px"
+            android:paddingLeft="20px"
             android:id="@+id/tv_tasklist_Location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,6 +53,7 @@
             android:id="@+id/bt_tasklist_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:background="@mipmap/device_arrows" />

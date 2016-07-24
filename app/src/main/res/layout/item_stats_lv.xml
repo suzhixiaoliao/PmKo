@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/iv_stat_picture"
             android:layout_width="64px"
-            android:layout_marginLeft="40px"
+            android:layout_marginLeft="30px"
             android:layout_height="64px"
             android:layout_weight="1"
             android:background="@color/bg_pumin" />
@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="温度"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/et_wendu"
@@ -49,7 +49,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="CAAAA"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 </RelativeLayout>

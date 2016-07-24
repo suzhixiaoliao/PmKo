@@ -117,12 +117,13 @@
             android:background="@mipmap/titile_pumin">
             <Button
                 android:id="@+id/btn_left"
-                android:layout_width="20px"
-                android:layout_height="20dp"
+                android:layout_width="30px"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:background="@mipmap/back_pumin"
                 android:layout_marginBottom="7dp"
                 android:layout_marginTop="2dp"
+                android:layout_marginLeft="30dp"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="fh"

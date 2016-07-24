@@ -76,10 +76,13 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-               items items = mdata.get(position);
+               //items items = mdata.get(position);
+                Log.d("un", mdata.toString());
+                items items = mdata.get(position);
                 Log.d("un", mdata.toString());
                 Intent intent = new Intent(MainActivity.this, DataExecuteTasks2Activity.class);
                 intent.putExtra("item", items);
+                MainActivity.this.startActivity(intent);
             }
         });
         requestData();
@@ -88,11 +91,11 @@ public class MainActivity extends BaseActivity{
 
 
     private void initViewpager() {
-        final login login = new login();
         tv_main = (TextView) findViewById(R.id.tv_main);
         //第四步
-        final login mlogin = (login) getIntent().getSerializableExtra("login");
-        tv_main.setText(mlogin.getName() + ",您好");
+        sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        String mName=sp.getString("name","");
+        tv_main.setText(mName + ",您好");
         tv_return = (TextView) findViewById(R.id.tv_return);
 
         tv_return.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +141,6 @@ public class MainActivity extends BaseActivity{
                 Intent inter1 = getIntent();
                 inter1.setClass(MainActivity.this, CaptureActivity.class);
                 inter1.putExtra("str_all", "0");
-                inter1.putExtra("login", mlogin);
                 startActivity(inter1);
             }
         });
@@ -148,7 +150,6 @@ public class MainActivity extends BaseActivity{
             public void onClick(View v) {
                 Intent inter1 = getIntent();
                 inter1.setClass(MainActivity.this, UnfinishedDeviceActivity.class);
-                mlogin.getPhoneno();
                 startActivity(inter1);
 
             }
@@ -159,7 +160,6 @@ public class MainActivity extends BaseActivity{
             public void onClick(View v) {
                 Intent inter1 = getIntent();
                 inter1.setClass(MainActivity.this, HelloChartActivity.class);
-                mlogin.getPhoneno();
                 startActivity(inter1);
             }
         });
@@ -205,9 +205,6 @@ public class MainActivity extends BaseActivity{
     }
 
     /**
-     * 动态设置ImageView的宽高，屏幕适配
-     * @param image
-     * @param
      */
     public void setAutoWidth(ImageView image){
         RelativeLayout.LayoutParams ps = (RelativeLayout.LayoutParams) image.getLayoutParams();
@@ -219,11 +216,13 @@ public class MainActivity extends BaseActivity{
 
     private void requestData() {
         RequestParams params = new RequestParams();
-        final login mlogin = (login) getIntent().getSerializableExtra("login");
+        //final login mlogin = (login) getIntent().getSerializableExtra("login");
         String finished = "N";
         params.addFormDataPart("signature", "1");
         params.addFormDataPart("finished", finished);
-        params.addFormDataPart("phoneno", mlogin.getPhoneno());
+        sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        String mPhoneno=sp.getString("phoneno","");
+        params.addFormDataPart("phoneno",mPhoneno);
 
         HttpUtil.getInstance().post(MainLogic.GET_TASK_LIST, params, new StringHttpRequestCallback() {
             @Override
