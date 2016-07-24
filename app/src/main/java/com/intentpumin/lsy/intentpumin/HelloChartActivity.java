@@ -3,11 +3,13 @@ package com.intentpumin.lsy.intentpumin;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -24,8 +26,8 @@ import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.tools.alldevice.devices_all;
 import com.intentpumin.lsy.intentpumin.tools.allstat.stats_all;
-import com.intentpumin.lsy.intentpumin.tools.value.values_all_items;
 import com.intentpumin.lsy.intentpumin.tools.value.result_values_all_get;
+import com.intentpumin.lsy.intentpumin.tools.value.values_all_items;
 import com.intentpumin.lsy.intentpumin.tools.value.values_devices_get;
 import com.intentpumin.lsy.intentpumin.util.Stats_icon;
 
@@ -57,10 +59,11 @@ public class HelloChartActivity extends BaseActivity {
     private ListView listview;
     private ChartAdapter chartadapter;
     private LineChartView lineChartView;
+    List<Line> lines = new ArrayList<>();
     //日期
     Button et_yunxing;
     //获取日期格式器对象
-    DateFormat fmtDate = new java.text.SimpleDateFormat("yyyy-MM-dd");
+    DateFormat fmtDate = new SimpleDateFormat("yyyy-MM-dd");
 
     //定义一个TextView控件对象
     TextView sdate = null;
@@ -74,6 +77,9 @@ public class HelloChartActivity extends BaseActivity {
 
     //需要查询的状态集合
     List<String> statIds = new ArrayList<>();
+
+
+    ChartManeger chartManeger;
 
 
     Map<devices_all, List<stats_all>> resData = new LinkedHashMap<>();
@@ -100,6 +106,12 @@ public class HelloChartActivity extends BaseActivity {
 
     private void init() {
         listview = (ListView) findViewById(R.id.lv_xs);
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                return true;
+            }
+        });
         chartadapter = new ChartAdapter();
         listview.setAdapter(chartadapter);
         sdate = (TextView) findViewById(R.id.tv_date_start);
@@ -176,7 +188,11 @@ public class HelloChartActivity extends BaseActivity {
     private void initChart() {
         //折线图控件//趋势图
         lineChartView = (LineChartView) findViewById(R.id.charts);
+        chartManeger = new ChartManeger(lineChartView);
+
+
     }
+
     private void requestData(List<String> eqptIds, List<String> statIds) {
 
         final String s_date = sdate.getText().toString().trim();
@@ -203,21 +219,29 @@ public class HelloChartActivity extends BaseActivity {
                 result_values_all_get result = gson.fromJson(s, type);
                 System.out.println(s);
                 // 这里
+
+
                 if (result.getRes() == 1) {
-                    Toast.makeText(getApplicationContext(), "后台获取数据成功", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "后台获取数据成功", Toast.LENGTH_SHORT).show();
                     List<values_devices_get> datas = result.getData();
+                    System.out.println("datas = " + datas);
                     lineChartView.setLineChartData(generateLineChartData("", "", datas));
-                    listData.clear();
-                    listData.addAll(result.getData());
+
+
+
+//                    listData.clear();
+//                    listData.addAll(result.getData());
                     chartadapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(getApplicationContext(), result.getMsg(), Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(int errorCode, String msg) {
                 System.out.println("error code " + errorCode + "\nmsg " + msg);
             }
+
             @Override
             public void onFinish() {
                 //结束刷新
@@ -225,9 +249,30 @@ public class HelloChartActivity extends BaseActivity {
             }
         });
     }
+
+
+    /**
+     * 移除一根线
+     */
+    private void removeLine() {
+
+    }
+
+
     private LineChartData generateLineChartData(String eqpt_name, String stat_name, List<values_devices_get> datas) {
+
+
+        int[] lineColor = new int[]{
+                Color.parseColor("#32BB7F"),
+                Color.parseColor("#BB6BAC"),
+                Color.parseColor("#226FA7"),
+                Color.parseColor("#FFB061"),
+                Color.parseColor("#F4659D"),
+                Color.parseColor("#939EAA")};
+
+
         //构建20个点的数据
-        List<Line> lines = new ArrayList<>();
+        //
         // value.
         Axis distanceAxis = new Axis();
         for (int index = 0; index < datas.size(); index++) {
@@ -251,44 +296,67 @@ public class HelloChartActivity extends BaseActivity {
             for (int i = 0; i < itemsData.size(); i++) {
                 values_all_items valuesallitems = itemsData.get(i);
                 //三目運算符 如果不是怎麼樣 那麼就怎麼樣
-                String rValue = "".equals(valuesallitems.getItem().getR_value()) ? "0": valuesallitems
+                String rValue = "".equals(valuesallitems.getItem().getR_value()) ? "0" : valuesallitems
                         .getItem().getR_value();
-               // values.add(new PointValue(i,(float) Double.parseDouble(rValue)) == 0 ? Float.NaN :(Double.parseDouble(rValue)));
-                values.add(new PointValue(i,(float)(Float.parseFloat(rValue)) == 0? Float.NaN : (Float.parseFloat(rValue))));
+               /*String rValue = valuesallitems.getItem().getR_value();
+
+                if (rValue==null){
+                    Toast.makeText(this,"里面有空数据,请重新查询",Toast.LENGTH_SHORT).show();
+
+
+                }else{
+                    valuesallitems.getItem().getR_value();
+                }*/
+                //values.add(new PointValue(i,(float) Double.parseDouble(rValue)) == 0 ? Float.NaN :(Double.parseDouble(rValue)));
+
+                values.add(new PointValue(i, (Float.parseFloat(rValue)) == 0 ? Float.NaN : (Float.parseFloat(rValue))));
                 Log.d("key", "value = " + rValue);
-                String date = itemsData.get(index).getDate();
+                //String date = itemsData.get(index).getDate();
+                String date = valuesallitems.getDate();
+                Log.d("itemdate", itemData.toString());
                 dates.add(date);
             }
 
             //设置日期
             distanceAxis.setValues(getAxisValues(itemsData));
             //初始化一条线
-            Line line = new Line(values);
-            line.setColor(getResources().getColor(datas.get(index).isChecked() ? R.color.shenlan : R.color.qianlan));
+            ChartLine line = new ChartLine(values);
+
+
+            line.setColor(lineColor[index]);
+
+//            line.setColor(getResources().getColor(datas.get(index).isChecked() ? R.color.shenlan : R.color.qianlan));
             line.setHasLabels(true);
+            line.values_devices_get = datas.get(index);
+
+
             //将线装入集合中
+            //需要显示的线才加入集合中
             lines.add(line);
         }
 
-
         LineChartData data = new LineChartData(lines);
-
         // value.
 //        distanceAxis.setName("Distance");
         //设置底部x轴字体的颜色
         distanceAxis.setTextColor(ChartUtils.COLOR_ORANGE);
         distanceAxis.setMaxLabelChars(1);
-        distanceAxis.setHasSeparationLine(false);
+
         distanceAxis.setHasLines(true);
         distanceAxis.setHasTiltedLabels(true);
         distanceAxis.setName("   ");
         //设置底部
         data.setAxisXBottom(distanceAxis);
-
         data.setAxisYLeft(new Axis().setName(" ").setHasLines(true));
         return data;
 
     }
+
+
+    private void setChart() {
+
+    }
+
 
     //初始化x轴的值
     public List<AxisValue> getAxisValues(List<values_all_items> hours) {
@@ -315,19 +383,19 @@ public class HelloChartActivity extends BaseActivity {
         return "";
     }
 
-    private List<values_devices_get> listData = new ArrayList<>();
+//    private List<values_devices_get> listData = new ArrayList<>();
 
     private class ChartAdapter extends BaseAdapter {
         private ViewHolder holder;
 
         @Override
         public int getCount() {
-            return listData.size();
+            return lines.size();
         }
 
         @Override
         public values_devices_get getItem(int position) {
-            return listData.get(position);
+            return ((ChartLine) lines.get(position)).values_devices_get;
         }
 
         @Override
@@ -336,19 +404,29 @@ public class HelloChartActivity extends BaseActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            values_devices_get valuesdevicesget = getItem(position);
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            final values_devices_get valuesdevicesget = getItem(position);
+
             if (convertView == null) {
                 convertView = LayoutInflater.from(HelloChartActivity.this).inflate(R.layout.item_value_list, null);
                 holder = new ViewHolder(convertView);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            holder.driverNameTv.setText("设备： " + valuesdevicesget.getEqpt_name());
-            holder.driverStatusTv.setText("状态： " + valuesdevicesget.getStat_name());
-            int resId = Stats_icon.getStatIcon(valuesdevicesget.getStat_id());
-            holder.pictureIv.setImageResource(resId);
-            convertView.setOnClickListener(new ItemListener(valuesdevicesget));
+            holder.driverNameTv.setText( valuesdevicesget.getEqpt_name());
+            holder.driverStatusTv.setText(valuesdevicesget.getStat_name());
+
+
+            if (((ChartLine) lines.get(position)).show) {
+
+                int resId = Stats_icon.getStatIcon(valuesdevicesget.getStat_id());
+                holder.pictureIv.setImageResource(resId);
+
+            } else {
+                int resId = Stats_icon.getUnStatIcon(valuesdevicesget.getStat_id());
+                holder.pictureIv.setImageResource(resId);
+            }
+            convertView.setOnClickListener(new ItemListener(valuesdevicesget, position));
             return convertView;
         }
 
@@ -360,7 +438,7 @@ public class HelloChartActivity extends BaseActivity {
             public ViewHolder(View convertView) {
                 driverNameTv = (TextView) convertView.findViewById(R.id.tv_driver_name);
                 driverStatusTv = (TextView) convertView.findViewById(R.id.tv_driver_status);
-                pictureIv= (ImageView) convertView.findViewById(R.id.iv_picture);
+                pictureIv = (ImageView) convertView.findViewById(R.id.iv_picture);
                 convertView.setTag(this);
             }
 
@@ -369,14 +447,23 @@ public class HelloChartActivity extends BaseActivity {
 
     private class ItemListener implements View.OnClickListener {
         private final values_devices_get valuesdevicesget;
+        private int position;
 
-        public ItemListener(values_devices_get valuesdevicesget) {
+
+        public ItemListener(values_devices_get valuesdevicesget, int position) {
             this.valuesdevicesget = valuesdevicesget;
+            this.position = position;
         }
 
         @Override
         public void onClick(View v) {
-            lineChartView.setLineChartData(generateLineChartData(valuesdevicesget.getEqpt_name(), valuesdevicesget.getStat_name(), listData));
+
+            chartManeger.refresh();
+
+            chartManeger.toggleShow(position);
+            chartadapter.notifyDataSetChanged();
+
+
         }
     }
 
