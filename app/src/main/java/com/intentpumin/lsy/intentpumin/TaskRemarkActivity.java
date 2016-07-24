@@ -53,6 +53,12 @@ public class TaskRemarkActivity extends Activity {
        // String mRemark = et_tast_com.getText().toString();
         bt_tast_qd= (Button) findViewById(R.id.bt_tast_qd);
         bt_tast_qx= (Button) findViewById(R.id.bt_tast_qx);
+        bt_tast_qx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         bt_tast_qd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

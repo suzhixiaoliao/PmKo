@@ -54,6 +54,7 @@ public class TaskRemark2Activity extends Activity {
             @Override
             public void onClick(View v) {
 
+                finish();
             }
         });
         bt_tast_qd.setOnClickListener(new View.OnClickListener() {
