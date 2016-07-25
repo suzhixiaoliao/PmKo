@@ -105,9 +105,10 @@ public class Alternate_fragment extends Fragment {
             //表名：D_EXEC_M
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/?signature=1
-            path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
+//            path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
+//                    "signature=1&s_date=" + star + "&e_date=" + end_time + "&eqpt_id=" + str;
+            path="http://app.pumintech.com:40000/api/user/get_mt_list_by_eqpt_id?" +
                     "signature=1&s_date=" + star + "&e_date=" + end_time + "&eqpt_id=" + str;
-
         } catch (Exception e) {
             e.printStackTrace();
         }

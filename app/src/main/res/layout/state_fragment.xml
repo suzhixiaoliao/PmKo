@@ -78,10 +78,11 @@
 
             <TextView
                 android:id="@+id/work_number"
-                android:layout_width="200dp"
+                android:layout_width="280dp"
+                android:paddingLeft="10dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="#f94961" />
+                android:textColor="#ffffff" />
 
         </FrameLayout>
 
@@ -104,7 +105,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="#000" />
+                android:textColor="#ffffff" />
 
 
         </FrameLayout>
@@ -128,7 +129,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="#000" />
+                android:textColor="#ffffff" />
         </FrameLayout>
 
         <TextView

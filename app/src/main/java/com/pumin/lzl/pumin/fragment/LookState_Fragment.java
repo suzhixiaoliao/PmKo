@@ -125,7 +125,9 @@ public class LookState_Fragment extends Fragment {
 //            http://10.16.1.201:40000/api/user/get_stat_info?signature=1
             //表名：D_EXEC_D_TASK
             //参数---时间参数
-            path = "http://10.16.1.201:40000/api/user/get_stat_info?signature=1&eqpt_id=" + str;
+//            path = "http://10.16.1.201:40000/api/user/get_stat_info?signature=1&eqpt_id=" + str;
+
+            path="http://app.pumintech.com:40000/api/user/get_stat_info?signature=1&eqpt_id=" + str;
             System.out.println("Lookstate" + path);
         } catch (Exception e) {
             e.printStackTrace();
@@ -219,16 +221,16 @@ public class LookState_Fragment extends Fragment {
     private void percentage(int ontime,int okcount,int okcounts, int ontimes,int max, int count) {
         workok_progress_view.setMaxCount(max);
         workok_progress_view.setCurrentCount(okcount);
-        workok_number.setText("" + okcounts + "%");
+        workok_number.setText(okcount+"/"+max+"(" + okcounts + "%)");
 
         Otwork_progress_view.setMaxCount(max);
         Otwork_progress_view.setCurrentCount(ontime);
-        Otwork_number.setText("" + ontimes + "%");
+        Otwork_number.setText(ontime+"/"+max+"(" + ontimes + "%)");
 
 //工作完成情况----两个参数 1.工作总量 2.已完成工作量 ..预留参数接口-网络请求
         task_progress_view.setMaxCount(max);
         task_progress_view.setCurrentCount(count);
         work_number.setText("本月截止到今天,应该完成:" + count + "个任务,任务总数:" + max);
-        work_number.setTextSize(8);
+        work_number.setTextSize(10);
     }
 }

@@ -1,7 +1,9 @@
 package com.pumin.lzl.pumin;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,16 +11,20 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -54,7 +60,7 @@ import java.util.ArrayList;
 */
 public class Main_View extends AppCompatActivity {
     //context
-    Context context = this;
+    Context context;
     //Tag的提示
     private static final String TAG = "Main_view";
 
@@ -69,8 +75,7 @@ public class Main_View extends AppCompatActivity {
 
     String str = "";
 
-    //标题
-    private Alltitle equipment;
+    private ImageButton main_back;
 
     //flag
     private LinearLayout dot_layout;
@@ -90,7 +95,7 @@ public class Main_View extends AppCompatActivity {
     String info;
     String path = "";
 
-    int[] drawble={1,R.mipmap.abxhs,R.mipmap.abbjq,R.mipmap.abdh,R.mipmap.abdzx};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +115,6 @@ public class Main_View extends AppCompatActivity {
     //初始化控件
     private void initview() {
         view_page = (ViewPager) findViewById(R.id.view_pager);
-        equipment = (Alltitle) findViewById(R.id.equipment);
         device_name = (TextView) findViewById(R.id.device_name);
         device_type = (TextView) findViewById(R.id.device_type);
         device_start_date = (TextView) findViewById(R.id.device_start_date);
@@ -119,18 +123,18 @@ public class Main_View extends AppCompatActivity {
         device_phone = (TextView) findViewById(R.id.device_phone);
         device_image = (ImageView) findViewById(R.id.device_image);
         dot_layout = (LinearLayout) findViewById(R.id.dot_layout);
+        main_back= (ImageButton) findViewById(R.id.main_back);
     }
 
 
     //设置标题栏
     private void initTitle() {
-        equipment.setTitle("设备信息");
-        equipment.setLeftButton(null, R.mipmap.back, new Alltitle.OnLeftButtonClickListener() {
+        main_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onLeftBtnClick(View button) {
+            public void onClick(View v) {
                 finish();
             }
-        }, null);
+        });
     }
 
     //碎片的加载
@@ -182,7 +186,9 @@ public class Main_View extends AppCompatActivity {
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/?signature=1
             //表名:S_EQPT_M
-            path = "http://10.16.1.201:40000/api/user/get_eqpt_info?signature=1&eqpt_id=" + str;
+//            path = "http://10.16.1.201:40000/api/user/get_eqpt_info?signature=1&eqpt_id=" + str;
+
+            path = "http://app.pumintech.com:40000/api/user/get_eqpt_info?signature=1&eqpt_id=" + str;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -235,8 +241,6 @@ public class Main_View extends AppCompatActivity {
     }
 
 
-
-
     //预留接口--点击设备样子(进行拍照)上传图片
     private void imageonclick() {
         device_image.setOnClickListener(new View.OnClickListener() {
@@ -272,8 +276,8 @@ public class Main_View extends AppCompatActivity {
             String name = jsonObj.getString("eqpt_name");
             device_name.setText(name); //设备名称
 
-            String ids=jsonObj.getString("eqpt_id");
-            F_image.image_s(ids,device_image,this);
+            String ids = jsonObj.getString("eqpt_id");
+            F_image.image_s(ids, device_image, this);
 
             String type2_name = jsonObj.getString("next_rpd_date");
             device_type.setText(type2_name); //下次维修日期
@@ -290,7 +294,8 @@ public class Main_View extends AppCompatActivity {
 
 
             String phone = jsonObj.getString("phoneno");
-            device_phone.setText(phone); //联系号码
+            device_phone.setText(Html.fromHtml("<u>" + phone + "</u>")); //联系号码
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -311,9 +316,18 @@ public class Main_View extends AppCompatActivity {
         device_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent();
-                it.setData(Uri.parse("tel:" + device_phone.getText()));
-                it.setAction(Intent.ACTION_CALL);
+                Intent it = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + device_phone.getText().toString()));
+                if (ActivityCompat.checkSelfPermission(Main_View.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(it);
             }
         });
     }

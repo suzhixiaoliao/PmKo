@@ -7,10 +7,32 @@
     android:orientation="vertical"
     tools:context="com.pumin.view.TaskList_alter">
 
-    <com.pumin.lzl.pumin.utils.Alltitle
-        android:id="@+id/tasklist_title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/tasklist_back"
+            style="?android:buttonBarButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:text="任务详细" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000" />
 
     <LinearLayout
 

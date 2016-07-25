@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,9 +36,8 @@ import java.util.ArrayList;
 */
 
 public class TaskList_alter extends AppCompatActivity {
-
-    private Alltitle tasklist_title;
-
+    //设置标题
+    private ImageButton back;
 
     //网络连接
     String str;
@@ -69,19 +69,18 @@ public class TaskList_alter extends AppCompatActivity {
 
     //设置标题
     private void setTasklist_name() {
-        tasklist_title.setTitle("任务清单");
-        tasklist_title.setLeftButton(null, R.mipmap.back, new Alltitle.OnLeftButtonClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onLeftBtnClick(View button) {
+            public void onClick(View v) {
                 finish();
             }
-        }, null);
+        });
     }
 
 
     //初始化控件
     private void intiview() {
-        tasklist_title = (Alltitle) findViewById(R.id.tasklist_title);
+        back = (ImageButton) findViewById(R.id.tasklist_back);
         tasklist_maintenance = (ListView) findViewById(R.id.tasklist_maintenance);
         tasklist_parameter = (ListView) findViewById(R.id.tasklist_parameter);
     }
@@ -96,8 +95,13 @@ public class TaskList_alter extends AppCompatActivity {
         time = time.substring(0, 10);  //截取日期时间
         System.out.println("tasklist" + str + "这是时间" + time);
 
-        path = "http://10.16.1.201:40000/api/user/get_mt_details?" +
+//        path = "http://10.16.1.201:40000/api/user/get_mt_details?" +
+//                "signature=1&date=" + time + "&eqpt_id=" + str;
+
+        path = "http://app.pumintech.com:40000/api/user/get_mt_details?" +
                 "signature=1&date=" + time + "&eqpt_id=" + str;
+
+
         System.out.println("tasklist_alter_url" + path);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(path, null,
                 new Response.Listener<JSONObject>() {

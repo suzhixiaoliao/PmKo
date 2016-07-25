@@ -96,7 +96,6 @@ public class Historicaltask_fragment extends Fragment {
             dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
             dateAndTime.set(Calendar.MINUTE, minute);
             upDateTime();
-
         }
     };
 

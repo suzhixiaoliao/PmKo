@@ -5,10 +5,32 @@
     android:background="#e1e0dc"
     android:orientation="vertical">
 
-    <com.pumin.lzl.pumin.utils.Alltitle
-        android:id="@+id/equipment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/main_back"
+            style="?android:buttonBarButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:text="设备信息" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,6 +135,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/call_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -149,10 +172,11 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <TextView
-        android:background="#000"
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="1dp"
+        android:background="#000" />
     <!--主界面碎片依赖框-->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -164,13 +188,12 @@
             android:layout_height="match_parent" />
 
         <LinearLayout
-            android:layout_marginBottom="15dp"
             android:id="@+id/dot_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/view_pager"
+            android:layout_marginBottom="15dp"
             android:gravity="center"
-            android:orientation="horizontal">
-        </LinearLayout>
+            android:orientation="horizontal"></LinearLayout>
     </RelativeLayout>
 </LinearLayout>

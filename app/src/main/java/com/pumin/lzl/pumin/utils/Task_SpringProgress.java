@@ -59,7 +59,7 @@ public class Task_SpringProgress extends View {
         super.onDraw(canvas);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        int round = mHeight / 50;
+        int round = mHeight / 10;
         System.out.println("max=" + maxCount + "  current=" + currentCount);
 //        mPaint.setColor(Color.BLACK);
         RectF rectBg = new RectF(0, 0, mWidth, mHeight);

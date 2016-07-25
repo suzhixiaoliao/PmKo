@@ -93,7 +93,11 @@ public class Futuremission_fragment extends Fragment {
         //接口规范(设备编号+开始时间+结束时间>>>就是查询条件)
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/login?signature=1
-        path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
+
+//        path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
+//                "signature=1&s_date=" + start_time + "&e_date=" + END_time + "&eqpt_id=" + str;
+
+        path="http://app.pumintech.com:40000/api/user/get_mt_list_by_eqpt_id?" +
                 "signature=1&s_date=" + start_time + "&e_date=" + END_time + "&eqpt_id=" + str;
         System.out.println("这是futuremission中的url" + path);
 
