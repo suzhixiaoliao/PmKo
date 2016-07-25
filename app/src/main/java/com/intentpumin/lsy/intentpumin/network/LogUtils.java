@@ -18,9 +18,6 @@ package com.intentpumin.lsy.intentpumin.network;
 
 import android.util.Log;
 
-/**
- * Created by yang on 2016/4/5.
- */
 public class LogUtils {
 	private static boolean DEBUG = false;   //在项目打包时把他改成false，自己调试时改成true;
 

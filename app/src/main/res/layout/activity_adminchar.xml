@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/layout_title"
-        layout="@layout/layout_list_zxing_title" />
+        layout="@layout/layout_hellochart_title" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,6 +32,9 @@
                     android:id="@+id/lv_xs"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
+                    android:divider="#00000000"
+                    android:dividerHeight="0dip"
+                    android:listSelector="@android:color/transparent"
                     ></ListView>
             </LinearLayout>
 </LinearLayout>

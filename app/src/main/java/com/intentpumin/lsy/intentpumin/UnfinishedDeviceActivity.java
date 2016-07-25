@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -38,6 +39,8 @@ public class UnfinishedDeviceActivity extends BaseActivity {
     private List<items> mdata;
     private SharedPreferences sp;
     private SwipeRefreshLayout swip;
+    private login mlogin;
+    private Button btn_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,14 @@ public class UnfinishedDeviceActivity extends BaseActivity {
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         setContentView(R.layout.activity_unfinisheddevice);
+        btn_back= (Button) findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(UnfinishedDeviceActivity.this,MainActivity.class);
+                UnfinishedDeviceActivity.this.startActivity(intent);
+            }
+        });
         mtasklist = (ListView) findViewById(R.id.list_tasklist);
         swip = (SwipeRefreshLayout) findViewById(R.id.swip);
         swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -68,9 +79,8 @@ public class UnfinishedDeviceActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 items items = mdata.get(position);
-                Log.d("un",mdata.toString());
+                Log.d("un", mdata.toString());
                 Intent intent = new Intent(UnfinishedDeviceActivity.this, DataExecuteTasks2Activity.class);
-
                 intent.putExtra("item", items);
                 UnfinishedDeviceActivity.this.startActivity(intent);
             }
@@ -80,11 +90,12 @@ public class UnfinishedDeviceActivity extends BaseActivity {
 
     private void requestData() {
         RequestParams params = new RequestParams();
-        final login mlogin = (login) getIntent().getSerializableExtra("login");
         String finished = "N";
         params.addFormDataPart("signature", "1");
         params.addFormDataPart("finished", finished);
-        params.addFormDataPart("phoneno", mlogin.getPhoneno());
+        sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        String mPhoneno= sp.getString("phoneno","");
+        params.addFormDataPart("phoneno", mPhoneno);
 
         HttpUtil.getInstance().post(MainLogic.GET_TASK_LIST, params, new StringHttpRequestCallback() {
             @Override

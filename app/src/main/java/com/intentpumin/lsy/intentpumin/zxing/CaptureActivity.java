@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.intentpumin.lsy.intentpumin.DataExecuteTasksActivity;
-import com.intentpumin.lsy.intentpumin.HelloChartActivity;
+import com.intentpumin.lsy.intentpumin.MainActivity;
 import com.intentpumin.lsy.intentpumin.R;
 import com.intentpumin.lsy.intentpumin.tools.device.items;
 import com.intentpumin.lsy.intentpumin.util.LightControl;
@@ -148,7 +148,9 @@ public class CaptureActivity extends Activity implements Callback {
         mBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent=new Intent(CaptureActivity.this, MainActivity.class);
+                CaptureActivity.this.startActivity(intent);
+                CaptureActivity.this.finish();
             }
         });
 

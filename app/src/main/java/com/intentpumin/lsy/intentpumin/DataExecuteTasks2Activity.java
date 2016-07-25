@@ -38,7 +38,10 @@ import com.intentpumin.lsy.intentpumin.tools.stat.result_stat_get;
 import com.intentpumin.lsy.intentpumin.tools.stat.stat_get;
 import com.intentpumin.lsy.intentpumin.tools.task.result_task_get;
 import com.intentpumin.lsy.intentpumin.tools.task.task_get;
+import com.intentpumin.lsy.intentpumin.tools.task.task_items_get;
 import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
+
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
@@ -80,7 +83,7 @@ public class DataExecuteTasks2Activity extends BaseActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        setContentView(R.layout.activity_data_execute_tasks);
+        setContentView(R.layout.activity_data_execute_tasks2);
         result = this.getIntent().getStringExtra("result");
         Log.e("TAG", "===========result==========" + result);
         mContext = this;
@@ -140,27 +143,14 @@ public class DataExecuteTasks2Activity extends BaseActivity {
 
     private void init() {
         mtasklist = (GridView) findViewById(R.id.gv_task);
-        mtasklist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-                task_get task = (task_get) adapter.getItem(position);
-                Intent inter = getIntent();
-                inter.setClass(DataExecuteTasks2Activity.this, TaskRemarkActivity.class);
-                inter.putExtra("task", (Serializable) task);
-                startActivityForResult(inter, 1);
-                return true;
-            }
-
-        });
         mdatalist = (ListView) findViewById(R.id.gv_shuju);
         tv_queding = (TextView) findViewById(R.id.tv_queding);
         tv_fanhui = (TextView) findViewById(R.id.tv_fanhui);
         tv_fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DataExecuteTasks2Activity.this, CaptureActivity.class);
+                Intent i = new Intent(DataExecuteTasks2Activity.this, UnfinishedDeviceActivity.class);
                 startActivity(i);
             }
         });
@@ -175,6 +165,18 @@ public class DataExecuteTasks2Activity extends BaseActivity {
         dataadapter = new StatListAdapter(this, mstat);
         if (mdatalist == null || dataadapter == null) {
         }
+        mtasklist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                task_get task_get=mtask.get(position);
+                Intent inter = getIntent();
+                inter.setClass(DataExecuteTasks2Activity.this, TaskRemarkActivity.class);
+                inter.putExtra("task", task_get);
+                startActivity(inter);
+                return true;
+            }
+
+        });
         mdatalist.setAdapter(dataadapter);
         requestvalue();
         tv_queding.setOnClickListener(new View.OnClickListener() {
@@ -190,12 +192,14 @@ public class DataExecuteTasks2Activity extends BaseActivity {
         RequestParams params = new RequestParams();
         String mdate = items.getDate();
         String date = mdate.substring(0, 10);
+        sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        String mPhoneno= sp.getString("phoneno", "");
         String phoneno = "13000000000";
         String area_id = items.getArea_id();
         String eqpt_id = items.getEqpt_id();
         params.addFormDataPart("signature", 1);
         params.addFormDataPart("date", date);
-        params.addFormDataPart("phoneno", phoneno);
+        params.addFormDataPart("phoneno", mPhoneno);
         params.addFormDataPart("area_id", area_id);
         params.addFormDataPart("eqpt_id", eqpt_id);
         HttpUtil.getInstance().post(MainLogic.GET_STAT, params, new StringHttpRequestCallback() {
@@ -242,17 +246,20 @@ public class DataExecuteTasks2Activity extends BaseActivity {
             }
         });
     }
-    //获取任务
+
+    // TODO: 2016/7/20  获取任务
     private void requestData(String eqptid) {
         RequestParams params = new RequestParams();
         String phoneno = "13000000000";
+        sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        String mPhoneno= sp.getString("phoneno","");
         String mdate = items.getDate();
         String date = mdate.substring(0, 10);
         String area_id = items.getArea_id();
         String eqpt_id = items.getEqpt_id();
         params.addFormDataPart("signature", 1);
         params.addFormDataPart("date", date);
-        params.addFormDataPart("phoneno", phoneno);
+        params.addFormDataPart("phoneno", mPhoneno);
         params.addFormDataPart("area_id", area_id);
         params.addFormDataPart("eqpt_id", eqpt_id);
         HttpUtil.getInstance().post(MainLogic.GET_TASK, params, new StringHttpRequestCallback() {
@@ -261,14 +268,17 @@ public class DataExecuteTasks2Activity extends BaseActivity {
                 // TODO: 2016/6/22 获取任务接口的服务器返回的数据
                 System.out.println("onSuccess=======" + s);
                 result_task_get result = null;
+                String eqpt_id="";
                 try {
                     if (!TextUtils.isEmpty(s)) {
                         Gson gson = new Gson();
                         result = gson.fromJson(s, result_task_get.class);//将JSON数据转成Result对象
+                        task_items_get datas = result.getData();
+                        List<task_get> task_gets=datas.items;
                         // TODO: 2016/6/22 保存Sp数据
-                        SharedPreferences sp = getSharedPreferences("lsytask", Activity.MODE_PRIVATE);
+                        SharedPreferences sp = getSharedPreferences("task", Activity.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sp.edit();
-                        editor.putString("result", s).commit();
+                        editor.putString("task", s).commit();
                     }
                 } catch (JsonSyntaxException e) {
                     e.printStackTrace();
@@ -340,30 +350,35 @@ public class DataExecuteTasks2Activity extends BaseActivity {
             for (int i = 0; i < mstat.size(); i++) {
                 final int j = i;
                 stat_get item = mstat.get(i);
+                sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+                String mPhoneno= sp.getString("phoneno", "");
 //                if (item.getFinished().equals("Y1")) {
                 RequestParams params = new RequestParams();
                 SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String exec_time = sDateFormat.format(new java.util.Date());
-                String date = b.getData().getItems().get(i).getDate().substring(0,10);
+                String date = b.getData().getItems().get(i).getDate().substring(0, 10);
                 String area_id = b.getData().getItems().get(i).getArea_id();
                 String eqpt_id = b.getData().getItems().get(i).getEqpt_id();
                 String stat_id = b.getData().getItems().get(i).getStat_id();
-                params.addFormDataPart("signature", 1);
+                String signature="1";
+                params.addFormDataPart("signature",signature);
                 params.addFormDataPart("date", date);
+                params.addFormDataPart("phoneno",mPhoneno);
+                String phoneno = "13000000000";
                 params.addFormDataPart("area_id", area_id);
                 params.addFormDataPart("eqpt_id", eqpt_id);
+                params.addFormDataPart("phoneno",mPhoneno);
                 params.addFormDataPart("stat_id", stat_id);
                 // TODO: 2016/6/21 传值
                 params.addFormDataPart("r_value", item.getR_value());
-                if (item.getFinished().equals("Y1")) {
+                params.addFormDataPart("finished", "Y");
+                /*if (item.getFinished().equals("Y1")) {
                     params.addFormDataPart("finished", "Y");
                     System.out.println("llllllllllll" + item.getFinished());
                 } else if (item.getFinished().equals("N1")) {
-                    params.addFormDataPart("finished", "N");
+                    params.addFormDataPart("finished", "Y");
                     System.out.println("llllllllllll" + item.getFinished());
-                } else {
-                    params.addFormDataPart("finished", item.getFinished());
-                }
+                } */
                 params.addFormDataPart("spot_x", Mapx);
                 System.out.println("llllllllllll" + Mapx);
                 params.addFormDataPart("spot_y", Mapy);
@@ -374,7 +389,7 @@ public class DataExecuteTasks2Activity extends BaseActivity {
                     protected void onSuccess(String s) {
                         System.out.println("onSuccess=======" + s);
                         if (mstat.get(j).getFinished().equals("Y1")) {
-                            mstat.get(j).setFinished("N");
+                            mstat.get(j).setFinished("Y");
                         }
                         if (mstat.get(j).getFinished().equals("N1")) {
                             mstat.get(j).setFinished("Y");
@@ -398,8 +413,8 @@ public class DataExecuteTasks2Activity extends BaseActivity {
     private void postTask() {
         // TODO: 2016/6/22 获取SP数据
         //获取Sp数据
-        SharedPreferences sp = getSharedPreferences("lsytask", Activity.MODE_PRIVATE);
-        String result = sp.getString("result", "");
+        SharedPreferences sp = getSharedPreferences("task", Activity.MODE_PRIVATE);
+        String result = sp.getString("task", "");
         //进行解析
         Type type = new TypeToken<result_task_get>() {
         }.getType();
@@ -410,6 +425,8 @@ public class DataExecuteTasks2Activity extends BaseActivity {
                 final int j = i;
                 task_get item = mtask.get(i);
                 System.out.println("lsy" + i);
+                sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+                String mPhoneno= sp.getString("phoneno","");
                 RequestParams params = new RequestParams();
                 SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String exec_time = sDateFormat.format(new java.util.Date());
@@ -424,7 +441,7 @@ public class DataExecuteTasks2Activity extends BaseActivity {
                 String phoneno = "13000000000";
                 String signature = "1";
                // String date = "2016-06-21";
-                params.addFormDataPart("phoneno", phoneno);
+                params.addFormDataPart("phoneno", mPhoneno);
                 params.addFormDataPart("date", date);
                 params.addFormDataPart("signature", signature);
                 params.addFormDataPart("area_id", area_id);

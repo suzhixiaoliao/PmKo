@@ -7,6 +7,19 @@
         <item name="android:windowIsFloating">true</item> //对话框是否浮动
         <item name="android:backgroundDimEnabled">true</item>//是否允许对话框的背景变暗
     </style>
+    <style name="carbon_CheckBox" parent="android:Widget.CompoundButton.CheckBox">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:button">@null</item>
+        <item name="carbon_checkColor">@drawable/checkbox_pumin</item>
+        <item name="android:drawablePadding">16dp</item>
+    </style>
+
+    <style name="carbon_RadioButton" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:button">@null</item>
+        <item name="carbon_radioColor">@drawable/checkbox_pumin</item>
+        <item name="android:drawablePadding">16dp</item>
+    </style>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->

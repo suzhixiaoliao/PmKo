@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class AdminStatAdapter extends BaseAdapter {
     private SharedPreferences sp;
-    private static final String TAG = "AdminStatAdapter";
+    private static final String TAG = AdminStatAdapter.class.getClass().getName();
     private List<stats_all> list;
     private Context context;
     private LayoutInflater inflater;//布局填充器。生成所对应的view对象，系统内置

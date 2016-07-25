@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class AdminEqptAdapter extends BaseAdapter {
     private SharedPreferences sp;
-    private static final String TAG = "AdminEqptAdapter";
+    private static final String TAG = AdminEqptAdapter.class.getClass().getName();
     private List<devices_all> list;
     private Context context;
     private LayoutInflater inflater;//布局填充器。生成所对应的view对象，系统内置
@@ -68,7 +68,6 @@ public class AdminEqptAdapter extends BaseAdapter {
                     if (isChecked) {
                         if (!checkList.contains(list.get(i))) {
                             checkList.add(list.get(i));
-                            System.out.println("checkList add state the id is " + list.get(i).getEqpt_id());
                         }
 
                     } else {
@@ -79,14 +78,6 @@ public class AdminEqptAdapter extends BaseAdapter {
             hodler.tv_sb = (TextView) convertView.findViewById(R.id.tv_sb);
             hodler.tv_tz = (TextView) convertView.findViewById(R.id.tv_tz);
             hodler.tv_id = (TextView) convertView.findViewById(R.id.tv_id);
-           /* hodler.tv_tz.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, AdminStatActivity.class);
-                    context.startActivity(intent);
-                }
-            });*/
-
         } else {
             hodler = (ViewHodler) convertView.getTag();
         }
@@ -99,9 +90,7 @@ public class AdminEqptAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (list != null && list.size() > 0) {
-            System.out.println("`list的size是" + list.size());
         } else {
-            System.out.println("`list的null");
         }
         return list.size();
     }
@@ -110,9 +99,7 @@ public class AdminEqptAdapter extends BaseAdapter {
         this.list = list;
         notifyDataSetChanged();
         if (list != null && list.size() > 0) {
-            System.out.println("list的size是" + list.size());
         } else {
-            System.out.println("list的null");
         }
     }
 

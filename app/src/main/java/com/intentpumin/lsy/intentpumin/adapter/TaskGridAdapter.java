@@ -53,12 +53,12 @@ public class TaskGridAdapter extends BaseAdapter {
 //        params.set
 //        hodler.rl_tab_o.setLayoutParams(params);
         if (task.getFinished().equals("Y")) {
-          hodler.rb_tab_o.setSelected(true);
+           hodler.rb_tab_o.setSelected(true);
            hodler.rb_tab_o.setBackgroundResource(R.mipmap.task_undone);
         }
         else if(task.getFinished().equals("N"))
         {
-           hodler.rb_tab_o.setBackgroundResource(R.mipmap.task_complete);
+           hodler.rb_tab_o.setBackgroundResource(R.mipmap.task_wei);
         }
         hodler.rb_tab_o.setText(task.task_name);
 

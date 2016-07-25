@@ -7,7 +7,8 @@ import java.util.List;
  */
 public class values_devices_get {
     //表示这条线是否有选中,如果选中,为true,默认为false
-    private boolean isChecked = false;
+    private boolean isChecked = true;
+
     private String eqpt_name;
     private String stat_name;
     private String eqpt_id;

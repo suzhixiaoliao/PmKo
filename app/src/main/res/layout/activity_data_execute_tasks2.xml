@@ -11,9 +11,9 @@
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_weight="1"
-        android:scrollbars="none">
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:fillViewport="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,17 +22,17 @@
 
             <GridView
                 android:id="@+id/gv_task"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:numColumns="auto_fit"
                 android:stretchMode="spacingWidthUniform" />
-            <!--  android:stretchMode="columnWidth"
-              android:background="@color/bg_pumin"
-              android:numColumns="3" -->
         </LinearLayout>
     </HorizontalScrollView>
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/divider"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -46,6 +46,9 @@
             android:layout_centerInParent="true"
             android:background="@color/bg_pumin"
             android:horizontalSpacing="60dp"
+            android:divider="#00000000"
+            android:dividerHeight="0dip"
+            android:listSelector="@android:color/transparent"
             android:verticalSpacing="60dp" />
     </RelativeLayout>
 
@@ -82,6 +85,8 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="20dp" />
+
+
     </RelativeLayout>
 
 </LinearLayout>
