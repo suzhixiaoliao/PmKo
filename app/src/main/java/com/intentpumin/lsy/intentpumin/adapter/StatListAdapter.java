@@ -55,7 +55,7 @@ public class StatListAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View convertView, ViewGroup parent) {
-      final ViewHodler hodler;
+        final ViewHodler hodler;
         if (convertView == null) {
             hodler = new ViewHodler();
             convertView = LayoutInflater.from(context).inflate(R.layout.item_stats_lv, null);
