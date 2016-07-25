@@ -28,7 +28,7 @@ public class Stats_icon {
     private final static Map<String,Integer> mUnIcon =new HashMap<String,Integer>(){
         {
             put("AI001", R.mipmap.leiji_1);//温度
-            //    put("AI002",R.mipmap.liuliang_1);
+            put("AI002",R.mipmap.liuliang_1);
            // put("AI002",R.mipmap.icon_liuliang);//气体流量
             put("AI003",R.mipmap.liuliang_1);//液体流量
             // put("AI004",R.mipmap.yali_1);

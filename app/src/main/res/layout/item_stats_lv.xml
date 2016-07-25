@@ -9,6 +9,7 @@
         android:id="@+id/yy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@mipmap/data_bg"
         android:gravity="center"
         android:translationZ="10dp"
         android:layout_margin="10dp"
