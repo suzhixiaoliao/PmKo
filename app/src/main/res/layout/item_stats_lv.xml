@@ -9,20 +9,19 @@
         android:id="@+id/yy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/data_bg"
+        android:background="@mipmap/data_bg_4"
         android:gravity="center"
         android:translationZ="10dp"
         android:layout_margin="10dp"
         android:padding="10dp">
 
         <ImageView
-
             android:id="@+id/iv_stat_picture"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:background="#e5e5e5"/>
+            android:background="@color/bg_pumin"/>
 
         <TextView
             android:id="@+id/tv_wendu"
