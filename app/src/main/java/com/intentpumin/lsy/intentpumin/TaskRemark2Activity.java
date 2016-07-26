@@ -77,12 +77,12 @@ public class TaskRemark2Activity extends Activity {
 //        String date = sDateFormat.format(new java.util.Date()).substring(0, 10);
         params.addFormDataPart("signature", signature);
         params.addFormDataPart("phoneno",mPhoneno);
-       // params.addFormDataPart("task_id",task_id);
-        params.addFormDataPart("task_id","FA0101001");
-      //  params.addFormDataPart("eqpt_id",eqpt_id);
-        params.addFormDataPart("eqpt_id","FA0101001");
-       // params.addFormDataPart("date",mdate);
-        params.addFormDataPart("date","2016-07-01");
+      params.addFormDataPart("task_id",task_id);
+        //   params.addFormDataPart("task_id","FA0101001");
+        params.addFormDataPart("eqpt_id",eqpt_id);
+        // params.addFormDataPart("eqpt_id","FA0101001");
+        params.addFormDataPart("date",mdate);
+        //  params.addFormDataPart("date","2016-07-01");
         HttpUtil.getInstance().post(MainLogic.GET_REMARK, params, new StringHttpRequestCallback() {
             @Override
             public void onStart() {
@@ -132,12 +132,12 @@ public class TaskRemark2Activity extends Activity {
         params.addFormDataPart("remark", remark);
         params.addFormDataPart("signature", signature);
         params.addFormDataPart("phoneno",mPhoneno);
-        // params.addFormDataPart("task_id",task_id);
-        params.addFormDataPart("task_id","FA0101001");
-        //  params.addFormDataPart("eqpt_id",eqpt_id);
-        params.addFormDataPart("eqpt_id","FA0101001");
-        // params.addFormDataPart("date",mdate);
-        params.addFormDataPart("date","2016-07-01");
+         params.addFormDataPart("task_id",task_id);
+        // params.addFormDataPart("task_id","FA0101001");
+          params.addFormDataPart("eqpt_id",eqpt_id);
+        //params.addFormDataPart("eqpt_id","FA0101001");
+         params.addFormDataPart("date",mdate);
+        //   params.addFormDataPart("date","2016-07-01");
 //        params.addFormDataPart("task_id",task_id);
 //        params.addFormDataPart("eqpt_id",eqpt_id);
 //        params.addFormDataPart("date", mdate);

@@ -26,12 +26,14 @@ public class TaskGridAdapter extends BaseAdapter {
     private List<task_get> list;
     private Context context;
     private int paddingWidth;
+
     public TaskGridAdapter(Context context, List<task_get> list, int paddingWidth) {
         super();
         this.context = context;
         this.list = list;
-        this.paddingWidth=paddingWidth;
+        this.paddingWidth = paddingWidth;
     }
+
     @Override
     public View getView(int i, View convertView, ViewGroup parent) {
         ViewHodler hodler = null;
@@ -40,31 +42,30 @@ public class TaskGridAdapter extends BaseAdapter {
             //     convertView=View.inflate(context,R.layout.layout_gridtask,null);
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_gridtask, null);
             hodler.rb_tab_o = (TextView) convertView.findViewById(R.id.tv_tab_o);
-            hodler.rl_tab_o=(RelativeLayout)convertView.findViewById(R.id.rl__tb_o);
+            hodler.rl_tab_o = (RelativeLayout) convertView.findViewById(R.id.rl__tb_o);
         } else {
             hodler = (ViewHodler) convertView.getTag();
         }
         task_get task = list.get(i);
         Log.e("TAG", task.getFinished() + "==========" + list.get(i).task_name);
-        hodler.rl_tab_o.setPadding(paddingWidth,paddingWidth,paddingWidth,paddingWidth);
+        hodler.rl_tab_o.setPadding(paddingWidth, paddingWidth, paddingWidth, paddingWidth);
 //        LinearLayout.LayoutParams params= (LinearLayout.LayoutParams) hodler.rl_tab_o.getLayoutParams();
 //        params.width=LinearLayout.LayoutParams.FILL_PARENT;
 //        params.height=LinearLayout.LayoutParams.FILL_PARENT;
 //        params.set
 //        hodler.rl_tab_o.setLayoutParams(params);
         if (task.getFinished().equals("Y")) {
-           hodler.rb_tab_o.setSelected(true);
-           hodler.rb_tab_o.setBackgroundResource(R.mipmap.task_undone);
-        }
-        else if(task.getFinished().equals("N"))
-        {
-           hodler.rb_tab_o.setBackgroundResource(R.mipmap.task_wei);
+            hodler.rb_tab_o.setSelected(true);
+            hodler.rb_tab_o.setBackgroundResource(R.mipmap.task_undone);
+        } else if (task.getFinished().equals("N")) {
+            hodler.rb_tab_o.setBackgroundResource(R.mipmap.task_wei);
         }
         hodler.rb_tab_o.setText(task.task_name);
 
         convertView.setTag(hodler);
         return convertView;
     }
+
     @Override
     public int getCount() {
         if (list != null && list.size() > 0) {
@@ -79,13 +80,16 @@ public class TaskGridAdapter extends BaseAdapter {
     public Object getItem(int position) {
         return null;
     }
+
     @Override
     public long getItemId(int position) {
         return 0;
     }
-    public void setData(List<task_get> list){
-        this.list=list;
+
+    public void setData(List<task_get> list) {
+        this.list = list;
     }
+
     class ViewHodler {
         private TextView rb_tab_o;
 

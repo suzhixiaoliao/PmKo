@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="250dp"
+    android:layout_gravity="center"
+    android:id="@+id/lr_tast_com"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".TaskRemarkActivity">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="200dp"
+    android:id="@+id/yy"
+    android:orientation="vertical">
+    <EditText
+        android:id="@+id/et_tast_com_x"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="left" />
+</RelativeLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/bt_tast_qd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/sure_pumin"/>
+    <Button
+       android:id="@+id/bt_tast_qx"
+        android:layout_width="wrap_content"
+        android:background="@mipmap/undo_pumin"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+</LinearLayout>

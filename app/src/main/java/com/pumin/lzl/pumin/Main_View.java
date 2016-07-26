@@ -96,7 +96,6 @@ public class Main_View extends AppCompatActivity {
     String path = "";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +122,7 @@ public class Main_View extends AppCompatActivity {
         device_phone = (TextView) findViewById(R.id.device_phone);
         device_image = (ImageView) findViewById(R.id.device_image);
         dot_layout = (LinearLayout) findViewById(R.id.dot_layout);
-        main_back= (ImageButton) findViewById(R.id.main_back);
+        main_back = (ImageButton) findViewById(R.id.main_back);
     }
 
 

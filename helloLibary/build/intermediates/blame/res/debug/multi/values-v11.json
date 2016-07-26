@@ -24,57 +24,5 @@
                 }
             }
         ]
-    },
-    {
-        "outputFile": "D:\\Puminzy\\helloLibary\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endLine": 4,
-                    "endColumn": 12,
-                    "endOffset": 187
-                },
-                "from": {
-                    "file": "D:\\Puminzy\\helloLibary\\src\\main\\res\\values-v11\\styles.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 183,
-                        "endLine": 8,
-                        "endColumn": 12,
-                        "endOffset": 317
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\PmKo\\helloLibary\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endLine": 4,
-                    "endColumn": 12,
-                    "endOffset": 187
-                },
-                "from": {
-                    "file": "D:\\PmKo\\helloLibary\\src\\main\\res\\values-v11\\styles.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 183,
-                        "endLine": 8,
-                        "endColumn": 12,
-                        "endOffset": 317
-                    }
-                }
-            }
-        ]
     }
 ]
