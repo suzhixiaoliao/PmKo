@@ -25,6 +25,7 @@ import com.baidu.location.LocationClientOption;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.adapter.StatListAdapter;
 import com.intentpumin.lsy.intentpumin.adapter.TaskGridAdapter;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
@@ -47,7 +48,7 @@ import java.util.List;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class DataExecuteTasksActivity extends Activity {
+public class DataExecuteTasksActivity extends BaseActivity{
     private GridView mtasklist;
     private ListView mdatalist;
     private TaskGridAdapter adapter;
@@ -71,19 +72,15 @@ public class DataExecuteTasksActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       /* items = (com.intentpumin.lsy.intentpumin.tools.device.items) getIntent().getSerializableExtra("item");
-        if (items != null) {
-            Log.e("DataExecute", "收到了"+items.toString());
-        }*/
+
+    }
+    protected void setupData() {
         sp = getSharedPreferences("info", Context.MODE_PRIVATE);
-        //透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        //透明导航栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        setContentView(R.layout.activity_data_execute_tasks);
         result = this.getIntent().getStringExtra("result");
         Log.e("TAG", "===========result==========" + result);
         mContext = this;
+        setContentView(R.layout.activity_data_execute_tasks, R.string.mDataExecuteTasks,MODE_BACK_NAVIGATION);
+
         init();
         initAction();
         initLocation();

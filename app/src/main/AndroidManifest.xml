@@ -128,7 +128,7 @@
             android:value="1280" />
 
         <activity android:name=".DataExecuteTasks2Activity" />
-        <activity android:name=".HelloChartActivity"/>
+        <activity android:name=".HelloChartActivity" />
         <activity
             android:name=".AdminDevicesActivity"
             android:screenOrientation="portrait"
@@ -162,7 +162,8 @@
         <activity
             android:name="com.pumin.lzl.pumin.Management_Operations"
             android:screenOrientation="portrait" />
-        <activity android:name=".zxing.TaskRemark2Activity"></activity>
+        <activity android:name=".zxing.TaskRemark2Activity" />
+        <activity android:name="com.intenpumin.lsy.intentpumin.repairs.MainRepairsActivity"></activity>
     </application>
 
 </manifest>

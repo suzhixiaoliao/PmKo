@@ -38,9 +38,11 @@
                 android:paddingLeft="22dp"
                 android:background="@drawable/ic_edit_bg"
                 android:layout_marginBottom="11px"
+                android:textColor="@color/black"
                 android:hint="User name" />
 
             <EditText
+                android:textColor="@color/black"
                 android:id="@+id/et_pwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

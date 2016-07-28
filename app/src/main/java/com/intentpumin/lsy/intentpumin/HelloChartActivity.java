@@ -99,7 +99,9 @@ public class HelloChartActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adminchar);
+    }
+    protected void setupData() {
+        setContentView(R.layout.activity_adminchar, R.string.mCharts, MODE_BACK_NAVIGATION);
         init();
         initChart();
     }

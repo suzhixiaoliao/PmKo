@@ -45,20 +45,12 @@ public class UnfinishedDeviceActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void setupData() {
         sp = getSharedPreferences("info", Context.MODE_PRIVATE);
-        //透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        //透明导航栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        setContentView(R.layout.activity_unfinisheddevice);
-        btn_back= (Button) findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(UnfinishedDeviceActivity.this,MainActivity.class);
-                UnfinishedDeviceActivity.this.startActivity(intent);
-            }
-        });
+        setContentView(R.layout.activity_unfinisheddevice, R.string.UnfinishedDevice,MODE_BACK_NAVIGATION);
         mtasklist = (ListView) findViewById(R.id.list_tasklist);
         swip = (SwipeRefreshLayout) findViewById(R.id.swip);
         swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

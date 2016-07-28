@@ -18,4 +18,12 @@
     <string name="loading">正在加载...</string>
     <string name="load_succeed">加载成功</string>
     <string name="load_fail">加载失败</string>
+
+    <string name="dataExecuteTasks">任务执行</string>
+    <string name="mDataExecuteTasks">任务执行</string>
+    <string name="UnfinishedDevice">清单页面</string>
+    <string name="mCharts">趋势图显示</string>
+    <string name="camera">扫描界面</string>
+
+    <string name="repairs">报修界面</string>
 </resources>
