@@ -13,6 +13,6 @@ public class MainRepairsActivity extends BaseActivity {
     }
     @Override
     protected void setupData() {
-        setContentView(R.layout.activity_main_repairs,R.string.repairs,MODE_BACK_NAVIGATION);
+        setContentView(R.layout.activity_main_repairs);
     }
 }
