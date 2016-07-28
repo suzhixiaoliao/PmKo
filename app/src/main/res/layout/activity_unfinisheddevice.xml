@@ -4,9 +4,7 @@
     android:background="#e1e0dc"
     android:orientation="vertical"
     android:layout_height="match_parent">
-    <include
-        android:id="@+id/tasklist_titlie"
-        layout="@layout/layout_tasklist_titlie"/>
+    <include layout="@layout/widget_toolbar" />
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swip"
         android:layout_width="match_parent"

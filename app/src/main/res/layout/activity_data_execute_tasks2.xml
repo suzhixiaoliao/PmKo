@@ -5,9 +5,7 @@
     android:background="@color/bg_pumin"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/list_zxing_title"
-        layout="@layout/layout_list_zxing_title" />
+    <include layout="@layout/widget_toolbar" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"

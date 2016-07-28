@@ -15,7 +15,6 @@
     android:orientation="vertical">
     <EditText
         android:id="@+id/et_tast_com"
-        android:background="@drawable/remaek"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="left"

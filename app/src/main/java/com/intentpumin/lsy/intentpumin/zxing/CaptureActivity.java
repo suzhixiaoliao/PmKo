@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.intenpumin.lsy.intentpumin.repairs.MainRepairsActivity;
 import com.intentpumin.lsy.intentpumin.DataExecuteTasksActivity;
 import com.intentpumin.lsy.intentpumin.MainActivity;
 import com.intentpumin.lsy.intentpumin.R;
@@ -199,7 +200,11 @@ public class CaptureActivity extends Activity implements Callback {
                 Intent it2 = new Intent(CaptureActivity.this, Main_View.class);
                 it2.putExtra("put_equipment", resultString);
                 startActivity(it2);
-            }else {
+            }else if (s.equals("2")){
+                Intent it = new Intent(CaptureActivity.this, MainRepairsActivity.class);
+                it.putExtra("repairsScan", resultString);
+                startActivity(it);
+            } else {
                 Intent resultIntent = this.getIntent().setClass(CaptureActivity.this, DataExecuteTasksActivity.class);
                // resultIntent.putExtra("item", items);
                 resultIntent.putExtra("result",resultString);

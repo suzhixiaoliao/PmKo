@@ -10,14 +10,12 @@
     <style name="carbon_CheckBox" parent="android:Widget.CompoundButton.CheckBox">
         <item name="android:paddingLeft">16dp</item>
         <item name="android:button">@null</item>
-        <item name="carbon_checkColor">@drawable/checkbox_pumin</item>
         <item name="android:drawablePadding">16dp</item>
     </style>
 
     <style name="carbon_RadioButton" parent="android:Widget.CompoundButton.RadioButton">
         <item name="android:paddingLeft">16dp</item>
         <item name="android:button">@null</item>
-        <item name="carbon_radioColor">@drawable/checkbox_pumin</item>
         <item name="android:drawablePadding">16dp</item>
     </style>
     <!-- Base application theme. -->

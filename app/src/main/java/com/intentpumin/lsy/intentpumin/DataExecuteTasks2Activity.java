@@ -74,19 +74,19 @@ public class DataExecuteTasks2Activity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    protected void setupData() {
         items = (com.intentpumin.lsy.intentpumin.tools.device.items) getIntent().getSerializableExtra("item");
         if (items != null) {
             Log.e("DataExecute", "收到了" + items.toString());
         }
         sp = getSharedPreferences("info", Context.MODE_PRIVATE);
-        //透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        //透明导航栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        setContentView(R.layout.activity_data_execute_tasks2);
         result = this.getIntent().getStringExtra("result");
-        Log.e("TAG", "===========result==========" + result);
         mContext = this;
+        setContentView(R.layout.activity_data_execute_tasks2,R.string.dataExecuteTasks,MODE_BACK_NAVIGATION);
         init();
         initAction();
         initLocation();
