@@ -234,7 +234,6 @@ public class Main_View extends AppCompatActivity {
                     return Response.error(new ParseError(je));
                 }
             }
-
         };
         request.add(jsonObjectRequest);
     }

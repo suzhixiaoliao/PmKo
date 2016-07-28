@@ -107,7 +107,6 @@ public class Historicaltask_fragment extends Fragment {
         view = View.inflate(getContext(), R.layout.historicaltask_fragment, null);
         init();
         initChart();
-        System.out.println("运行到这里了吗？xxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         return view;
     }
 
@@ -343,7 +342,7 @@ public class Historicaltask_fragment extends Fragment {
         }
 
         @Override
-        public long getItemId(int position) {
+        public long getItemId(int position)  {
             return position;
         }
 

@@ -4,9 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.pumin.lzl.pumin.Areaselection">
-
-
-
+    tools:context="com.pumin.lzl.pumin.Furnishtsak">
 
 </LinearLayout>

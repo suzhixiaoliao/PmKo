@@ -146,9 +146,13 @@
         <activity
             android:name="com.pumin.lzl.pumin.TaskList_alter"
             android:screenOrientation="portrait" />
-        <!--布置临时任务-->
+        <!-- 布置临时任务-选择设备编号 -->
         <activity
             android:name="com.pumin.lzl.pumin.Areaselection"
+            android:screenOrientation="portrait" />
+        <!--布置临时任务-布置任务-->
+        <activity
+            android:name="com.pumin.lzl.pumin.Furnishtsak"
             android:screenOrientation="portrait" />
     </application>
 

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PmKo.iml" filepath="$PROJECT_DIR$/PmKo.iml" />
       <module fileurl="file://$PROJECT_DIR$/PuminKeJi.iml" filepath="$PROJECT_DIR$/PuminKeJi.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/helloLibary/helloLibary.iml" filepath="$PROJECT_DIR$/helloLibary/helloLibary.iml" />
