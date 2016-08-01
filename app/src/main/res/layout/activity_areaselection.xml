@@ -38,7 +38,7 @@
                 android:drawableLeft="@mipmap/area2"
                 android:ellipsize="end"
                 android:gravity="center"
-                android:hint="请输入设备名称"
+                android:hint="请输入设备编号"
                 android:lines="1"
                 android:maxLength="12"
                 android:paddingLeft="15dp" />

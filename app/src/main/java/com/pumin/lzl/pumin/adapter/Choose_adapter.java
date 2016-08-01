@@ -1,6 +1,7 @@
 package com.pumin.lzl.pumin.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.intentpumin.lsy.intentpumin.R;
 import com.pumin.lzl.pumin.bean.Choose_object;
+import com.pumin.lzl.pumin.utils.callphone;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ import java.util.ArrayList;
  */
 public class Choose_adapter extends BaseAdapter {
 
-    ArrayList<Choose_object>  choose_array;
+    ArrayList<Choose_object> choose_array;
     Context context;
 
     public Choose_adapter(ArrayList<Choose_object> choose_array, Context context) {
@@ -41,23 +43,27 @@ public class Choose_adapter extends BaseAdapter {
         return position;
     }
 
-    class ViewHolder{
+    class ViewHolder {
         TextView select_choose;
+        TextView select_choose_phone;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        Choose_object choose_obj=choose_array.get(position);
-        if(convertView==null){
-        holder=new ViewHolder();
-            convertView=View.inflate(context, R.layout.choose_list_item,null);
-            holder.select_choose= (TextView) convertView.findViewById(R.id.select_choose);
+        Choose_object choose_obj = choose_array.get(position);
+        if (convertView == null) {
+            holder = new ViewHolder();
+            convertView = View.inflate(context, R.layout.choose_list_item, null);
+            holder.select_choose = (TextView) convertView.findViewById(R.id.select_choose);
+            holder.select_choose_phone = (TextView) convertView.findViewById(R.id.select_choose_phone);
             convertView.setTag(holder);
-        }else {
-            holder= (ViewHolder) convertView.getTag();
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
         holder.select_choose.setText(choose_obj.getChoose_name());
+        holder.select_choose_phone.setText(Html.fromHtml("<u>" + choose_obj.getChoose_phone() + "</u>"));
+        callphone.call(holder.select_choose_phone,context);
         return convertView;
     }
 }

@@ -2,10 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
     android:orientation="vertical">
-    
-    <TextView
 
+
+    <TextView
+        android:background="@drawable/furn_task_select"
         android:id="@+id/furn_task_item"
         android:textSize="15dp"
         android:gravity="center"

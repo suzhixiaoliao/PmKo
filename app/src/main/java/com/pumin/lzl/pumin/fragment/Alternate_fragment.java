@@ -132,7 +132,7 @@ public class Alternate_fragment extends Fragment {
             //表名：D_EXEC_M
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/?signature=1
-            path = Url.path+"get_mt_list_by_eqpt_id?" +
+            path = Url.path + "get_mt_list_by_eqpt_id?" +
                     "signature=1&s_date=" + star + "&e_date=" + end_time + "&eqpt_id=" + str
                     + "&page=" + page + "&count=" + count;
         } catch (Exception e) {
@@ -210,8 +210,6 @@ public class Alternate_fragment extends Fragment {
 
         alter_adapter = new Alter_frag_adapter(alter_Array, getContext());
         alter_list.getRefreshableView().setAdapter(alter_adapter);  //碎片中使用
-
-
         alter_list.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -284,6 +282,5 @@ public class Alternate_fragment extends Fragment {
         alter_adapter.notifyDataSetChanged();
         alter_list.onRefreshComplete();
         alter_list.setSelected(true);
-
     }
 }

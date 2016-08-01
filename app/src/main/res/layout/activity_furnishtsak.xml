@@ -69,8 +69,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.3"
                         android:gravity="left|center"
-                        android:paddingLeft="15dp"
-                        android:text="端子箱" />
+                        android:paddingLeft="15dp" />
                 </LinearLayout>
 
                 <ImageView
@@ -136,7 +135,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="张三"
                             android:textSize="15dp" />
 
                         <TextView
@@ -145,7 +143,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="李四"
                             android:textSize="15dp" />
                     </LinearLayout>
 
@@ -201,7 +198,6 @@
                         android:layout_weight="0.3"
                         android:gravity="left|center"
                         android:paddingLeft="40dp"
-                        android:text="2016-07-28"
                         android:textColor="@color/crimson" />
                 </LinearLayout>
 
@@ -242,6 +238,7 @@
                     android:background="#000" />
 
                 <ListView
+                    android:layout_weight="1"
                     android:id="@+id/furn_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />

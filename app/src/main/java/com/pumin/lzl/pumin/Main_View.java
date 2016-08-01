@@ -46,6 +46,7 @@ import com.pumin.lzl.pumin.utils.Alldot_layout;
 import com.pumin.lzl.pumin.utils.Alltitle;
 import com.pumin.lzl.pumin.utils.F_image;
 import com.pumin.lzl.pumin.utils.Url;
+import com.pumin.lzl.pumin.utils.callphone;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,11 +61,10 @@ import java.util.ArrayList;
 *    操作主界面--
 */
 public class Main_View extends AppCompatActivity {
-    //context
-    Context context;
     //Tag的提示
     private static final String TAG = "Main_view";
-
+    //context
+    Context context;
     //碎片的适配加载
     Task_adapter task_adapter;  //碎片的适配器
     private ArrayList<Fragment> adapters_list = new ArrayList<Fragment>();//保存碎片的集合
@@ -74,11 +74,7 @@ public class Main_View extends AppCompatActivity {
     LookState_Fragment lookState_fragment;  //查看状态的界面
     private ViewPager view_page;
 
-    String str = "";
-
     private ImageButton main_back;
-
-    //flag
     private LinearLayout dot_layout;
 
     //设备基本信息
@@ -95,7 +91,7 @@ public class Main_View extends AppCompatActivity {
     JSONObject jsonObj;
     String info;
     String path = "";
-
+    String str = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +122,6 @@ public class Main_View extends AppCompatActivity {
         main_back = (ImageButton) findViewById(R.id.main_back);
     }
 
-
     //设置标题栏
     private void initTitle() {
         main_back.setOnClickListener(new View.OnClickListener() {
@@ -150,11 +145,10 @@ public class Main_View extends AppCompatActivity {
 
         task_adapter = new Task_adapter(getSupportFragmentManager(), adapters_list);
         view_page.setAdapter(task_adapter);  //适配器的适配
-//        view_page.setOffscreenPageLimit(adapters_list.size());  //碎片全部加载
+        // view_page.setOffscreenPageLimit(adapters_list.size());  //碎片全部加载
         view_page.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
@@ -165,7 +159,6 @@ public class Main_View extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
     }
@@ -183,24 +176,18 @@ public class Main_View extends AppCompatActivity {
         try {
             str = getIntent().getStringExtra("put_equipment");
             //接口规范
-//            http://app.pumintech.com:40000/api/user/?signature=1
-//            http://10.16.1.201:40000/api/user/?signature=1
-            //表名:S_EQPT_M
-//            path = "http://10.16.1.201:40000/api/user/get_eqpt_info?signature=1&eqpt_id=" + str;
-
-            path = Url.path+"get_eqpt_info?signature=1&eqpt_id=" + str;
+            // http://app.pumintech.com:40000/api/user/?signature=1
+            path = Url.path + "get_eqpt_info?signature=1&eqpt_id=" + str;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(path, null,
                 new Response.Listener<JSONObject>() {
-
                     @Override
                     public void onResponse(final JSONObject response) {
                         // 成功获取数据后将数据显示在屏幕上
                         try {
-
                             info = response.toString();
                             // info = response.getString("UTF-8");
                         } catch (Exception e) {
@@ -209,9 +196,7 @@ public class Main_View extends AppCompatActivity {
                         }
                         Log.d("TAG", info);
                         getjson(info);
-
                     }
-
                 }, new Response.ErrorListener() {
 
             @Override
@@ -223,7 +208,6 @@ public class Main_View extends AppCompatActivity {
             @Override
             protected Response<JSONObject> parseNetworkResponse(
                     NetworkResponse response) {
-
                 try {
                     JSONObject jsonObject = new JSONObject(
                             new String(response.data, "UTF-8"));
@@ -257,7 +241,6 @@ public class Main_View extends AppCompatActivity {
         });
     }
 
-
     //照完相-处理照片代码
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -286,14 +269,11 @@ public class Main_View extends AppCompatActivity {
             String last_date = jsonObj.getString("last_rpd_date");
             device_last_date.setText(last_date); //上次维修日期
 
-
             String principal = jsonObj.getString("respenser");
             device_principal.setText(principal);  //负责人
 
-
             String phone = jsonObj.getString("phoneno");
             device_phone.setText(Html.fromHtml("<u>" + phone + "</u>")); //联系号码
-
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -314,20 +294,8 @@ public class Main_View extends AppCompatActivity {
         device_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + device_phone.getText().toString()));
-                if (ActivityCompat.checkSelfPermission(Main_View.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                startActivity(it);
+                callphone.call(device_phone,context);
             }
         });
     }
-
 }
