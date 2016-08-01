@@ -87,15 +87,12 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".zxing.CaptureActivity"
+            android:name=".MipcaActivityCapture"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".zxing.WebViewActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
         <activity
             android:name=".UnfinishedDeviceActivity"
             android:screenOrientation="portrait" />
@@ -128,7 +125,7 @@
             android:value="1280" />
 
         <activity android:name=".DataExecuteTasks2Activity" />
-        <activity android:name=".HelloChartActivity"/>
+        <activity android:name=".HelloChartActivity" />
         <activity
             android:name=".AdminDevicesActivity"
             android:screenOrientation="portrait"
@@ -138,6 +135,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent" />
 
+        <!-- 管理员主界面 -->
+        <activity
+            android:name="com.pumin.lzl.pumin.MainActivity2"
+            android:screenOrientation="portrait" />
         <!-- 接收二维码信息 -->
         <activity
             android:name="com.pumin.lzl.pumin.Main_View"
@@ -146,19 +147,20 @@
         <activity
             android:name="com.pumin.lzl.pumin.TaskList_alter"
             android:screenOrientation="portrait" />
-        <!-- 布置临时任务-选择设备编号 -->
+        <!-- 设备管理界面 -->
         <activity
-            android:name="com.pumin.lzl.pumin.Areaselection"
+            android:name="com.pumin.lzl.pumin.Management_activity"
             android:screenOrientation="portrait" />
-        <!-- 布置临时任务-布置任务 -->
+        <!-- 区域管理 -->
         <activity
-            android:name="com.pumin.lzl.pumin.Furnishtsak"
+            android:name="com.pumin.lzl.pumin.Region_admin"
             android:screenOrientation="portrait" />
-        <!--选择运维人员界面-->
+        <!-- 运维人员管理界面 -->
         <activity
-            android:name="com.pumin.lzl.pumin.Chooseperson"
+            android:name="com.pumin.lzl.pumin.Management_Operations"
             android:screenOrientation="portrait" />
-        <activity android:name=".zxing.TaskRemark2Activity"></activity>
+        <activity android:name=".TaskRemark2Activity" />
+        <activity android:name="com.intenpumin.lsy.intentpumin.repairs.MainRepairsActivity"></activity>
     </application>
 
 </manifest>

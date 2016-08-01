@@ -3,6 +3,8 @@ package com.intentpumin.lsy.intentpumin;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.os.Bundle;
@@ -13,8 +15,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,14 +23,14 @@ import com.google.gson.JsonSyntaxException;
 import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.adapter.MainViewPagerAdapter;
 import com.intentpumin.lsy.intentpumin.adapter.MainDeviceAdapter;
+import com.intentpumin.lsy.intentpumin.commonview.PullToRefreshLayout;
+import com.intentpumin.lsy.intentpumin.commonview.PullableListView;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.network.LogUtils;
 import com.intentpumin.lsy.intentpumin.tools.device.items;
 import com.intentpumin.lsy.intentpumin.tools.device.result_device_items;
-import com.intentpumin.lsy.intentpumin.tools.logindate.login;
-import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
-import com.zhy.autolayout.AutoLinearLayout;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,41 +38,40 @@ import java.util.List;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseActivity implements PullToRefreshLayout.OnRefreshListener,AdapterView.OnItemClickListener {
     private TextView tv_main;
     private TextView tv_return;
-    private ListView mtasklist;
     private MainDeviceAdapter adapter;
     private List<items> mdata;
     private SharedPreferences sp;
-    private SwipeRefreshLayout swip;
+
     private int ScreeWidth;
+
+    private int currentPage = 1;
+    private int MAX_PAGE = 10;
+    private PullableListView mPullRefreshListView;//上拉下拉加载刷新
+    private PullToRefreshLayout ptrl;
+    private static final int FIRST_INTO = 0;
+    private static final int REFUSH_UP = 1;
+    private static final int LOAG_MORE = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sp = getSharedPreferences("info", Context.MODE_PRIVATE);
         setContentView(R.layout.activity_main);
         initViewpager();
-        mtasklist = (ListView) findViewById(R.id.list_tasklist_fu);
-        swip = (SwipeRefreshLayout) findViewById(R.id.swip);
-        swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swip.setRefreshing(false);
-                requestData();
-
-            }
-        });
+        mPullRefreshListView  = (PullableListView) findViewById(R.id.list_tasklist_fu);
+        ptrl = (PullToRefreshLayout) findViewById(R.id.refresh_view);
+        ptrl.setOnRefreshListener(this);
         mdata = new ArrayList<>();
         if (adapter == null) {
             adapter = new MainDeviceAdapter(this, mdata);
         }
-        mtasklist.setAdapter(adapter);
-        mtasklist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mPullRefreshListView.setAdapter(adapter);
+        mPullRefreshListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-               //items items = mdata.get(position);
                 Log.d("un", mdata.toString());
                 items items = mdata.get(position);
                 Log.d("un", mdata.toString());
@@ -81,7 +80,7 @@ public class MainActivity extends BaseActivity{
                 MainActivity.this.startActivity(intent);
             }
         });
-        requestData();
+        requestData(1, 10, FIRST_INTO);
 
     }
 
@@ -129,13 +128,13 @@ public class MainActivity extends BaseActivity{
         ImageView scan1 = (ImageView) view1.findViewById(R.id.iv_scan2);
         ImageView renwu1 = (ImageView) view1.findViewById(R.id.iv_renwu2);
         ImageView chakan1 = (ImageView) view1.findViewById(R.id.iv_chakan2);
-        ImageView scan = (ImageView) view1.findViewById(R.id.iv_scans);
+        ImageView scan = (ImageView) view1.findViewById(R.id.iv_scan);
         //第四步
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent inter1 = getIntent();
-                inter1.setClass(MainActivity.this, CaptureActivity.class);
+                inter1.setClass(MainActivity.this, MipcaActivityCapture.class);
                 inter1.putExtra("str_all", "0");
                 startActivity(inter1);
             }
@@ -209,13 +208,47 @@ public class MainActivity extends BaseActivity{
         image.setLayoutParams(ps);
         image.setScaleType(ImageView.ScaleType.FIT_XY);
     }
+    @Override
+    public void onRefresh(final PullToRefreshLayout pullToRefreshLayout) {
 
-    private void requestData() {
+        mdata.clear();
+//          //请求第一页的数据
+        requestData(1, 10, REFUSH_UP);
+        adapter.setItems(mdata);
+        // 下拉刷新操作
+        new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                // 千万别忘了告诉控件刷新完毕了哦！
+                pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+            }
+        }.sendEmptyMessageDelayed(0, 1000);
+    }
+    @Override
+    public void onLoadMore(final PullToRefreshLayout pullToRefreshLayout) {
+        currentPage++;
+        if (currentPage <= MAX_PAGE) {
+            requestData(currentPage, 10, LOAG_MORE);
+            adapter.addDate(mdata);
+            adapter.notifyDataSetChanged();
+        }
+        // 加载操作
+        new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                // 千万别忘了告诉控件加载完毕了哦！
+                pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+            }
+        }.sendEmptyMessageDelayed(0, 1000);
+    }
+    private void requestData(int page, int count, final int i) {
         RequestParams params = new RequestParams();
         //final login mlogin = (login) getIntent().getSerializableExtra("login");
         String finished = "N";
         params.addFormDataPart("signature", "1");
         params.addFormDataPart("finished", finished);
+        params.addFormDataPart("page", page);
+        params.addFormDataPart("count", count);
         sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
         String mPhoneno=sp.getString("phoneno","");
         params.addFormDataPart("phoneno",mPhoneno);
@@ -258,10 +291,15 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onFinish() {
                 //结束刷新
-                swip.setRefreshing(false);
                 System.out.println("完成");
             }
         });
 
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
 }
