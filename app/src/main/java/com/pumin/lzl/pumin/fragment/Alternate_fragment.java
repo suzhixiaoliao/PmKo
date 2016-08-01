@@ -1,10 +1,16 @@
 package com.pumin.lzl.pumin.fragment;
 
 import android.content.Intent;
+import android.location.GpsStatus;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,10 +25,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.intentpumin.lsy.intentpumin.R;
 import com.pumin.lzl.pumin.TaskList_alter;
 import com.pumin.lzl.pumin.adapter.Alter_frag_adapter;
 import com.pumin.lzl.pumin.bean.Alternate_object;
+import com.pumin.lzl.pumin.utils.Url;
 
 
 import org.json.JSONArray;
@@ -52,16 +63,31 @@ public class Alternate_fragment extends Fragment {
     RequestQueue request;
     String info;
     Alternate_object alter_object;  //对象名
-    //网络加载
+    Alternate_object alter;
+
+    //这是传过来的设备编号
     String str;
     //日期选择
     private String end_time; //目前日期
     private String star;  //本月当前第一天
+    //    分页
+    int page = 1;  //页数
+    int count = 5;  //数据量
+    String items; //判断的条件
+
     //适配器的数据适配
     ArrayList<Alternate_object> alter_Array = new ArrayList<>();
     Alter_frag_adapter alter_adapter;
-    private ListView alter_list;
-    private String isok; //工作是否完成
+    private PullToRefreshListView alter_list;
+
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            handler.sendMessageDelayed(null, 3000);
+            super.handleMessage(msg);
+        }
+    };
 
     public Alternate_fragment() {
         // Required empty public constructor
@@ -76,12 +102,13 @@ public class Alternate_fragment extends Fragment {
         view = View.inflate(getContext(), R.layout.alternate_fragment, null);
         initview();
         query();
+        alter_list.setMode(Mode.BOTH);  //设定listview的刷新模式
         return view;
     }
 
     //初始化控件
     private void initview() {
-        alter_list = (ListView) view.findViewById(R.id.alter_list);
+        alter_list = (PullToRefreshListView) view.findViewById(R.id.alter_list);
     }
 
 
@@ -105,10 +132,9 @@ public class Alternate_fragment extends Fragment {
             //表名：D_EXEC_M
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/?signature=1
-//            path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
-//                    "signature=1&s_date=" + star + "&e_date=" + end_time + "&eqpt_id=" + str;
-            path="http://app.pumintech.com:40000/api/user/get_mt_list_by_eqpt_id?" +
-                    "signature=1&s_date=" + star + "&e_date=" + end_time + "&eqpt_id=" + str;
+            path = Url.path+"get_mt_list_by_eqpt_id?" +
+                    "signature=1&s_date=" + star + "&e_date=" + end_time + "&eqpt_id=" + str
+                    + "&page=" + page + "&count=" + count;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -156,13 +182,13 @@ public class Alternate_fragment extends Fragment {
 
     //数据适配器的适配
     private void initadapter(String info2) {
-        alter_Array = new ArrayList<>();
+//        alter_Array = new ArrayList<>();
         try {
             jsonobject = new JSONObject(info2);
             String data1 = jsonobject.getString("data");
 
             jsonobject = new JSONObject(data1);
-            String items = jsonobject.getString("items");
+            items = jsonobject.getString("items");
 
             System.out.println(items + "xxxxxxxxxxxxxxxxxxxxx");
             JSONArray array = new JSONArray(items);
@@ -173,33 +199,91 @@ public class Alternate_fragment extends Fragment {
                             object.getString("date"), object.getString("pmt_name")
                             , object.getString("smt_name"), object.getString("finished"));
                     alter_Array.add(alter_object);
+
                 }
             } else {
-                alter_object = new Alternate_object("未知", "未知", "未知", "未知");
-                alter_Array.add(alter_object);
+                Toast.makeText(getContext(), "没有更多数据了~", Toast.LENGTH_SHORT).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         alter_adapter = new Alter_frag_adapter(alter_Array, getContext());
-        alter_list.setAdapter(alter_adapter);
+        alter_list.getRefreshableView().setAdapter(alter_adapter);  //碎片中使用
+
+
+        alter_list.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                //刷新的操作
+                //三个参数：启动任务执行的输入参数，后台任务执行的进度，后台计算结果的类型
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        page = 1;
+                        alter_Array.clear();
+                        alter_Array = new ArrayList<Alternate_object>();
+                        as();
+                    }
+                }.execute();
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                //刷新的操作
+                //三个参数：启动任务执行的输入参数，后台任务执行的进度，后台计算结果的类型
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        page++;
+                        as();
+                    }
+                }.execute();
+            }
+        });
+
+
         //listview的点击事件
-        isok = alter_object.getStart_time().toString();
         //逻辑判断是否有数据，能否进入查看准确数据
         alter_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (isok.equals("未知")) {
-                    Toast.makeText(getContext(), "没有详细信息", Toast.LENGTH_SHORT).show();
-                } else {
-                    Alternate_object alter_obj = alter_Array.get(position);
-                    it = new Intent(getContext(), TaskList_alter.class);
-                    it.putExtra("charge", str);
-                    it.putExtra("inputdate", alter_obj.getStart_time());
-                    startActivity(it);
+                if (!alter_Array.isEmpty()) {
+                    alter = alter_Array.get(position - 1);
                 }
+                it = new Intent(getContext(), TaskList_alter.class);
+                it.putExtra("charge", str);
+                it.putExtra("inputdate", alter.getStart_time());
+                startActivity(it);
             }
         });
+    }
+
+    public void as() {
+        query();
+        alter_adapter.notifyDataSetChanged();
+        alter_list.onRefreshComplete();
+        alter_list.setSelected(true);
+
     }
 }

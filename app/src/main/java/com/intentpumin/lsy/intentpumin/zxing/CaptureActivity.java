@@ -29,6 +29,7 @@ import com.intentpumin.lsy.intentpumin.MainActivity;
 import com.intentpumin.lsy.intentpumin.R;
 import com.intentpumin.lsy.intentpumin.tools.device.items;
 import com.intentpumin.lsy.intentpumin.util.LightControl;
+import com.pumin.lzl.pumin.Furnishtsak;
 import com.pumin.lzl.pumin.Main_View;
 
 import java.io.IOException;
@@ -203,6 +204,10 @@ public class CaptureActivity extends Activity implements Callback {
             }else if (s.equals("2")){
                 Intent it = new Intent(CaptureActivity.this, MainRepairsActivity.class);
                 it.putExtra("repairsScan", resultString);
+                startActivity(it);
+            }else if (s.equals("3")){
+                Intent it = new Intent(CaptureActivity.this, Furnishtsak.class);
+                it.putExtra("put_areament",resultString);
                 startActivity(it);
             } else {
                 Intent resultIntent = this.getIntent().setClass(CaptureActivity.this, DataExecuteTasksActivity.class);

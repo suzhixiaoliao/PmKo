@@ -45,6 +45,7 @@ import com.pumin.lzl.pumin.utils.AllToast;
 import com.pumin.lzl.pumin.utils.Alldot_layout;
 import com.pumin.lzl.pumin.utils.Alltitle;
 import com.pumin.lzl.pumin.utils.F_image;
+import com.pumin.lzl.pumin.utils.Url;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -187,7 +188,7 @@ public class Main_View extends AppCompatActivity {
             //表名:S_EQPT_M
 //            path = "http://10.16.1.201:40000/api/user/get_eqpt_info?signature=1&eqpt_id=" + str;
 
-            path = "http://app.pumintech.com:40000/api/user/get_eqpt_info?signature=1&eqpt_id=" + str;
+            path = Url.path+"get_eqpt_info?signature=1&eqpt_id=" + str;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -216,7 +217,6 @@ public class Main_View extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("TAG", error.getMessage(), error);
-                AllToast.alltoast(Gravity.CENTER, context, "加载失败,请检查网络是否通畅", R.drawable.pmlogo);
             }
         }) {
 

@@ -22,6 +22,7 @@ import com.pumin.lzl.pumin.adapter.Parameter_adapter2;
 import com.pumin.lzl.pumin.bean.Tasklist_object;
 import com.pumin.lzl.pumin.bean.Tasklist_object2;
 import com.pumin.lzl.pumin.utils.Alltitle;
+import com.pumin.lzl.pumin.utils.Url;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,10 +96,8 @@ public class TaskList_alter extends AppCompatActivity {
         time = time.substring(0, 10);  //截取日期时间
         System.out.println("tasklist" + str + "这是时间" + time);
 
-//        path = "http://10.16.1.201:40000/api/user/get_mt_details?" +
-//                "signature=1&date=" + time + "&eqpt_id=" + str;
 
-        path = "http://app.pumintech.com:40000/api/user/get_mt_details?" +
+        path = Url.path+"get_mt_details?" +
                 "signature=1&date=" + time + "&eqpt_id=" + str;
 
 

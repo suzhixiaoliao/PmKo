@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/PuminKeJi.iml" filepath="$PROJECT_DIR$/PuminKeJi.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/helloLibary/helloLibary.iml" filepath="$PROJECT_DIR$/helloLibary/helloLibary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_PullToRefresh/library_PullToRefresh.iml" filepath="$PROJECT_DIR$/library_PullToRefresh/library_PullToRefresh.iml" />
     </modules>
   </component>
 </project>

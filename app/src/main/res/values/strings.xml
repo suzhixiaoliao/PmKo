@@ -26,4 +26,7 @@
     <string name="camera">扫描界面</string>
 
     <string name="repairs">报修界面</string>
+
+    <string name="area_true">确定</string>
+    <string name="area_false">取消</string>
 </resources>

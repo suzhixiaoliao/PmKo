@@ -23,6 +23,7 @@ import com.pumin.lzl.pumin.utils.Date_SpringProgressView;
 import com.pumin.lzl.pumin.utils.Oncount_SpringProgress;
 import com.pumin.lzl.pumin.utils.Ontime_SpringProgress;
 import com.pumin.lzl.pumin.utils.Task_SpringProgress;
+import com.pumin.lzl.pumin.utils.Url;
 
 
 import org.json.JSONException;
@@ -121,13 +122,13 @@ public class LookState_Fragment extends Fragment {
             System.out.println(str + "这是传过来的参数");
 
             //接口规范
-//            http://app.pumintech.com:40000/api/user/get_stat_info?signature=1
+//            http://api.pumintech.com:40000/app/get_stat_info?signature=1
 //            http://10.16.1.201:40000/api/user/get_stat_info?signature=1
             //表名：D_EXEC_D_TASK
             //参数---时间参数
 //            path = "http://10.16.1.201:40000/api/user/get_stat_info?signature=1&eqpt_id=" + str;
 
-            path="http://app.pumintech.com:40000/api/user/get_stat_info?signature=1&eqpt_id=" + str;
+            path= Url.path+"get_stat_info?signature=1&eqpt_id=" + str;
             System.out.println("Lookstate" + path);
         } catch (Exception e) {
             e.printStackTrace();

@@ -22,6 +22,7 @@ import com.intentpumin.lsy.intentpumin.R;
 import com.pumin.lzl.pumin.adapter.Future_frag_adapter;
 import com.pumin.lzl.pumin.bean.Future_object;
 import com.pumin.lzl.pumin.utils.AllToast;
+import com.pumin.lzl.pumin.utils.Url;
 
 
 import org.json.JSONArray;
@@ -94,10 +95,8 @@ public class Futuremission_fragment extends Fragment {
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/login?signature=1
 
-//        path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
-//                "signature=1&s_date=" + start_time + "&e_date=" + END_time + "&eqpt_id=" + str;
 
-        path="http://app.pumintech.com:40000/api/user/get_mt_list_by_eqpt_id?" +
+        path = Url.path + "get_mt_list_by_eqpt_id?" +
                 "signature=1&s_date=" + start_time + "&e_date=" + END_time + "&eqpt_id=" + str;
         System.out.println("这是futuremission中的url" + path);
 
@@ -123,7 +122,7 @@ public class Futuremission_fragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("TAG", error.getMessage(), error);
-                AllToast.alltoast(Gravity.CENTER, getContext(), "加载失败,请检查网络是否通畅", R.drawable.pmlogo);
+                AllToast.alltoast(Gravity.CENTER, getContext(), "加载失败,请检查网络是否通畅", R.drawable.pumin);
             }
         }) {
 

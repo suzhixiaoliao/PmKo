@@ -226,6 +226,6 @@
     <color name="crimson">#dc143c</color><!--暗深红色 -->
     <color name="plum">#dda0dd</color><!--洋李色 -->
     <color name="pumin_color">#bf2d33</color>
-
+    <color name="area">#d2d2d2</color>
 
 </resources>

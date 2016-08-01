@@ -6,7 +6,56 @@
     android:orientation="vertical"
     tools:context="com.pumin.lzl.pumin.Areaselection">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:id="@+id/area_linear"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/area"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/area_sm"
+                style="?android:buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:focusable="true"
+                android:src="@mipmap/area1" />
+
+            <EditText
+                android:id="@+id/area_sr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@mipmap/area4"
+                android:drawableLeft="@mipmap/area2"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:hint="请输入设备名称"
+                android:lines="1"
+                android:maxLength="12"
+                android:paddingLeft="15dp" />
+
+            <ImageButton
+                android:id="@+id/area_ss"
+                style="?android:buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:focusable="true"
+                android:src="@mipmap/area3" />
+        </LinearLayout>
+
+
+    </FrameLayout>
 
 
 </LinearLayout>

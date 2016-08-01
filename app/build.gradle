@@ -47,4 +47,5 @@ dependencies {
     compile 'com.zhy:autolayout:1.4.3'
     compile project(':helloLibary')
     compile 'com.nineoldandroids:library:2.4.0'
+    compile project(':library_PullToRefresh')
 }

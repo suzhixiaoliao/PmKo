@@ -39,6 +39,7 @@ public class Alter_frag_adapter extends BaseAdapter {
     }
 
 
+
     @Override
     public int getCount() {
         return alter_Array.size();
@@ -62,6 +63,7 @@ public class Alter_frag_adapter extends BaseAdapter {
         TextView alter_row_phone;
         TextView alter_row_phone2;
     }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
