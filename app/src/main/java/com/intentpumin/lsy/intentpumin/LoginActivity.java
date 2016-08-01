@@ -17,11 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.intenpumin.lsy.intentpumin.repairs.MainRepairsActivity;
 import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.tools.logindate.login;
-import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -190,7 +190,7 @@ public class LoginActivity extends BaseActivity {
                           i.putExtra("login", (Serializable)login);
                           startActivity(i);
                       }else if (login.getPriv().equals("2")){
-                          Intent i = new Intent(LoginActivity.this, CaptureActivity.class);
+                          Intent i = new Intent(LoginActivity.this, MainRepairsActivity.class);
                           //第三步
                           i.putExtra("login", (Serializable)login);
                           startActivity(i);

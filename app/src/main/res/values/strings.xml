@@ -1,6 +1,7 @@
 <resources>
     <string name="change_daynight">切换主题</string>
     <string name="zhu_name">,您好</string>
+    <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
     <string name="main_menu_changetheme_day">夜间模式</string>
     <string name="main_menu_changetheme_night">日间模式</string>
     <string name="app_name">运维支撑系统</string>
@@ -18,12 +19,10 @@
     <string name="loading">正在加载...</string>
     <string name="load_succeed">加载成功</string>
     <string name="load_fail">加载失败</string>
-
     <string name="dataExecuteTasks">任务执行</string>
     <string name="mDataExecuteTasks">任务执行</string>
     <string name="UnfinishedDevice">清单页面</string>
     <string name="mCharts">趋势图显示</string>
     <string name="camera">扫描界面</string>
-
     <string name="repairs">报修界面</string>
 </resources>

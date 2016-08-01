@@ -82,7 +82,11 @@ public class MainDeviceAdapter extends BaseAdapter {
         if (list!=null&&list.size()>0){
         }
     }
-
+    public void addDate(List<items> mlist){
+        if(null!= mlist){
+            this.list.addAll(mlist);
+        }
+    }
     class ViewHodler {
         private TextView tv_time;
         private TextView tv_device;

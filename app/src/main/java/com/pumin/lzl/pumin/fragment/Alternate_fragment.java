@@ -94,7 +94,7 @@ public class Alternate_fragment extends Fragment {
         calendar.set(Calendar.DATE, 1);
         SimpleDateFormat simpleFormate = new SimpleDateFormat("yyyy-MM-dd");
         star = simpleFormate.format(calendar.getTime());
-        System.out.print(star + "xxxxxxxxxxxxxxxxxxxxx");
+
 
         Bundle bundle1 = getArguments(); //获取main中传来的值
         String path = "";
@@ -105,10 +105,9 @@ public class Alternate_fragment extends Fragment {
             //表名：D_EXEC_M
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/?signature=1
-//            path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
-//                    "signature=1&s_date=" + star + "&e_date=" + end_time + "&eqpt_id=" + str;
-            path="http://app.pumintech.com:40000/api/user/get_mt_list_by_eqpt_id?" +
+            path = "http://10.16.1.201:40000/api/user/get_mt_list_by_eqpt_id?" +
                     "signature=1&s_date=" + star + "&e_date=" + end_time + "&eqpt_id=" + str;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -201,5 +200,11 @@ public class Alternate_fragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        alter_Array.clear();
     }
 }

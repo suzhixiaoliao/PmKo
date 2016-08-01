@@ -161,6 +161,11 @@
             android:screenOrientation="portrait" />
         <activity android:name=".TaskRemark2Activity" />
         <activity android:name="com.intenpumin.lsy.intentpumin.repairs.MainRepairsActivity"></activity>
+        <activity android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <activity android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 
 </manifest>

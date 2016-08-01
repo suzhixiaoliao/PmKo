@@ -39,11 +39,6 @@ import com.intentpumin.lsy.intentpumin.tools.stat.stat_get;
 import com.intentpumin.lsy.intentpumin.tools.task.result_task_get;
 import com.intentpumin.lsy.intentpumin.tools.task.task_get;
 import com.intentpumin.lsy.intentpumin.tools.task.task_items_get;
-import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
-
-import org.json.JSONObject;
-
-import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

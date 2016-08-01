@@ -5,8 +5,61 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.pumin.lzl.pumin.Areaselection">
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:layout_weight="0.9"
+        android:hint="请输入设备编号"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        style="?android:buttonBarButtonStyle"
+        android:layout_weight="0.1"
+        android:text="搜索"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
 
+<LinearLayout
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <ImageButton
+        style="?android:buttonBarButtonStyle"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:background="#000"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content" />
+    <ImageButton
+        style="?android:buttonBarButtonStyle"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:background="#000"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content" />
+    <ImageButton
+        style="?android:buttonBarButtonStyle"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:background="#000"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content" />
+    <ImageButton
+        style="?android:buttonBarButtonStyle"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-
+</LinearLayout>
 </LinearLayout>

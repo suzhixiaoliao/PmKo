@@ -45,7 +45,7 @@
         android:layout_above="@+id/real_center_left"
         >
         <ImageView
-            android:id="@+id/iv_scans"
+            android:id="@+id/iv_scan"
             android:layout_centerHorizontal="true"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -57,7 +57,7 @@
             android:text="扫描"
             android:textSize="16dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/iv_scans"
+            android:layout_below="@+id/iv_scan"
             />
     </RelativeLayout>
     <RelativeLayout

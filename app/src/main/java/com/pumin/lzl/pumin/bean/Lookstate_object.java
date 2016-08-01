@@ -9,33 +9,12 @@ public class Lookstate_object {
     String expects;
     String finishs;
     String ontimes;
-    String okcount;
-    String oktime;
 
-    public Lookstate_object(String totals, String expects, String ontimes, String finishs
-    ,String okcount,String oktime) {
-        this.okcount=okcount;
-        this.oktime=oktime;
+    public Lookstate_object(String totals, String expects, String ontimes, String finishs) {
         this.totals = totals;
         this.ontimes = ontimes;
         this.expects = expects;
         this.finishs = finishs;
-    }
-
-    public String getOktime() {
-        return oktime;
-    }
-
-    public void setOktime(String oktime) {
-        this.oktime = oktime;
-    }
-
-    public String getOkcount() {
-        return okcount;
-    }
-
-    public void setOkcount(String okcount) {
-        this.okcount = okcount;
     }
 
     public String getTotals() {

@@ -1,9 +1,7 @@
 package com.pumin.lzl.pumin;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,20 +9,16 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -44,7 +38,6 @@ import com.pumin.lzl.pumin.fragment.LookState_Fragment;
 import com.pumin.lzl.pumin.utils.AllToast;
 import com.pumin.lzl.pumin.utils.Alldot_layout;
 import com.pumin.lzl.pumin.utils.Alltitle;
-import com.pumin.lzl.pumin.utils.F_image;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,7 +53,7 @@ import java.util.ArrayList;
 */
 public class Main_View extends AppCompatActivity {
     //context
-    Context context;
+    Context context = this;
     //Tag的提示
     private static final String TAG = "Main_view";
 
@@ -75,7 +68,8 @@ public class Main_View extends AppCompatActivity {
 
     String str = "";
 
-    private ImageButton main_back;
+    //标题
+    private Alltitle equipment;
 
     //flag
     private LinearLayout dot_layout;
@@ -95,6 +89,7 @@ public class Main_View extends AppCompatActivity {
     String info;
     String path = "";
 
+    int[] drawble={1,R.mipmap.abxhs,R.mipmap.abbjq,R.mipmap.abdh,R.mipmap.abdzx};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +109,7 @@ public class Main_View extends AppCompatActivity {
     //初始化控件
     private void initview() {
         view_page = (ViewPager) findViewById(R.id.view_pager);
+        equipment = (Alltitle) findViewById(R.id.equipment);
         device_name = (TextView) findViewById(R.id.device_name);
         device_type = (TextView) findViewById(R.id.device_type);
         device_start_date = (TextView) findViewById(R.id.device_start_date);
@@ -122,18 +118,18 @@ public class Main_View extends AppCompatActivity {
         device_phone = (TextView) findViewById(R.id.device_phone);
         device_image = (ImageView) findViewById(R.id.device_image);
         dot_layout = (LinearLayout) findViewById(R.id.dot_layout);
-        main_back = (ImageButton) findViewById(R.id.main_back);
     }
 
 
     //设置标题栏
     private void initTitle() {
-        main_back.setOnClickListener(new View.OnClickListener() {
+        equipment.setTitle("设备信息");
+        equipment.setLeftButton(null, R.mipmap.back, new Alltitle.OnLeftButtonClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onLeftBtnClick(View button) {
                 finish();
             }
-        });
+        }, null);
     }
 
     //碎片的加载
@@ -185,9 +181,7 @@ public class Main_View extends AppCompatActivity {
 //            http://app.pumintech.com:40000/api/user/?signature=1
 //            http://10.16.1.201:40000/api/user/?signature=1
             //表名:S_EQPT_M
-//            path = "http://10.16.1.201:40000/api/user/get_eqpt_info?signature=1&eqpt_id=" + str;
-
-            path = "http://app.pumintech.com:40000/api/user/get_eqpt_info?signature=1&eqpt_id=" + str;
+            path = "http://10.16.1.201:40000/api/user/get_eqpt_info?signature=1&eqpt_id=" + str;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -234,10 +228,47 @@ public class Main_View extends AppCompatActivity {
                     return Response.error(new ParseError(je));
                 }
             }
+
         };
         request.add(jsonObjectRequest);
     }
 
+    //图片的压缩
+    public static int calculateInSampleSize(BitmapFactory.Options options,
+                                            int reqWidth, int reqHeight) {
+        // 源图片的高度和宽度
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+        if (height > reqHeight || width > reqWidth) {
+            // 计算出实际宽高和目标宽高的比率
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+            // 选择宽和高中最小的比率作为inSampleSize的值，这样可以保证最终图片的宽和高
+            // 一定都会大于等于目标的宽和高。
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+        return inSampleSize;
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+                                                         int reqWidth, int reqHeight) {
+        // 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+        // 调用上面定义的方法计算inSampleSize值
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        // 使用获取到的inSampleSize值再次解析图片
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    //假设图片
+    private void getimg(int img) {
+        device_image.setImageBitmap(decodeSampledBitmapFromResource(getResources(), img, 100, 100));
+        imageonclick();
+    }
 
     //预留接口--点击设备样子(进行拍照)上传图片
     private void imageonclick() {
@@ -272,10 +303,14 @@ public class Main_View extends AppCompatActivity {
             jsonObj = new JSONObject(data);
 
             String name = jsonObj.getString("eqpt_name");
+//            for(int i=1;i<10;i++){
+//                if(name.equals("A00000"+i)){
+//                    getimg(drawble[i]);
+//                }else{
+//                    getimg(R.mipmap.ic_launcher);
+//                }
+//            }
             device_name.setText(name); //设备名称
-
-            String ids = jsonObj.getString("eqpt_id");
-            F_image.image_s(ids, device_image, this);
 
             String type2_name = jsonObj.getString("next_rpd_date");
             device_type.setText(type2_name); //下次维修日期
@@ -292,8 +327,7 @@ public class Main_View extends AppCompatActivity {
 
 
             String phone = jsonObj.getString("phoneno");
-            device_phone.setText(Html.fromHtml("<u>" + phone + "</u>")); //联系号码
-
+            device_phone.setText(phone); //联系号码
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -314,18 +348,9 @@ public class Main_View extends AppCompatActivity {
         device_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + device_phone.getText().toString()));
-                if (ActivityCompat.checkSelfPermission(Main_View.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                startActivity(it);
+                Intent it = new Intent();
+                it.setData(Uri.parse("tel:" + device_phone.getText()));
+                it.setAction(Intent.ACTION_CALL);
             }
         });
     }

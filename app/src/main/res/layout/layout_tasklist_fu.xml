@@ -4,16 +4,18 @@
     android:background="#e1e0dc"
     android:orientation="vertical"
     android:layout_height="match_parent">
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swip"
+    <com.intentpumin.lsy.intentpumin.commonview.PullToRefreshLayout
+        android:id="@+id/refresh_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <ListView
+    <include layout="@layout/refresh_head" />
+    <com.intentpumin.lsy.intentpumin.commonview.PullableListView
         android:layout_width="match_parent"
         android:background="#e1e0dc"
         android:layout_height="match_parent"
         android:id="@+id/list_tasklist_fu"
         />
-    </android.support.v4.widget.SwipeRefreshLayout>
+        <include layout="@layout/load_more"/>
+    </com.intentpumin.lsy.intentpumin.commonview.PullToRefreshLayout>
 </LinearLayout>
 

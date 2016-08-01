@@ -12,7 +12,6 @@ import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.network.LogUtils;
 
-import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
 
 import com.intentpumin.lsy.intentpumin.tools.logindate.login;
 import com.pumin.lzl.pumin.Areaselection;
@@ -47,7 +46,7 @@ public class MainAdminActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //进入到扫描界面。
-                Intent   it = new Intent(MainAdminActivity.this, CaptureActivity.class);
+                Intent   it = new Intent(MainAdminActivity.this, MipcaActivityCapture.class);
                 it.putExtra("str_all","1");
                 startActivity(it);
             }

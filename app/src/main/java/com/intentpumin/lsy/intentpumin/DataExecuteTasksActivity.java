@@ -37,7 +37,6 @@ import com.intentpumin.lsy.intentpumin.tools.task.result_task_get;
 import com.intentpumin.lsy.intentpumin.tools.device.result_device_items;
 import com.intentpumin.lsy.intentpumin.tools.task.task_get;
 import com.intentpumin.lsy.intentpumin.tools.logindate.login;
-import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
@@ -155,7 +154,7 @@ public class DataExecuteTasksActivity extends BaseActivity{
         tv_fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DataExecuteTasksActivity.this, CaptureActivity.class);
+                Intent i = new Intent(DataExecuteTasksActivity.this, MipcaActivityCapture.class);
                 startActivity(i);
             }
         });

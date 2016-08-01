@@ -2,138 +2,136 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e1e0dc"
     android:orientation="vertical"
+    android:background="#e1e0dc"
     tools:context="com.pumin.fragment.LookState_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="#e1e0dc"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/state" />
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="#e1e0dc"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/state" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="统计信息"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:background="#000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.pumin.lzl.pumin.utils.SpringProgressView
+                    android:id="@+id/spring_progress_view"
+                    android:layout_width="300dp"
+                    android:layout_height="5dp" />
+                <TextView
+                    android:id="@+id/state_date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.pumin.lzl.pumin.utils.Work2_SpringProgress
+                    android:id="@+id/work_progress_view"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/work_number"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#f94961" />
+
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.pumin.lzl.pumin.utils.Work_SpringProgress
+                    android:id="@+id/workok_progress_view"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/workok_number"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#000" />
+
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.pumin.lzl.pumin.utils.Works_SpringProgress
+                    android:id="@+id/Otwork_progress_view"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/Otwork_number"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#000" />
+            </FrameLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="统计信息"
-                android:textSize="20dp" />
-
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:background="#000" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <com.pumin.lzl.pumin.utils.Date_SpringProgressView
-                android:id="@+id/spring_progress_view"
-                android:layout_width="300dp"
-                android:layout_height="5dp"
-                android:background="@mipmap/bk_sping" />
-
-            <TextView
-                android:id="@+id/state_date2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.pumin.lzl.pumin.utils.Task_SpringProgress
-                android:id="@+id/task_progress_view"
-                android:layout_width="300dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:background="@mipmap/bk2_sping" />
-
-            <TextView
-                android:id="@+id/work_number"
-                android:layout_width="280dp"
-                android:paddingLeft="10dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ffffff" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.pumin.lzl.pumin.utils.Oncount_SpringProgress
-                android:id="@+id/workok_progress_view"
-                android:layout_width="300dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:background="@mipmap/bk2_sping" />
-
-            <TextView
-                android:id="@+id/workok_number"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ffffff" />
-
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.pumin.lzl.pumin.utils.Ontime_SpringProgress
-                android:id="@+id/Otwork_progress_view"
-                android:layout_width="300dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:background="@mipmap/bk2_sping" />
-
-            <TextView
-                android:id="@+id/Otwork_number"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ffffff" />
-        </FrameLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
-    </LinearLayout>
 </LinearLayout>
