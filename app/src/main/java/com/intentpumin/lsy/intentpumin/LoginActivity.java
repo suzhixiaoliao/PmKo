@@ -31,7 +31,7 @@ import java.io.Serializable;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private String userNameValue, passwordValue;
     private EditText et_name;
@@ -179,7 +179,7 @@ public class LoginActivity extends BaseActivity {
                       System.out.println(s);
                       sp.edit().putString("name",login.getName()).putString("phoneno",login.getPhoneno())
                               .putString("priv", login.getPriv()).commit();
-                      if (login.getPriv().equals("0")) {
+                      if (login.getPriv().equals("2")) {
                           Intent i = new Intent(LoginActivity.this, MainActivity.class);
                           //第三步
                           i.putExtra("login", (Serializable)login);
@@ -189,7 +189,7 @@ public class LoginActivity extends BaseActivity {
                           //第三步
                           i.putExtra("login", (Serializable)login);
                           startActivity(i);
-                      }else if (login.getPriv().equals("2")){
+                      }else if (login.getPriv().equals("3")){
                           Intent i = new Intent(LoginActivity.this, MainRepairsActivity.class);
                           //第三步
                           i.putExtra("login", (Serializable)login);

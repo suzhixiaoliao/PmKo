@@ -31,7 +31,9 @@ public class MainLogic extends BaseLogic {
     public final static String GET_EQPT_STAT=HOST_URL+"/get_stat_list_by_eqpt";
     //管理人员获取指定日期及设备信息下的状态趋势图
     public final static String GET_VALUE=HOST_URL+"/get_stat_value";
-
-
+/**
+ * baoxiurenyuan Repairs
+ */
+public final static String Repairs=HOST_URL+"/add_new_repair";
 
 }

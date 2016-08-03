@@ -50,6 +50,4 @@ public class HttpUtil {
                 .setDebug(true);
         return builder;
     }
-
-
 }

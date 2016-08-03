@@ -74,21 +74,15 @@ public class TaskRemarkActivity extends Activity {
         String mdate =task_get.getDate();
         String signature="1";
         final RequestParams params = new RequestParams();
-//        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-//        String date = sDateFormat.format(new java.util.Date()).substring(0, 10);
-//        params.addFormDataPart("signature", signature);
-//        params.addFormDataPart("phoneno",mPhoneno);
-//        params.addFormDataPart("task_id",task_id);
-//        params.addFormDataPart("eqpt_id",eqpt_id);
-//        params.addFormDataPart("date",mdate);
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String date = sDateFormat.format(new java.util.Date()).substring(0, 10);
         params.addFormDataPart("signature", signature);
         params.addFormDataPart("phoneno",mPhoneno);
-        // params.addFormDataPart("task_id",task_id);
-        params.addFormDataPart("task_id","FA0101001");
-        //  params.addFormDataPart("eqpt_id",eqpt_id);
-        params.addFormDataPart("eqpt_id","FA0101001");
-        // params.addFormDataPart("date",mdate);
-        params.addFormDataPart("date","2016-07-01");
+        params.addFormDataPart("task_id",task_id);
+        params.addFormDataPart("eqpt_id",eqpt_id);
+        params.addFormDataPart("date",mdate);
+        params.addFormDataPart("signature", signature);
+        params.addFormDataPart("phoneno",mPhoneno);
         HttpUtil.getInstance().post(MainLogic.GET_REMARK, params, new StringHttpRequestCallback() {
             @Override
             public void onStart() {
@@ -133,20 +127,15 @@ public class TaskRemarkActivity extends Activity {
         String remark = et_tast_com.getText().toString();
         SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String date = sDateFormat.format(new java.util.Date()).substring(0,10);
-//        params.addFormDataPart("signature", signature);
-//        params.addFormDataPart("phoneno",mPhoneno);
+        params.addFormDataPart("signature", signature);
+        params.addFormDataPart("phoneno",mPhoneno);
         params.addFormDataPart("remark", remark);
         params.addFormDataPart("signature", signature);
         params.addFormDataPart("phoneno",mPhoneno);
-        // params.addFormDataPart("task_id",task_id);
-        params.addFormDataPart("task_id","FA0101001");
-        //  params.addFormDataPart("eqpt_id",eqpt_id);
-        params.addFormDataPart("eqpt_id","FA0101001");
-        // params.addFormDataPart("date",mdate);
-        params.addFormDataPart("date","2016-07-01");
-//        params.addFormDataPart("task_id",task_id);
-//        params.addFormDataPart("eqpt_id",eqpt_id);
-//        params.addFormDataPart("date", mdate);
+       params.addFormDataPart("task_id",task_id);
+        params.addFormDataPart("eqpt_id",eqpt_id);
+       params.addFormDataPart("date",mdate);
+
         HttpUtil.getInstance().post(MainLogic.SET_REMARK, params, new StringHttpRequestCallback() {
             @Override
             public void onStart() {
