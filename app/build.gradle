@@ -45,3 +45,7 @@ android {
         compile project(':PhotoPicker')
     }
 }
+
+dependencies {
+    compile project(':cube-core')
+}

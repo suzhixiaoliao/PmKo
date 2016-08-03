@@ -44,6 +44,7 @@ public class MainRepairsActivity extends BaseActivity
     private ImageAdapter mAdapter;
     private TextView tv_fs;
     SharedPreferences sp;
+    String result = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,9 @@ public class MainRepairsActivity extends BaseActivity
     @Override
     protected void setupData() {
        setContentView(R.layout.activity_main_repairs, R.string.repairs, MODE_NO_NAVIGATION);
+        result = this.getIntent().getStringExtra("result_put");
         initView();
+
     }
 
     private void initView() {
@@ -116,7 +119,8 @@ public class MainRepairsActivity extends BaseActivity
             files.add(new File(photoPaths.get(i)));
         }
         String date = "2016-08-01 12:22:00";
-        String eqpt_id="FA0101001";
+       // String eqpt_id="FA0101001";
+        String eqpt_id =result;
         String et_input=et_shuru.getText().toString();
         sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
         String mPhoneno= sp.getString("phoneno", "");

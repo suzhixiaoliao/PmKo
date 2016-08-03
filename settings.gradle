@@ -1,1 +1,1 @@
-include ':app', ':helloLibary',':PhotoPicker'
+include ':app', ':helloLibary', ':PhotoPicker', ':cube-core'

@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" filepath="$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/PmKo.iml" filepath="$PROJECT_DIR$/PmKo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cube-core/cube-core.iml" filepath="$PROJECT_DIR$/cube-core/cube-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/helloLibary/helloLibary.iml" filepath="$PROJECT_DIR$/helloLibary/helloLibary.iml" />
     </modules>
   </component>
