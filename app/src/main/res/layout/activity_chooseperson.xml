@@ -31,6 +31,7 @@
     </LinearLayout>
 
     <ListView
+        android:listSelector="@drawable/choose_select"
         android:id="@+id/choose_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -7,10 +7,20 @@ package com.pumin.lzl.pumin.bean;
 public class Choose_object {
     private String choose_name;
     private String choose_phone;
+    private String choose_id;
 
-    public Choose_object(String choose_name, String choose_phone) {
+    public Choose_object(String choose_name, String choose_phone,String choose_id) {
         this.choose_name = choose_name;
         this.choose_phone = choose_phone;
+        this.choose_id=choose_id;
+    }
+
+    public String getChoose_id() {
+        return choose_id;
+    }
+
+    public void setChoose_id(String choose_id) {
+        this.choose_id = choose_id;
     }
 
     public String getChoose_name() {

@@ -1,13 +1,20 @@
 package com.pumin.lzl.pumin;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -28,6 +35,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /*
 *@author lzl
@@ -50,6 +58,12 @@ public class Chooseperson extends AppCompatActivity {
     JSONObject object;
     JSONArray jsonarr;
     String info; //解析的数据
+
+    private String choose_name;
+    private String name_furn;
+
+    private String set_name;
+    private String set_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +94,15 @@ public class Chooseperson extends AppCompatActivity {
         choose_back = (ImageButton) findViewById(R.id.choose_back);
         choose_list = (ListView) findViewById(R.id.choose_list);
         choose_add = (ImageView) findViewById(R.id.choose_add);
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == event.KEYCODE_BACK) {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     //请求接口
@@ -150,7 +173,8 @@ public class Chooseperson extends AppCompatActivity {
             for (int i = 0; i < jsonarr.length(); i++) {
                 try {
                     JSONObject obj = jsonarr.getJSONObject(i);
-                    choose_obj = new Choose_object(obj.getString("name"), obj.getString("phoneno"));
+                    choose_obj = new Choose_object(obj.getString("name"), obj.getString("phoneno"),
+                            obj.getString("s_id"));
                     choose_array.add(choose_obj);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -159,6 +183,13 @@ public class Chooseperson extends AppCompatActivity {
         }
         choose_ada = new Choose_adapter(choose_array, this);
         choose_list.setAdapter(choose_ada);
-    }
+        name_furn = getIntent().getStringExtra("put_areament");
 
+        choose_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
 }

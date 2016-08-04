@@ -52,7 +52,6 @@ import java.util.HashMap;
 public class Areaselection extends AppCompatActivity {
     Intent it;
 
-    private LinearLayout area_linear;
     private ImageButton area_sm; //扫描
     private ImageButton area_ss; //搜索
     private EditText area_sr; //输入框
@@ -61,7 +60,7 @@ public class Areaselection extends AppCompatActivity {
     List_dialog_adapter dialog_dapter;
     ArrayList<Area_dialog_obj> dialog_array = new ArrayList<>();
     Area_dialog_obj dialog_obj;
-    private ListView area_list_dialog;
+    private ListView area_listsj_dialog;
     //解析
     JSONObject jsonobj;
     JSONArray jsonarr;
@@ -75,20 +74,18 @@ public class Areaselection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_areaselection);
+        request = Volley.newRequestQueue(this);  //得到volley对象
+        initview();
         //透明状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        request = Volley.newRequestQueue(this);  //得到volley对象
-        initview();
-        initlinear();
         qure();
-        area_linear.getBackground().setAlpha(255); //设置透明度
+        initlinear();
     }
 
     //初始化控件
     private void initview() {
-        area_linear = (LinearLayout) findViewById(R.id.area_linear);
         area_sm = (ImageButton) findViewById(R.id.area_sm);
         area_ss = (ImageButton) findViewById(R.id.area_ss);
         area_sr = (EditText) findViewById(R.id.area_sr);
@@ -108,9 +105,9 @@ public class Areaselection extends AppCompatActivity {
         });
     }
 
+    //借口请求
     private void qure() {
         eqpt = area_sr.getText().toString();
-        System.out.println("输入的数据：" + eqpt);
         String path = "";
         //把path转码-网路请求获取所有符合的设备
         try {
@@ -126,14 +123,12 @@ public class Areaselection extends AppCompatActivity {
                         // 成功获取数据后将数据显示在屏幕上
                         try {
                             info = response.toString();
-                            System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxx");
                             // info = response.getString("UTF-8");
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
                         Log.e("TAG", response + "" + "url");
-                        System.out.println(info);
                         geteqpt(info);
                     }
                 }, new Response.ErrorListener() {
@@ -141,7 +136,6 @@ public class Areaselection extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("TAG", error.getMessage(), error);
-                System.out.println("不好意思，加载失败");
             }
         }) {
             @Override
@@ -166,6 +160,7 @@ public class Areaselection extends AppCompatActivity {
         area_ss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog_array = new ArrayList<>();
 
                 //这里要生成一个dialog，再有dialog得到listview中设备到布置任务界面
                 try {
@@ -177,10 +172,6 @@ public class Areaselection extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                AlertDialog.Builder builder = new AlertDialog.Builder(Areaselection.this);
-                View view = getLayoutInflater().inflate(R.layout.area_list_dialog, null);
-                area_list_dialog = (ListView) view.findViewById(R.id.area_listsj_dialog);
-                dialog_array = new ArrayList<>();
                 if (jsonarr.length() > 0 && jsonarr != null) {
                     for (int i = 0; i < jsonarr.length(); i++) {
                         try {
@@ -193,26 +184,28 @@ public class Areaselection extends AppCompatActivity {
                         }
                     }
                 }
-                /*
+                //dialog的显示
+                AlertDialog.Builder builder = new AlertDialog.Builder(Areaselection.this);
+                View view = getLayoutInflater().inflate(R.layout.area_list_dialog, null);
+                 /*
                 数据的适配
                  */
-                dialog_dapter = new List_dialog_adapter(dialog_array, getApplication());
-                area_list_dialog.setAdapter(dialog_dapter);
-
+                area_listsj_dialog = (ListView) view.findViewById(R.id.area_listsj_dialog);
+                dialog_dapter = new List_dialog_adapter(dialog_array, Areaselection.this);
+                area_listsj_dialog.setAdapter(dialog_dapter);
                 builder.setView(view);
-                AlertDialog dialog = builder.create();
+                final AlertDialog dialog = builder.create();
+                dialog.setCancelable(false);
                 dialog.show();
-                area_list_dialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                //put_areament
+                area_listsj_dialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        TextView c = (TextView) view.findViewById(R.id.area_name);
-                        String name = c.getText().toString();
-                        Area_dialog_obj dialog_obj = dialog_array.get(position);
+                        dialog_obj = dialog_array.get(position);
+                        dialog.cancel();
                         Intent it = new Intent(Areaselection.this, Furnishtsak.class);
                         it.putExtra("put_areament", dialog_obj.getArea_id());
-                        it.putExtra("put_areaname", name);
                         startActivity(it);
-                        Toast.makeText(Areaselection.this, "得到数据：" + dialog_obj.getArea_id(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

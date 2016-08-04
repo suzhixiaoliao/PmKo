@@ -1,35 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="70dp"
+    android:descendantFocusability="afterDescendants">
+
+
+    <CheckBox
+        android:id="@+id/select_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_weight="1"
+        android:background="@drawable/choose_select"
+        android:button="@null"
+        android:paddingLeft="80dp"
+        android:paddingTop="5dp"
+        android:text="测试人员"
+        android:textSize="15dp" />
+
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="70dp"
-        android:background="@drawable/choose_select"
-        android:orientation="horizontal">
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
+        <com.pumin.lzl.pumin.utils.ClickText
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:paddingLeft="80dp"
-            android:id="@+id/select_choose"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="测试人员"
-            android:textColor="#000"
-            android:textSize="15dp" />
+            <TextView
+                android:id="@+id/select_choose_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLength="11"
+                android:paddingLeft="40dp"
+                android:text="1" />
 
-        <TextView
-            android:maxLength="11"
-            android:id="@+id/select_choose_phone"
-            android:paddingLeft="40dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="13000000000" />
+        </com.pumin.lzl.pumin.utils.ClickText>
+
     </LinearLayout>
-</LinearLayout>
+
+
+</RelativeLayout>
