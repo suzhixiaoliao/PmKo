@@ -11,8 +11,6 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center|left"
-        android:layout_margin="@dimen/fab_margin"
+        android:src="@mipmap/repairs_fab_add"
         />
-
-
 </com.intenpumin.lsy.intentpumin.repairs.ui.MyCoordinatorLayout>

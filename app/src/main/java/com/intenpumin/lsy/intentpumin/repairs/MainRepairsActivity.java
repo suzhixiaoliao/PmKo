@@ -23,6 +23,7 @@ import com.intenpumin.lsy.intentpumin.repairs.image.ImageHandleUtils;
 import com.intenpumin.lsy.intentpumin.repairs.util.MaxLengthWatcher;
 import com.intentpumin.lsy.intentpumin.R;
 import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
+import com.intentpumin.lsy.intentpumin.activity.BcBaseActivity;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 
@@ -34,7 +35,7 @@ import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 import me.iwf.photopicker.PhotoPickerActivity;
 
-public class MainRepairsActivity extends BaseActivity
+public class MainRepairsActivity extends BcBaseActivity
         implements View.OnClickListener,AdapterView.OnItemClickListener {
     private static final int REQUEST_CODE = 1;
     private GridView vPhoto;
@@ -44,20 +45,12 @@ public class MainRepairsActivity extends BaseActivity
     private ImageAdapter mAdapter;
     private TextView tv_fs;
     SharedPreferences sp;
-    String result = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void setupData() {
-       setContentView(R.layout.activity_main_repairs, R.string.repairs, MODE_NO_NAVIGATION);
-        result = this.getIntent().getStringExtra("result_put");
+        setContentView(R.layout.activity_main_repairs);
         initView();
-
     }
-
     private void initView() {
 
         tv_fs= (TextView) findViewById(R.id.tv_shuru);
@@ -119,8 +112,8 @@ public class MainRepairsActivity extends BaseActivity
             files.add(new File(photoPaths.get(i)));
         }
         String date = "2016-08-01 12:22:00";
-       // String eqpt_id="FA0101001";
-        String eqpt_id =result;
+        String eqpt_id="FA0101001";
+        //String eqpt_id =result;
         String et_input=et_shuru.getText().toString();
         sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
         String mPhoneno= sp.getString("phoneno", "");
@@ -144,6 +137,7 @@ public class MainRepairsActivity extends BaseActivity
             @Override
             public void onStart() {
                 super.onStart();
+                showProgressDialog(R.string.tip_making_picture);
             }
             @Override
             protected void onSuccess(String s) {
@@ -156,6 +150,7 @@ public class MainRepairsActivity extends BaseActivity
             @Override
             public void onFinish() {
                 System.out.println("完成");
+                cancelProgressDialog();
             }
         });
     }

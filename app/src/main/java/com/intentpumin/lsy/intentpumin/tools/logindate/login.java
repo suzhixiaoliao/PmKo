@@ -2,9 +2,6 @@ package com.intentpumin.lsy.intentpumin.tools.logindate;
 
 import java.io.Serializable;
 
-/**
- * Created by yang on 2016/5/5.
- */
 public class login implements Serializable{
     String name = "";
     String type_id="";

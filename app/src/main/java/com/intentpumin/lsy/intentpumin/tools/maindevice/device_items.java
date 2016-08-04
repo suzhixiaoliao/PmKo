@@ -4,9 +4,6 @@ package com.intentpumin.lsy.intentpumin.tools.maindevice;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by yang on 2016/5/16.
- */
 public class device_items implements Serializable{
     private int total;
     //  private List<items> items;

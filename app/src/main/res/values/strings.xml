@@ -28,6 +28,6 @@
     <string name="tip_no_internet">当前没有可用的网络链接</string>
     <string name="ok">确定</string>
     <string name="tip_communicating">正在通信中...</string>
-    <string name="tip_making_picture">图片位置信息提交中...</string>
+    <string name="tip_making_picture">提交中...</string>
     <string name="layout_empty_loading_view_loading">加载中...</string>
 </resources>

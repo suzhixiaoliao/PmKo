@@ -1,8 +1,5 @@
 package com.intentpumin.lsy.intentpumin.tools.mRemark;
 
-/**
- * Created by yang on 2016/7/19.
- */
 public class remark_list {
 
     /**

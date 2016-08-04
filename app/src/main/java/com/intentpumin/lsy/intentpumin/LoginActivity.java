@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.intenpumin.lsy.intentpumin.repairs.MainRepairsActivity;
 import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
+import com.intentpumin.lsy.intentpumin.activity.BcBaseActivity;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
 import com.intentpumin.lsy.intentpumin.tools.logindate.login;
@@ -82,7 +83,6 @@ public class LoginActivity extends BaseActivity {
                   et_name.requestFocus();
                   return;
               }
-
               if (et_psd.length() == 0) {
                   et_psd.setError("请输入密码");
                   et_psd.requestFocus();
@@ -99,7 +99,7 @@ public class LoginActivity extends BaseActivity {
                           @Override
                           public void onStart() {
                               super.onStart();
-                              showProgressDialog(R.string.tip_communicating);
+                             showProgressDialog(R.string.tip_communicating);
                           }
 
                           @Override
@@ -136,11 +136,6 @@ public class LoginActivity extends BaseActivity {
                   //第三步
                   i.putExtra("login", (Serializable) login);
                   startActivity(i);
-              } else if (login.getPriv().equals("1")) {
-                  Intent i = new Intent(LoginActivity.this, MainAdminActivity.class);
-                  //第三步
-                  i.putExtra("login", (Serializable) login);
-                  startActivity(i);
               } else if (login.getPriv().equals("3")) {
                   Intent i = new Intent(LoginActivity.this, MainRepairsActivity.class);
                   //第三步
@@ -157,7 +152,7 @@ public class LoginActivity extends BaseActivity {
 
           @Override
           public void onFinish() {
-              cancelProgressDialog();
+             cancelProgressDialog();
                }
               });
           }

@@ -113,10 +113,6 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="lTcjS1xctW7IGRML7puSoQMGnKN8bAIW" />
 
-        <activity
-            android:name=".MainAdminActivity"
-            android:screenOrientation="portrait" />
-
         <meta-data
             android:name="design_width"
             android:value="768" />
@@ -134,31 +130,6 @@
             android:name=".TaskRemarkActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent" />
-
-        <!-- 管理员主界面 -->
-        <activity
-            android:name="com.pumin.lzl.pumin.MainActivity2"
-            android:screenOrientation="portrait" />
-        <!-- 接收二维码信息 -->
-        <activity
-            android:name="com.pumin.lzl.pumin.Main_View"
-            android:screenOrientation="portrait" />
-        <!-- 任务列表界面 -->
-        <activity
-            android:name="com.pumin.lzl.pumin.TaskList_alter"
-            android:screenOrientation="portrait" />
-        <!-- 设备管理界面 -->
-        <activity
-            android:name="com.pumin.lzl.pumin.Management_activity"
-            android:screenOrientation="portrait" />
-        <!-- 区域管理 -->
-        <activity
-            android:name="com.pumin.lzl.pumin.Region_admin"
-            android:screenOrientation="portrait" />
-        <!-- 运维人员管理界面 -->
-        <activity
-            android:name="com.pumin.lzl.pumin.Management_Operations"
-            android:screenOrientation="portrait" />
         <activity android:name=".TaskRemark2Activity" />
         <activity android:name="com.intenpumin.lsy.intentpumin.repairs.MainRepairsActivity"></activity>
         <activity android:name="me.iwf.photopicker.PhotoPickerActivity"
