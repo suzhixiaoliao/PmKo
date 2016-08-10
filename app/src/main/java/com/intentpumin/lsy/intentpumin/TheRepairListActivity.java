@@ -1,31 +1,26 @@
 package com.intentpumin.lsy.intentpumin;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
-import com.intentpumin.lsy.intentpumin.adapter.DeviceAdapter;
+import com.intentpumin.lsy.intentpumin.adapter.RepairListAdapter;
 import com.intentpumin.lsy.intentpumin.commonview.PullToRefreshLayout;
 import com.intentpumin.lsy.intentpumin.commonview.PullableListView;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
-import com.intentpumin.lsy.intentpumin.tools.device.items;
-import com.intentpumin.lsy.intentpumin.tools.device.result_device_items;
-import com.intentpumin.lsy.intentpumin.tools.logindate.login;
+import com.intentpumin.lsy.intentpumin.tools.repairlist.RepairList;
+import com.intentpumin.lsy.intentpumin.tools.repairlist.Repair_item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,53 +28,44 @@ import java.util.List;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-/**
-未完成设备页面 即清单页面
- */
-public class UnfinishedDeviceActivity extends BaseActivity implements PullToRefreshLayout.OnRefreshListener,AdapterView.OnItemClickListener {
-    private DeviceAdapter adapter;
-    private List<items> mdata;
+public class TheRepairListActivity extends BaseActivity implements PullToRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
+    private RepairListAdapter adapter;
+    private List<Repair_item> mdata;
     private SharedPreferences sp;
-    private login mlogin;
-    private Button btn_back;
-
     private int currentPage = 1;
     private int MAX_PAGE = 10;
     private PullableListView mPullRefreshListView;//上拉下拉加载刷新
     private PullToRefreshLayout ptrl;
-    private static final int FIRST_INTO = 0;
-    private static final int REFUSH_UP = 1;
-    private static final int LOAG_MORE = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupData();
     }
 
     @Override
     protected void setupData() {
         sp = getSharedPreferences("info", Context.MODE_PRIVATE);
-        setContentView(R.layout.activity_unfinisheddevice, R.string.UnfinishedDevice, MODE_BACK_NAVIGATION);
+        setContentView(R.layout.activity_unfinisheddevice, R.string.RepairList, MODE_BACK_NAVIGATION);
         mPullRefreshListView = (PullableListView) findViewById(R.id.list_tasklist);
         ptrl = (PullToRefreshLayout) findViewById(R.id.refresh_view);
         ptrl.setOnRefreshListener(this);
         mdata = new ArrayList<>();
         if (adapter == null) {
 
-            adapter = new DeviceAdapter(this, mdata);
+            adapter = new RepairListAdapter(this, mdata);
         }
         mPullRefreshListView.setAdapter(adapter);
         mPullRefreshListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                items items = mdata.get(position);
-                Log.d("un", mdata.toString());
-                Intent intent = new Intent(UnfinishedDeviceActivity.this, DataExecuteTasks2Activity.class);
-                intent.putExtra("item", items);
-                UnfinishedDeviceActivity.this.startActivity(intent);
+                Repair_item items = mdata.get(position);
+                Intent intent = new Intent(TheRepairListActivity.this, RepairUploadActivity.class);
+                intent.putExtra("repair_item", items);
+                TheRepairListActivity.this.startActivity(intent);
             }
         });
-       requestData();
+        requestData();
     }
 
     @Override
@@ -98,6 +84,7 @@ public class UnfinishedDeviceActivity extends BaseActivity implements PullToRefr
             }
         }.sendEmptyMessageDelayed(0, 1000);
     }
+
     @Override
     public void onLoadMore(final PullToRefreshLayout pullToRefreshLayout) {
 
@@ -117,18 +104,16 @@ public class UnfinishedDeviceActivity extends BaseActivity implements PullToRefr
     }
 
     private void requestData() {
-        String signature="1";
+        String signature = "1";
         RequestParams params = new RequestParams();
-        String finished = "N";
-        params.addFormDataPart("signature",signature);
+        params.addFormDataPart("signature", signature);
         params.addFormDataPart("page", currentPage);
-        params.addFormDataPart("count",MAX_PAGE);
-        params.addFormDataPart("finished", finished);
+        params.addFormDataPart("count", MAX_PAGE);
         sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
         String mPhoneno = sp.getString("phoneno", "");
         params.addFormDataPart("phoneno", mPhoneno);
 
-        HttpUtil.getInstance().post(MainLogic.GET_TASK_LIST, params, new StringHttpRequestCallback() {
+        HttpUtil.getInstance().post(MainLogic.GET_REPAIR, params, new StringHttpRequestCallback() {
             @Override
             public void onStart() {
                 super.onStart();
@@ -137,28 +122,23 @@ public class UnfinishedDeviceActivity extends BaseActivity implements PullToRefr
 
             @Override
             protected void onSuccess(String s) {
-                String eqpt_name = "";
-                String date = "";
-                String loct_name = "";
+                System.out.println(s);
                 System.out.println("onSuccess");
-                result_device_items resulut = null;
+                RepairList resulut = null;
                 try {
                     if (!TextUtils.isEmpty(s)) {
                         Gson gson = new Gson();
-                        resulut = gson.fromJson(s, result_device_items.class);
+                        resulut = gson.fromJson(s, RepairList.class);
                         //正常情况是用result.getData().getItems得到数据组，而不是直接去获取result.getData().getItems().get(0)
-                        if (resulut != null && resulut.getData() != null && resulut.getData().getItems() != null && resulut.getData().getItems().size() > 0) {
-                            date = resulut.getData().getItems().get(0).getDate();
-                            eqpt_name = resulut.getData().getItems().get(0).getEqpt_name();
-                            loct_name = resulut.getData().getItems().get(0).getLoct_name();
+                        if (resulut.getData().getItems()!= null && resulut.getData().getItems() != null && resulut.getData().getItems() != null && resulut.getData().getItems().size() > 0) {
                         }
                     }
 
                 } catch (JsonSyntaxException e) {
                     e.printStackTrace();
                 }
-                System.out.println(s);
-                if (resulut != null && resulut.getData() != null && resulut.getData().getItems() != null && resulut.getData().getItems().size() > 0) {
+
+                if (resulut != null && resulut.getData().getItems() != null && resulut.getData().getItems() != null && resulut.getData().getItems().size() > 0) {
                     mdata.addAll(resulut.getData().getItems());
                 }
                 adapter.setItems(mdata);

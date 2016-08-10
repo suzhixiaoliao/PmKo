@@ -22,6 +22,12 @@ public class MainLogic extends BaseLogic {
     public final static String SET_REMARK=HOST_URL+"/set_task_remark";
     //更新任务备注
     public final static String GET_REMARK=HOST_URL+"/get_task_remark";
+    //获取今天全部任务
+    public final static String GET_TODAY=HOST_URL+"/get_mt_eqpt_list_today";
+    //报修维修清单
+    public final static String GET_REPAIR=HOST_URL+"/get_repair_list_null_or_mine";
+    //报修维修上传
+    public final static String GET_REPAIR_UPLOAD=HOST_URL+"/get_repair_list_null_or_mine";
     /**
    * 管理人员接口
    */

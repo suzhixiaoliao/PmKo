@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class device_items implements Serializable{
-    private int total;
+    private String total;
     //  private List<items> items;
     private List<items> items;
 
@@ -17,11 +17,11 @@ public class device_items implements Serializable{
         this.items = items;
     }
 
-    public int getTotal() {
+    public String getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(String total) {
         this.total = total;
     }
 }

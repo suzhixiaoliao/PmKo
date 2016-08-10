@@ -365,20 +365,22 @@ public class DataExecuteTasksActivity extends BaseActivity{
             for (int i = 0; i < mstat.size(); i++) {
                 final int j = i;
                 stat_get item = mstat.get(i);
-                RequestParams params = new RequestParams();
                 SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String exec_time = sDateFormat.format(new java.util.Date());
-                   String mdate = s.getData().getItems().get(i).getDate().substring(0,10);
+                   String mdate = s.getData().getItems().get(i).getDate().substring(0, 10);
                 String area_id = s.getData().getItems().get(i).getArea_id();
                 String eqpt_id = s.getData().getItems().get(i).getEqpt_id();
                 String stat_id = s.getData().getItems().get(i).getStat_id();
-                params.addFormDataPart("signature", 1);
+                String r_value =s.getData().getItems().get(i).getR_value();
+                String signature="1";
+                RequestParams params = new RequestParams();
+                params.addFormDataPart("signature", signature);
                 params.addFormDataPart("date", mdate);
                 params.addFormDataPart("area_id", area_id);
                 params.addFormDataPart("eqpt_id", eqpt_id);
                 params.addFormDataPart("stat_id", stat_id);
                 // TODO: 2016/6/21 传值
-                params.addFormDataPart("r_value", item.getR_value());
+                params.addFormDataPart("r_value",item.getR_value());
                 if (item.getFinished().equals("Y1")) {
                     params.addFormDataPart("finished", "Y");
                     System.out.println("llllllllllll" + item.getFinished());
@@ -392,7 +394,6 @@ public class DataExecuteTasksActivity extends BaseActivity{
                 System.out.println("llllllllllll" + Mapx);
                 params.addFormDataPart("spot_y", Mapy);
                 params.addFormDataPart("phoneno",mPhoneno);
-                //   params.addFormDataPart("pmt_id", "47875310-1A24-2B35-2783-AE19D8334E2D");
                 params.addFormDataPart("exec_time", exec_time);
                 HttpUtil.getInstance().post(MainLogic.SET_STAT, params, new StringHttpRequestCallback() {
                     @Override

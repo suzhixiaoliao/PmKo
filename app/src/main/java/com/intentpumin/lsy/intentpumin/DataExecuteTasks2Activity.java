@@ -191,8 +191,9 @@ public class DataExecuteTasks2Activity extends BaseActivity {
         String mPhoneno= sp.getString("phoneno", "");
         String phoneno = "13000000000";
         String area_id = items.getArea_id();
+        String signature="1";
         String eqpt_id = items.getEqpt_id();
-        params.addFormDataPart("signature", 1);
+        params.addFormDataPart("signature",signature);
         params.addFormDataPart("date", date);
         params.addFormDataPart("phoneno", mPhoneno);
         params.addFormDataPart("area_id", area_id);
@@ -348,14 +349,15 @@ public class DataExecuteTasks2Activity extends BaseActivity {
                 sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
                 String mPhoneno= sp.getString("phoneno", "");
 //                if (item.getFinished().equals("Y1")) {
-                RequestParams params = new RequestParams();
                 SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String exec_time = sDateFormat.format(new java.util.Date());
                 String date = b.getData().getItems().get(i).getDate().substring(0, 10);
                 String area_id = b.getData().getItems().get(i).getArea_id();
                 String eqpt_id = b.getData().getItems().get(i).getEqpt_id();
                 String stat_id = b.getData().getItems().get(i).getStat_id();
+                String r_value = b.getData().getItems().get(i).getR_value();
                 String signature="1";
+                RequestParams params = new RequestParams();
                 params.addFormDataPart("signature",signature);
                 params.addFormDataPart("date", date);
                 params.addFormDataPart("phoneno",mPhoneno);
@@ -367,17 +369,9 @@ public class DataExecuteTasks2Activity extends BaseActivity {
                 // TODO: 2016/6/21 传值
                 params.addFormDataPart("r_value", item.getR_value());
                 params.addFormDataPart("finished", "Y");
-                /*if (item.getFinished().equals("Y1")) {
-                    params.addFormDataPart("finished", "Y");
-                    System.out.println("llllllllllll" + item.getFinished());
-                } else if (item.getFinished().equals("N1")) {
-                    params.addFormDataPart("finished", "Y");
-                    System.out.println("llllllllllll" + item.getFinished());
-                } */
                 params.addFormDataPart("spot_x", Mapx);
                 System.out.println("llllllllllll" + Mapx);
                 params.addFormDataPart("spot_y", Mapy);
-                //   params.addFormDataPart("pmt_id", "47875310-1A24-2B35-2783-AE19D8334E2D");
                 params.addFormDataPart("exec_time", exec_time);
                 HttpUtil.getInstance().post(MainLogic.SET_STAT, params, new StringHttpRequestCallback() {
                     @Override
@@ -427,23 +421,15 @@ public class DataExecuteTasks2Activity extends BaseActivity {
                 String exec_time = sDateFormat.format(new java.util.Date());
                  String date = b.getData().items.get(i).date.substring(0,10);
                 String area_id = b.getData().items.get(i).area_id;
-                //  String area_id = "47875310-1A24-2B35-2783-AE12D8334E2D";
                 String eqpt_id = b.getData().items.get(i).eqpt_id;
-                //   String eqpt_id = "47875315-1A24-2B35-2783-AE19D7334E2D";
                  String task_id = b.getData().items.get(i).task_id;
-                // String task_id = "0456DAB3-6A37-FCAC-33C8-31FEA4B4B43E";
-                //String finished="Y";
-                String phoneno = "13000000000";
                 String signature = "1";
-               // String date = "2016-06-21";
                 params.addFormDataPart("phoneno", mPhoneno);
                 params.addFormDataPart("date", date);
                 params.addFormDataPart("signature", signature);
                 params.addFormDataPart("area_id", area_id);
                 params.addFormDataPart("eqpt_id", eqpt_id);
                 params.addFormDataPart("task_id", task_id);
-                //params.addFormDataPart("finished",finished);
-                // params.addFormDataPart("finished", b.getData().getItems().get(i).getFinished());
                 if (item.getFinished().equals("Y1")) {
                     params.addFormDataPart("finished", "Y");
                     System.out.println("llllllllllll" + item.getFinished().toString());

@@ -22,6 +22,8 @@
     <string name="dataExecuteTasks">任务执行</string>
     <string name="mDataExecuteTasks">任务执行</string>
     <string name="UnfinishedDevice">清单页面</string>
+    <string name="RepairList">现场报修</string>
+    <string name="RepairUpload">现场报修上传</string>
     <string name="mCharts">趋势图显示</string>
     <string name="camera">扫描界面</string>
     <string name="repairs">报修界面</string>

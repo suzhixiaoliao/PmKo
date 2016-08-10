@@ -2,61 +2,80 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/bg_pumin"
-    android:orientation="horizontal">
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-
+    android:background="@color/bg_pumin">
+    <RelativeLayout
+        android:id="@+id/rl_lsy"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/image_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <TextView
-            android:paddingLeft="18px"
-            android:id="@+id/tv_tasklist_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="时间"
-            android:textSize="18sp" />
-
-        <TextView
-            android:paddingLeft="20px"
-            android:id="@+id/tv_tasklist_Location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_above="@+id/tv_tasklist_device"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/button"
-            android:text="地点"
-            android:textSize="18sp" />
-
+    <LinearLayout
+     android:id="@+id/yy"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="5dp"
+     android:orientation="horizontal">
+      <TextView
+          android:id="@+id/tv_loct"
+         android:text="妈妈"
+          android:textSize="16dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="100dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/tv_area"
+         android:text="爸爸"
+         android:textSize="16dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/yy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     <TextView
-        android:id="@+id/tv_tasklist_device"
+        android:id="@+id/tv_eqpt"
+        android:text="30"
+        android:textSize="16dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="30dp"
-        android:text="设备"
-        android:drawablePadding="11px"
-        android:paddingLeft="22px"
-        android:textColor="@color/shenlan"
-        android:textSize="30px" />
+        android:layout_height="wrap_content" />
     </LinearLayout>
-
         <ImageView
             android:id="@+id/bt_tasklist_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:background="@mipmap/device_arrows" />
-
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/rl_ysl"
+        android:layout_below="@id/rl_lsy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/iv_finished"
+            android:src="@mipmap/weiwan"
+            android:layout_width="70dp"
+            android:layout_height="30dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@id/rl_ysl"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@mipmap/jt2_pm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </RelativeLayout>

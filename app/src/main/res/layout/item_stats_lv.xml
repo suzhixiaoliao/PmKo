@@ -42,6 +42,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:text="20"
+            android:inputType="number"
             android:textColor="@color/shenlan"
             android:textSize="30sp" />
 

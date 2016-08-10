@@ -92,7 +92,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
         <activity
             android:name=".UnfinishedDeviceActivity"
             android:screenOrientation="portrait" />
@@ -112,7 +111,6 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="lTcjS1xctW7IGRML7puSoQMGnKN8bAIW" />
-
         <meta-data
             android:name="design_width"
             android:value="768" />
@@ -131,12 +129,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent" />
         <activity android:name=".TaskRemark2Activity" />
-        <activity android:name="com.intenpumin.lsy.intentpumin.repairs.MainRepairsActivity"></activity>
-        <activity android:name="me.iwf.photopicker.PhotoPickerActivity"
+        <activity android:name="com.intenpumin.lsy.intentpumin.repairs.MainRepairsActivity" />
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
-        <activity android:name="me.iwf.photopicker.PhotoPagerActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".TheRepairListActivity" />
+        <activity android:name=".RepairUploadActivity"></activity>
     </application>
 
 </manifest>

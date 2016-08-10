@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.intentpumin.lsy.intentpumin.R;
 import com.intentpumin.lsy.intentpumin.tools.device.items;
+import com.intentpumin.lsy.intentpumin.util.Stats_icon;
 
 import java.util.List;
 
@@ -51,18 +53,21 @@ public class MainDeviceAdapter extends BaseAdapter {
         if (convertView == null) {
             hodler = new ViewHodler();
             convertView = LayoutInflater.from(context).inflate(R.layout.item_device_lv, null);
-            hodler.tv_time = (TextView) convertView.findViewById(R.id.tv_tasklist_time);
-            hodler.tv_device = (TextView) convertView.findViewById(R.id.tv_tasklist_device);
-            hodler.tv_Location = (TextView) convertView.findViewById(R.id.tv_tasklist_Location);
+            hodler.tv_loct = (TextView) convertView.findViewById(R.id.tv_loct);
+            hodler.tv_eqpt = (TextView) convertView.findViewById(R.id.tv_eqpt);
+            hodler.tv_area = (TextView) convertView.findViewById(R.id.tv_area);
+            hodler.iv_finished= (ImageView) convertView.findViewById(R.id.iv_finished);
 
         } else {
             hodler = (ViewHodler) convertView.getTag();
         }
         String s=list.get(i).getDate();
         String subDate=s.substring(0,10);//这里将会获得Hello
-        hodler.tv_time.setText(subDate);
-        hodler.tv_device.setText(list.get(i).getEqpt_name());
-        hodler.tv_Location.setText(list.get(i).getLoct_name());
+        hodler.tv_loct.setText(list.get(i).getLoct_name());
+        hodler.tv_eqpt.setText(list.get(i).getEqpt_name());
+        hodler.tv_area.setText(list.get(i).getArea_name());
+        int resId = Stats_icon.getStatIcon(list.get(i).getFinished());
+        hodler.iv_finished.setImageResource(resId);
          convertView.setTag(hodler);
         return convertView;
     }
@@ -88,9 +93,10 @@ public class MainDeviceAdapter extends BaseAdapter {
         }
     }
     class ViewHodler {
-        private TextView tv_time;
-        private TextView tv_device;
-        private TextView tv_Location;
+        private TextView tv_loct;
+        private TextView tv_eqpt;
+        private TextView tv_area;
+        private ImageView iv_finished;
     }
 }
 

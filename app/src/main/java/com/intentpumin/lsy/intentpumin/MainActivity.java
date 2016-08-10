@@ -3,12 +3,16 @@ package com.intentpumin.lsy.intentpumin;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,28 +42,24 @@ import java.util.List;
 import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 
-public class MainActivity extends BaseActivity implements PullToRefreshLayout.OnRefreshListener,AdapterView.OnItemClickListener {
+public class MainActivity extends BaseActivity implements PullToRefreshLayout.OnRefreshListener
+        ,AdapterView.OnItemClickListener {
     private TextView tv_main;
     private TextView tv_return;
+    private TextView count_main;
     private MainDeviceAdapter adapter;
     private List<items> mdata;
     private SharedPreferences sp;
 
     private int ScreeWidth;
-
-    private int currentPage = 1;
-    private int MAX_PAGE = 10;
     private PullableListView mPullRefreshListView;//上拉下拉加载刷新
     private PullToRefreshLayout ptrl;
-    private static final int FIRST_INTO = 0;
-    private static final int REFUSH_UP = 1;
-    private static final int LOAG_MORE = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sp = getSharedPreferences("info", Context.MODE_PRIVATE);
         setContentView(R.layout.activity_main);
-        initViewpager();
+        //initViewpager();
         mPullRefreshListView  = (PullableListView) findViewById(R.id.list_tasklist_fu);
         ptrl = (PullToRefreshLayout) findViewById(R.id.refresh_view);
         ptrl.setOnRefreshListener(this);
@@ -80,17 +80,23 @@ public class MainActivity extends BaseActivity implements PullToRefreshLayout.On
                 MainActivity.this.startActivity(intent);
             }
         });
-        requestData(1, 10, FIRST_INTO);
+        requestData();
 
     }
 
 
-    private void initViewpager() {
+    private void initViewpager(String count_main_tv) {
         tv_main = (TextView) findViewById(R.id.tv_main);
         //第四步
         sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
         String mName=sp.getString("name","");
         tv_main.setText(mName + ",您好");
+        count_main= (TextView) findViewById(R.id.count_main);
+        //count_main.setText("您今天需要检修的设备台（套）数为"+count_main_tv);
+        SpannableString ss = new SpannableString("您今天需要检修的设备台（套）数为"+count_main_tv);
+        ss.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 16,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        count_main.setText(ss);
         tv_return = (TextView) findViewById(R.id.tv_return);
 
         tv_return.setOnClickListener(new View.OnClickListener() {
@@ -122,12 +128,15 @@ public class MainActivity extends BaseActivity implements PullToRefreshLayout.On
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         View view1 = LayoutInflater.from(this).inflate(R.layout.layout_yunwei_zhu, null);
         ImageView  uploading= (ImageView) view1.findViewById(R.id.iv_download);
-        ImageView uploading1 = (ImageView) view1.findViewById(R.id.iv_download2);
         ImageView  shangchuang = (ImageView) view1.findViewById(R.id.iv_shangchaung);
-        ImageView shangchuang1 = (ImageView) view1.findViewById(R.id.iv_shangchuang2);
-        ImageView scan1 = (ImageView) view1.findViewById(R.id.iv_scan2);
-        ImageView renwu1 = (ImageView) view1.findViewById(R.id.iv_renwu2);
-        ImageView chakan1 = (ImageView) view1.findViewById(R.id.iv_chakan2);
+        shangchuang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent inter1 = getIntent();
+                inter1.setClass(MainActivity.this, TheRepairListActivity.class);
+                startActivity(inter1);
+            }
+        });
         ImageView scan = (ImageView) view1.findViewById(R.id.iv_scan);
         //第四步
         scan.setOnClickListener(new View.OnClickListener() {
@@ -160,12 +169,7 @@ public class MainActivity extends BaseActivity implements PullToRefreshLayout.On
         });
         ScreeWidth = (getWindowManager().getDefaultDisplay().getWidth())/8;//获取屏幕的宽度的1/8作为ImgageView的宽度和高度
         setAutoWidth(uploading);
-        setAutoWidth(uploading1);
         setAutoWidth(shangchuang);
-        setAutoWidth(shangchuang1);
-        setAutoWidth(scan1);
-        setAutoWidth(renwu1);
-        setAutoWidth(chakan1);
         setAutoWidth(scan);
         setAutoWidth(renwu);
         setAutoWidth(chakan);
@@ -213,7 +217,7 @@ public class MainActivity extends BaseActivity implements PullToRefreshLayout.On
 
         mdata.clear();
 //          //请求第一页的数据
-        requestData(1, 10, REFUSH_UP);
+        requestData();
         adapter.setItems(mdata);
         // 下拉刷新操作
         new Handler() {
@@ -224,36 +228,26 @@ public class MainActivity extends BaseActivity implements PullToRefreshLayout.On
             }
         }.sendEmptyMessageDelayed(0, 1000);
     }
+
     @Override
     public void onLoadMore(final PullToRefreshLayout pullToRefreshLayout) {
-        currentPage++;
-        if (currentPage <= MAX_PAGE) {
-            requestData(currentPage, 10, LOAG_MORE);
-            adapter.addDate(mdata);
-            adapter.notifyDataSetChanged();
-        }
-        // 加载操作
         new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                // 千万别忘了告诉控件加载完毕了哦！
-                pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+                // 千万别忘了告诉控件刷新完毕了哦！
+                pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
             }
         }.sendEmptyMessageDelayed(0, 1000);
     }
-    private void requestData(int page, int count, final int i) {
+
+    private void requestData() {
         RequestParams params = new RequestParams();
-        //final login mlogin = (login) getIntent().getSerializableExtra("login");
-        String finished = "N";
         params.addFormDataPart("signature", "1");
-        params.addFormDataPart("finished", finished);
-        params.addFormDataPart("page", page);
-        params.addFormDataPart("count", count);
         sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
         String mPhoneno=sp.getString("phoneno","");
         params.addFormDataPart("phoneno",mPhoneno);
 
-        HttpUtil.getInstance().post(MainLogic.GET_TASK_LIST, params, new StringHttpRequestCallback() {
+        HttpUtil.getInstance().post(MainLogic.GET_TODAY, params, new StringHttpRequestCallback() {
             @Override
             public void onStart() {
                 super.onStart();
@@ -261,9 +255,6 @@ public class MainActivity extends BaseActivity implements PullToRefreshLayout.On
 
             @Override
             protected void onSuccess(String s) {
-                String eqpt_name = "";
-                String date = "";
-                String loct_name = "";
                 System.out.println("onSuccess");
                 result_device_items resulut = null;
                 try {
@@ -273,9 +264,8 @@ public class MainActivity extends BaseActivity implements PullToRefreshLayout.On
                         //正常情况是用result.getData().getItems得到数据组，而不是直接去获取result.getData().getItems().get(0)
                         if (resulut != null && resulut.getData() != null && resulut.getData()
                                 .getItems() != null && resulut.getData().getItems().size() > 0) {
-                            date = resulut.getData().getItems().get(0).getDate();
-                            eqpt_name = resulut.getData().getItems().get(0).getEqpt_name();
-                            loct_name = resulut.getData().getItems().get(0).getLoct_name();
+                                String count_main_tv=resulut.getData().getTotal();
+                            initViewpager(count_main_tv);
                         }
                     }
                 } catch (JsonSyntaxException e) {

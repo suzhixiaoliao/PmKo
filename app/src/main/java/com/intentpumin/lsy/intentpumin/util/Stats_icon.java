@@ -12,6 +12,21 @@ import java.util.Map;
 public class Stats_icon {
     private final static Map<String,Integer> mIcon =new HashMap<String,Integer>(){
         {
+            /**
+             * 发出维修警告（新增记录）：00001
+             维修被接单：00011
+             维修完成提交申请：00111
+             维修完成被确认：01111
+             */
+        put("00001",R.mipmap.red_pm);
+            put("00011",R.mipmap.yellow_pm);
+            put("00111",R.mipmap.green_pm);
+            put("01111",R.mipmap.device_dot);
+
+            put("Y",R.mipmap.yiwan);//已经完成
+            put("N",R.mipmap.weiwan);//未完成
+
+
             put("AI001", R.mipmap.lieji);//温度
             put("AI002",R.mipmap.liuliang);
             // put("AI002",R.mipmap.icon_liuliang);//气体流量

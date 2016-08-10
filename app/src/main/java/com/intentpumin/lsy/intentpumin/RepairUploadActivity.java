@@ -1,24 +1,26 @@
-package com.intenpumin.lsy.intentpumin.repairs;
+package com.intentpumin.lsy.intentpumin;
 
 import android.content.Context;
 import android.content.Intent;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.intenpumin.lsy.intentpumin.repairs.Adapter.ImageAdapter;
 import com.intenpumin.lsy.intentpumin.repairs.image.ImageHandleUtils;
 import com.intenpumin.lsy.intentpumin.repairs.util.MaxLengthWatcher;
-import com.intentpumin.lsy.intentpumin.R;
+import com.intentpumin.lsy.intentpumin.activity.BaseActivity;
 import com.intentpumin.lsy.intentpumin.activity.BcBaseActivity;
 import com.intentpumin.lsy.intentpumin.http.HttpUtil;
 import com.intentpumin.lsy.intentpumin.logic.MainLogic;
+import com.intentpumin.lsy.intentpumin.tools.repairlist.Repair_item;
+import com.intentpumin.lsy.intentpumin.util.SimpleDate;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,8 +30,8 @@ import cn.finalteam.okhttpfinal.RequestParams;
 import cn.finalteam.okhttpfinal.StringHttpRequestCallback;
 import me.iwf.photopicker.PhotoPickerActivity;
 
-public class MainRepairsActivity extends BcBaseActivity
-        implements View.OnClickListener,AdapterView.OnItemClickListener {
+public class RepairUploadActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener {
+    private Repair_item items;
     private static final int REQUEST_CODE = 1;
     private GridView vPhoto;
     private FloatingActionButton vPickImage;
@@ -41,9 +43,20 @@ public class MainRepairsActivity extends BcBaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_repairs);
+        setupData();
+    }
+
+    @Override
+    protected void setupData() {
+        super.setupData();
+        setContentView(R.layout.activity_repair_upload,R.string.RepairUpload,MODE_BACK_NAVIGATION);
+        items = (Repair_item) getIntent().getSerializableExtra("repair_item");
+        if (items != null) {
+            Log.e("DataExecute", "收到了" + items.toString());
+        }
         initView();
     }
+
     private void initView() {
 
         tv_fs= (TextView) findViewById(R.id.tv_shuru);
@@ -72,11 +85,11 @@ public class MainRepairsActivity extends BcBaseActivity
             int imageCount;
             Toast.makeText(this, "默认选择4张", Toast.LENGTH_SHORT).show();
             imageCount = 4;
-            Intent intent = ImageHandleUtils.pickMultiImage(this, imageCount,showTakePhotoItem);
+            Intent intent = ImageHandleUtils.pickMultiImage(this, imageCount, showTakePhotoItem);
             this.startActivityForResult(intent, REQUEST_CODE);
         }else {
             Intent intent =ImageHandleUtils.pickSingleImage(this,true);
-            this.startActivityForResult(intent,REQUEST_CODE);
+            this.startActivityForResult(intent, REQUEST_CODE);
         }
 
     }
@@ -104,14 +117,13 @@ public class MainRepairsActivity extends BcBaseActivity
         for (int i = 0; i < photoPaths.size(); i++) {
             files.add(new File(photoPaths.get(i)));
         }
-        String date = "2016-08-01 12:22:00";
-        String eqpt_id="FA0101001";
-        //String eqpt_id =result;
+        String date = SimpleDate.getDateNow();
+        String mdate = SimpleDate.getDateNow();
+        String repair_id=items.getRepair_id();
         String et_input=et_shuru.getText().toString();
         sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
         String mPhoneno= sp.getString("phoneno", "");
-        String repair_priv="9";
-        String process_flag="00001";
+        String process_flag="00111";
         String signature="1";
         String u = "u";
         final RequestParams params = new RequestParams();
@@ -120,13 +132,13 @@ public class MainRepairsActivity extends BcBaseActivity
         }
         params.addFormDataPart("field_name", u);
         params.addFormDataPart("process_flag",process_flag);
-        params.addFormDataPart("repair_priv",repair_priv);
+        params.addFormDataPart("repair_id",repair_id);
         params.addFormDataPart("signature", signature);
-        params.addFormDataPart("date",date);
-        params.addFormDataPart("repair_sent_user_id",mPhoneno);
-        params.addFormDataPart("eqpt_id",eqpt_id );
-        params.addFormDataPart("alm_comment",et_input);
-        HttpUtil.getInstance().post(MainLogic.Repairs, params, new StringHttpRequestCallback() {
+        params.addFormDataPart("onspot_datetime",mdate);
+        params.addFormDataPart("done_datetime",date);
+        params.addFormDataPart("phoneno",mPhoneno);
+        params.addFormDataPart("repair_comment",et_input);
+        HttpUtil.getInstance().post(MainLogic.GET_REPAIR_UPLOAD, params, new StringHttpRequestCallback() {
             @Override
             public void onStart() {
                 super.onStart();
@@ -137,7 +149,7 @@ public class MainRepairsActivity extends BcBaseActivity
                 // TODO: 2016/6/22 获取数据接口返回服务器的数据
                 System.out.println("onSuccess=======" + s);
                 System.out.println(s);
-                Toast.makeText(MainRepairsActivity.this, "成功"+s, Toast.LENGTH_LONG).show();
+                Toast.makeText(RepairUploadActivity.this, "成功"+s, Toast.LENGTH_LONG).show();
             }
 
             @Override
