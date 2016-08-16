@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e1e0dc"
     android:orientation="vertical"
     tools:context="com.pumin.lzl.pumin.Areaselection">
 
@@ -11,12 +12,24 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.baidu.mapapi.map.MapView
+                android:id="@+id/my_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/area_linear"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@color/area"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
 
             <ImageButton
                 android:id="@+id/area_sm"

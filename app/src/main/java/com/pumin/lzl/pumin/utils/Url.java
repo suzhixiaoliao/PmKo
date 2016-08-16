@@ -7,4 +7,5 @@ package com.pumin.lzl.pumin.utils;
  */
 public abstract class Url {
     public static String path = "http://api.pumintech.com:40000/app/";
+//    public static String path="http://10.16.1.201:40000/api/app/";
 }

@@ -3,11 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e1e0dc"
     tools:context="com.intentpumin.lsy.intentpumin.MainAdminActivity">
 
     <include
         android:id="@+id/main_title"
         layout="@layout/layout_main_title" />
+
+    <LinearLayout
+        android:id="@+id/main_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_title"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="50dp"
+        android:paddingRight="30dp"
+        android:paddingTop="30dp">
+
+        <EditText
+            android:id="@+id/main_sr"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@mipmap/area4"
+            android:drawableLeft="@mipmap/area2"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:hint="请输入设备编号"
+            android:lines="1"
+            android:maxLength="12"
+            android:paddingLeft="15dp" />
+
+        <ImageButton
+            android:id="@+id/main_ss"
+            style="?android:buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:focusable="true"
+            android:src="@mipmap/area3" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -134,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/image_center_right"
                     android:layout_centerHorizontal="true"
-                    android:text="上传"
+                    android:text="暂未开放"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
             </LinearLayout>

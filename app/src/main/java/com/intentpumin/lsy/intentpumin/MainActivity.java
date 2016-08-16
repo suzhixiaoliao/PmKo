@@ -136,7 +136,7 @@ public class MainActivity extends BaseActivity{
             public void onClick(View v) {
                 Intent inter1 = getIntent();
                 inter1.setClass(MainActivity.this, CaptureActivity.class);
-                inter1.putExtra("str_all", "0");
+                inter1.putExtra("str_all", "1");
                 startActivity(inter1);
             }
         });

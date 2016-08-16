@@ -2,6 +2,7 @@ package com.pumin.lzl.pumin.fragment;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
@@ -58,6 +59,7 @@ public class Futuremission_fragment extends Fragment {
     private String start_time; //获取开始日期
     private String END_time; //获取本月最后一天
 
+
     public Futuremission_fragment() {
         // Required empty public constructor
     }
@@ -71,11 +73,13 @@ public class Futuremission_fragment extends Fragment {
         initview();
         query();
         return view;
+
     }
 
     //初始化控件
     private void initview() {
         future_list = (ListView) view.findViewById(R.id.future_list);
+
     }
 
     //网络请求
@@ -122,7 +126,7 @@ public class Futuremission_fragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("TAG", error.getMessage(), error);
-                AllToast.alltoast(Gravity.CENTER, getContext(), "加载失败,请检查网络是否通畅", R.drawable.pumin);
+                AllToast.alltoast(Gravity.CENTER, getContext(), "加载失败,请检查网络是否通畅");
             }
         }) {
 
@@ -175,6 +179,9 @@ public class Futuremission_fragment extends Fragment {
         }
         future_adapter = new Future_frag_adapter(getContext(), future_Array);
         future_list.setAdapter(future_adapter);
+        future_list.setSelected(true);
+        future_list.setSelection(0);
+        future_list.setItemChecked(0, true);
+        future_list.setChoiceMode(future_list.CHOICE_MODE_SINGLE);
     }
-
 }

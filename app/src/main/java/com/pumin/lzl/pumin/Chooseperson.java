@@ -7,14 +7,9 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -27,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.intentpumin.lsy.intentpumin.R;
 import com.pumin.lzl.pumin.adapter.Choose_adapter;
 import com.pumin.lzl.pumin.bean.Choose_object;
+import com.pumin.lzl.pumin.bean.choose_item_obj;
 import com.pumin.lzl.pumin.utils.Url;
 
 import org.json.JSONArray;
@@ -35,7 +31,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 /*
 *@author lzl
@@ -59,9 +55,12 @@ public class Chooseperson extends AppCompatActivity {
     JSONArray jsonarr;
     String info; //解析的数据
 
-    private String choose_name;
-    private String name_furn;
+    List getlist;
+    choose_item_obj item_obj;
 
+    private String name_furn;
+    private String choose_name;
+    private String choose_id;
     private String set_name;
     private String set_id;
 
@@ -158,7 +157,7 @@ public class Chooseperson extends AppCompatActivity {
     }
 
     //得到所有运维人员
-    private void init(String getper) {
+    private void init(final String getper) {
         choose_array = new ArrayList<>();
         try {
             object = new JSONObject(getper);
@@ -188,7 +187,25 @@ public class Chooseperson extends AppCompatActivity {
         choose_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getlist = choose_ada.array();
+                item_obj= (choose_item_obj) getlist.get(0);
+                set_id=item_obj.getId();
+                set_name=item_obj.getName();
+                System.out.println(set_id+"xxxxxxxxxxxxxxxxxxxx"+set_name);
+                item_obj= (choose_item_obj) getlist.get(1);
+                choose_id=item_obj.getId();
+                choose_name=item_obj.getName();
+                System.out.println(choose_id + "xxxxxxxxxxxxxxxxxxxx111" + choose_name);
+                Intent it=new Intent(Chooseperson.this,Furnishtsak.class);
+                //1
+                it.putExtra("set_id",set_id);
+                it.putExtra("set_name",set_name);
+                //2
+                it.putExtra("choose_id",choose_id);
+                it.putExtra("choose_name",choose_name);
+                //回传的id
+                it.putExtra("put_areament",name_furn);
+                startActivity(it);
             }
         });
     }

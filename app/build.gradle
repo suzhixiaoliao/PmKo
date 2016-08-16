@@ -10,6 +10,7 @@ android {
         main {
             jniLibs.srcDirs = ['libs']
         }
+
         repositories {
             maven { url "https://jitpack.io" }
         }
@@ -32,6 +33,16 @@ android {
             }
         }
     }
+    task nativeLibsToJar(type: Zip, description: "create a jar archive of the native libs") {
+        destinationDir file("$projectDir/libs")
+        baseName "Native_Libs2"
+        extension "jar"
+        from fileTree(dir: "libs", include: "**/*.so")
+        into "lib"
+    }
+    tasks.withType(JavaCompile) {
+        compileTask -> compileTask.dependsOn(nativeLibsToJar)
+    }
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -40,6 +51,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'cn.finalteam:okhttpfinal:2.0.6'
     compile files('libs/baidumapapi_v3_5_0.jar')
+    compile files('baidumapapi_v3_5_0.jar')
     compile files('libs/locSDK_6.23.jar')
     compile files('libs/volley.jar')
     compile files('libs/zxing.jar')

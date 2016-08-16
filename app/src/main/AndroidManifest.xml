@@ -107,15 +107,16 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote">
-            <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2" />
-            </intent-filter>
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="com.baidu.location.service_v2.2" /> -->
+            <!-- </intent-filter> -->
         </service>
-        <!-- 百度地图key需要配置 -->
+        <!-- 百度地图key需要配置 lTcjS1xctW7IGRML7puSoQMGnKN8bAIW -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="lTcjS1xctW7IGRML7puSoQMGnKN8bAIW" />
-        <!--管理员主界面-->
+            android:value="PcuA8tx7sFB8oLEP0B0LY1KATb9TKO8Q" />
+        <!-- 管理员主界面 -->
         <activity
             android:name=".MainAdminActivity"
             android:screenOrientation="portrait" />
@@ -154,10 +155,14 @@
         <activity
             android:name="com.pumin.lzl.pumin.Furnishtsak"
             android:screenOrientation="portrait" />
-        <!--选择运维人员界面-->
+        <!-- 选择运维人员界面 -->
         <activity
             android:name="com.pumin.lzl.pumin.Chooseperson"
             android:screenOrientation="portrait" />
+        <!--报修流程关闭界面-->
+        <activity
+            android:name="com.pumin.lzl.pumin.Processclose"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

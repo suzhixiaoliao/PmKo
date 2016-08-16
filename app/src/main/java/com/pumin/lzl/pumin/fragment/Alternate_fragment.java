@@ -210,6 +210,7 @@ public class Alternate_fragment extends Fragment {
 
         alter_adapter = new Alter_frag_adapter(alter_Array, getContext());
         alter_list.getRefreshableView().setAdapter(alter_adapter);  //碎片中使用
+        //上下拉刷新
         alter_list.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -277,6 +278,7 @@ public class Alternate_fragment extends Fragment {
         });
     }
 
+    //刷新适配器和listview
     public void as() {
         query();
         alter_adapter.notifyDataSetChanged();

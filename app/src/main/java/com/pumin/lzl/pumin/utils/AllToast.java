@@ -15,12 +15,11 @@ import android.widget.Toast;
  */
 public  class AllToast {
 
-    public static void alltoast(int xy,Context context,String string,int image){
+    public static void alltoast(int xy,Context context,String string){
         Toast toast=Toast.makeText(context,string,Toast.LENGTH_LONG);
         toast.setGravity(xy, 0, 0); //提示信息自定义位置
         LinearLayout toastView = (LinearLayout) toast.getView();
         ImageView imageCodeProject = new ImageView(context);
-        imageCodeProject.setImageResource(image);  //往toast中间加一个图片
         toastView.addView(imageCodeProject, 0);
         toast.show();
     }
