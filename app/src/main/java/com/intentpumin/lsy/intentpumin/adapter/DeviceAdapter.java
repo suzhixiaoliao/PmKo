@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.intentpumin.lsy.intentpumin.R;
 import com.intentpumin.lsy.intentpumin.tools.device.items;
-import com.intentpumin.lsy.intentpumin.zxing.CaptureActivity;
 
 import java.util.List;
 
@@ -95,6 +94,11 @@ public class DeviceAdapter extends BaseAdapter {
         if (list!=null&&list.size()>0){
         System.out.println("list的size是"+list.size());}else {
             System.out.println("list的null");
+        }
+    }
+    public void addDate(List<items> mlist){
+        if(null!= mlist){
+            this.list.addAll(mlist);
         }
     }
 

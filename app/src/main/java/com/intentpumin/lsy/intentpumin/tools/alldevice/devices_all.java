@@ -2,9 +2,6 @@ package com.intentpumin.lsy.intentpumin.tools.alldevice;
 
 import java.io.Serializable;
 
-/**
- * Created by yang on 2016/5/16.
- */
 public class devices_all implements Serializable{
     private String eqpt_id;
     private String eqpt_name;

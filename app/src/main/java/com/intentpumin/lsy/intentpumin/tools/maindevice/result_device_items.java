@@ -2,9 +2,6 @@ package com.intentpumin.lsy.intentpumin.tools.maindevice;
 
 import java.io.Serializable;
 
-/**
- * Created by yang on 2016/5/16.
- */
 public class result_device_items implements Serializable{
     private int res;
     private String msg;

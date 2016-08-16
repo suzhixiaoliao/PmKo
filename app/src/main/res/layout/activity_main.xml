@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bg_pumin"
     tools:context=".MainActivity">
 
     <include
@@ -18,11 +19,29 @@
             android:background="@color/bg_pumin">
         </android.support.v4.view.ViewPager>
 
-        <ImageView
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+           android:background="@color/divider"/>
+    <TextView
+        android:background="@color/bg_pumin"
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="15dp"
+        android:text="您今天需要检修的设备台（套）数为"
+        android:id="@+id/count_main"
+        android:textColor="@color/shenlan"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:background="@color/divider"/>
-
-
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="18dp"
+        android:text="推荐路线"
+        android:background="@color/bg_pumin"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
         <include layout="@layout/layout_tasklist_fu" />
 </LinearLayout>

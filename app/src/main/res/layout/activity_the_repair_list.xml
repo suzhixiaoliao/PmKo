@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#e1e0dc"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <include layout="@layout/widget_toolbar" />
+    <com.intentpumin.lsy.intentpumin.commonview.PullToRefreshLayout
+        android:id="@+id/refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/refresh_head" />
+        <com.intentpumin.lsy.intentpumin.commonview.PullableListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list_repair"
+            android:divider="#00000000"
+            android:dividerHeight="0dip"
+            android:listSelector="@android:color/transparent" />
+        <include layout="@layout/load_more" />
+    </com.intentpumin.lsy.intentpumin.commonview.PullToRefreshLayout>
+</LinearLayout>
+
+

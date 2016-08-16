@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class items implements Serializable{
     private String area_id;
+    private String area_name;
     private String date;
     private String loct_id;
     private String loct_name;
@@ -61,6 +62,14 @@ public class items implements Serializable{
 
     public String getEqpt_name() {
         return eqpt_name;
+    }
+
+    public String getArea_name() {
+        return area_name;
+    }
+
+    public void setArea_name(String area_name) {
+        this.area_name = area_name;
     }
 
     public void setEqpt_name(String eqpt_name) {

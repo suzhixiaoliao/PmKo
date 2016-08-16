@@ -2,9 +2,6 @@ package com.intentpumin.lsy.intentpumin.tools.stat;
 
 import java.io.Serializable;
 
-/**
- * Created by yang on 2016/4/26.
- */
 public class result_stat_get implements Serializable{
 
     private int res;

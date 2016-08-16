@@ -1,8 +1,5 @@
 package com.intentpumin.lsy.intentpumin.tools.stat;
 
-/**
- * Created by yang on 2016/5/11.
- */
 public class stat_get {
     String id;
     String date;

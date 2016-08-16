@@ -2,9 +2,6 @@ package com.intentpumin.lsy.intentpumin.tools.allstat;
 
 import java.io.Serializable;
 
-/**
- * Created by yang on 2016/5/16.
- */
 public class stats_all implements Serializable{
     private String  stat_id;
     private String stat_name;

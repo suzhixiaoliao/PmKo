@@ -30,8 +30,6 @@ import com.intentpumin.lsy.intentpumin.tools.value.result_values_all_get;
 import com.intentpumin.lsy.intentpumin.tools.value.values_all_items;
 import com.intentpumin.lsy.intentpumin.tools.value.values_devices_get;
 import com.intentpumin.lsy.intentpumin.util.Stats_icon;
-import com.intentpumin.lsy.intentpumin.zxing.ChartLine;
-import com.intentpumin.lsy.intentpumin.zxing.ChartManeger;
 
 import java.lang.reflect.Type;
 import java.text.DateFormat;

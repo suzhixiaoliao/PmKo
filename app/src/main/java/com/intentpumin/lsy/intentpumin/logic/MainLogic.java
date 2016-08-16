@@ -22,6 +22,12 @@ public class MainLogic extends BaseLogic {
     public final static String SET_REMARK=HOST_URL+"/set_task_remark";
     //更新任务备注
     public final static String GET_REMARK=HOST_URL+"/get_task_remark";
+    //获取今天全部任务
+    public final static String GET_TODAY=HOST_URL+"/get_mt_eqpt_list_today";
+    //报修维修清单
+    public final static String GET_REPAIR=HOST_URL+"/get_repair_list_null_or_mine";
+    //报修维修上传
+    public final static String GET_REPAIR_UPLOAD=HOST_URL+"/get_repair_list_null_or_mine";
     /**
    * 管理人员接口
    */
@@ -31,7 +37,9 @@ public class MainLogic extends BaseLogic {
     public final static String GET_EQPT_STAT=HOST_URL+"/get_stat_list_by_eqpt";
     //管理人员获取指定日期及设备信息下的状态趋势图
     public final static String GET_VALUE=HOST_URL+"/get_stat_value";
-
-
+    /**
+     * 报修人员  Repairs
+    */
+   public final static String Repairs=HOST_URL+"/add_new_repair";
 
 }

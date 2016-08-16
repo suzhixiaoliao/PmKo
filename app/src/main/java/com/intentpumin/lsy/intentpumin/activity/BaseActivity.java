@@ -1,5 +1,6 @@
 package com.intentpumin.lsy.intentpumin.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -10,11 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.intentpumin.lsy.intentpumin.R;
+import com.intentpumin.lsy.intentpumin.network.BcToastDialogProxy;
+import com.intentpumin.lsy.intentpumin.proxy.YiActivityProxy;
+import com.intentpumin.lsy.intentpumin.proxy.YiDialogProxy;
+
 
 /**
  * Created by yang on 2016/7/5.
  */
-public class BaseActivity extends AppCompatActivity{
+public class BaseActivity extends AppCompatActivity implements BcToastDialogProxy {
     // 页面无 Navigation 的模式
     public static final int MODE_NO_NAVIGATION = 0;
     // 页面有返回 Navigation 的模式
@@ -22,6 +27,7 @@ public class BaseActivity extends AppCompatActivity{
 
     protected Toolbar mToolbar;
     protected TextView mPageTitle;
+    protected YiActivityProxy mActivityProxy;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +37,7 @@ public class BaseActivity extends AppCompatActivity{
 
     // 布局数据初始化
     protected void setupData() {
-        //
+        mActivityProxy = new YiActivityProxy(this);
     }
 
     @Override
@@ -78,7 +84,88 @@ public class BaseActivity extends AppCompatActivity{
         return (T) findViewById(resID);
     }
 
-    protected void showToast(String msg) {
-        Toast.makeText(BaseActivity.this, msg, Toast.LENGTH_SHORT).show();
+    @Override
+    public void showProgressDialog(String msg, DialogInterface.OnCancelListener listener, boolean cancelable) {
+        mActivityProxy.showProgressDialog(msg, listener, cancelable);
+    }
+
+    @Override
+    public void showProgressDialog(String msg) {
+        showProgressDialog(msg, null, true);
+    }
+
+    @Override
+    public void showProgressDialog(int resid) {
+        showProgressDialog(getString(resid), null, true);
+    }
+
+    @Override
+    public void showMsgDialog(String title, String detials, String btnLeft, String btnRight, View.OnClickListener btnLeftListener, View.OnClickListener btnRightListener) {
+        mActivityProxy.showMsgDialog(title, detials, btnLeft, btnRight, btnLeftListener, btnRightListener);
+    }
+
+    @Override
+    public void showMsgDialog(String detials, String btnLeft, View.OnClickListener btnLeftListener) {
+        showMsgDialog(null, detials, btnLeft, null, btnLeftListener, null);
+    }
+
+    @Override
+    public void showMsgDialog(String title, String detials, String btnLeft) {
+        showMsgDialog(title, detials, btnLeft, null, null, null);
+    }
+
+    @Override
+    public void showMsgDialog(String detials, String btnLeft) {
+        showMsgDialog(null, detials, btnLeft, null, null, null);
+    }
+
+    @Override
+    public void showMsgDialog(String detials) {
+        showMsgDialog(null, detials, getString(R.string.ok), null, null, null);
+    }
+
+    @Override
+    public void showMsgDialog(int res) {
+        showMsgDialog(getString(res));
+    }
+
+    @Override
+    public void showMsgDialog() {
+        mActivityProxy.showMsgDialog();
+    }
+
+    @Override
+    public void showMsgDialogWithSize(int width, int height) {
+        mActivityProxy.showMsgDialogWithSize(width, height);
+    }
+
+    @Override
+    public YiDialogProxy getDialogProxy() {
+        return mActivityProxy.getDialogProxy();
+    }
+
+    @Override
+    public void cancelMsgDialog() {
+        mActivityProxy.cancelMsgDialog();
+    }
+
+    @Override
+    public void showProgressDialog() {
+        mActivityProxy.showProgressDialog();
+    }
+
+    @Override
+    public void cancelProgressDialog() {
+        mActivityProxy.cancelProgressDialog();
+    }
+
+    @Override
+    public void showToast(int resourceId) {
+        mActivityProxy.showToast(resourceId);
+    }
+
+    @Override
+    public void showToast(String text) {
+        mActivityProxy.showToast(text);
     }
 }
